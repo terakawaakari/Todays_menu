@@ -1,0 +1,39 @@
+// Place all the styles related to the homes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.main-visual-container,
+.about-container,
+.trouble-container,
+.PR-container {
+  height: 45vw;
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.main-visual,
+.about,
+.trouble,
+.PR {
+  height: 45vw;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.main-visual {
+  background-image: image-url("top1.png");
+}
+
+.about {
+  background-image: image-url("top2.png");
+}
+
+.trouble {
+  background-image: image-url("top3.png");
+}
+
+.PR {
+  background-image: image-url("top4.png");
+}

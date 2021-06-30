@@ -17,3 +17,20 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fff7f3;
+}
+
+// ヘッダー
+.navbar-brand,
+.nav-item {
+ letter-spacing: 0.2em;
+ color: #efefef;
+}
