@@ -26,6 +26,9 @@ https://drive.google.com/file/d/1cMF4fAJ25xVKjQmP1TGkXbwD3nYFfbtg/view?usp=shari
 ER図
 https://drive.google.com/file/d/1DuJiTKnPkmdB4TM7KT3fFh3mSZMkAcxy/view?usp=sharing
 
+テーブル定義書
+https://docs.google.com/spreadsheets/d/1-8nh6UvK-yBcvDNgDmwTt55McAC8V4JlJ8NjvBjCJQ4/edit?usp=sharing
+
 ## チャレンジ要素一覧
 https://docs.google.com/spreadsheets/d/1ELBXgYNIkkVXjdH-Mos4XrQ_JkCfdBSfx3k-HHnL8fw/edit?usp=sharing
 
