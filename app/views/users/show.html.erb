@@ -3,7 +3,9 @@
 
   <div class="col-10 offset-1">
     <!--モーダルのトリガー-->
-    <div class="pull-right btn btn-sm btn-outline-secondary mb-2" data-toggle="modal" data-target="#exampleModalCenter">編集</div>
+    <div class="text-right">
+      <div class="btn btn-sm btn-outline-secondary mb-2" data-toggle="modal" data-target="#exampleModalCenter">編集</div>
+    </div>
 
     <!--ユーザ情報編集用モーダル-->
     <%= render "edit" %>
@@ -71,5 +73,4 @@
     <div class="text-right">退会は<%= link_to "こちら", withdraw_confirm_path %></div>
 
   </div>
-
 </div>
