@@ -12,6 +12,15 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @ingredients = @recipe.ingredients.new
+    @directions = @recipe.directions.new
+  end
+
+  def create
+    @recipe = Recipe.new(recipe_params)
+    if @recipe.save
+      redirect_to recipe_path(@recipe)
+    end
   end
 
   def edit
@@ -20,4 +29,13 @@ class RecipesController < ApplicationController
   def recommend
   end
 
+
+  private
+  def recipe_params
+    params.require(:recipe).permit(
+      :user_id, :name, :recipe_image, :serving, :genre, :category, :taste, :time, :popularity, :url, :note, :is_open,
+      ingredients_attributes:[:name, :quantity, :_destroy],
+      directions_attributes:[:description, :process_image, :number, :_destroy]
+    )
+  end
 end

@@ -39,13 +39,43 @@
 
         <div class="d-flex">
           <p class="col-4">材料</p>
-          <div><%= f.text_field :ingredient, placeholder: "玉ねぎ", class: "mr-3" %></div>
-          <div><%= f.text_field :quantity, placeholder: "1/2個" %></div>
+          <div>
+            <div id="detail-association-insertion-point">
+              <%= f.fields_for :ingredients do |f| %>
+                <%= render "ingredient_fields", f: f %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <!--材料フォームの追加ボタン-->
+        <div class="text-right mb-3">
+          <%= link_to_add_association "+フォームを追加", f, :ingredients, class: "btn btn-sm btn-secondary",
+            data: {
+              association_insertion_node: '#detail-association-insertion-point',
+              association_insertion_method: 'after'
+            }
+          %>
         </div>
 
         <div class="d-flex">
+          <% @num = 1 %>
           <p class="col-4">作り方</p>
-          <%= f.text_area :introduction, size: "50x5", placeholder: "ここに説明文を記述します" %>
+          <div>
+            <div id="direction-association-insertion-point">
+              <%= f.fields_for :directions do |f| %>
+                <%= render "direction_fields", f: f %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <!--作り方フォームの追加ボタン-->
+        <div class="text-right mb-3">
+          <%= link_to_add_association "+フォームを追加", f, :directions, class: "btn btn-sm btn-secondary",
+            data: {
+              association_insertion_node: '#direction-association-insertion-point',
+              association_insertion_method: 'after'
+            }
+          %>
         </div>
 
         <div class="d-flex my-3">
