@@ -34,3 +34,12 @@ body {
  letter-spacing: 0.2em;
  color: #efefef;
 }
+
+// ページタイトル
+.page_title {
+ width: 300px;
+ height: 200px;
+ background-image: image-url("title_bg.png");
+ background-size: contain;
+ background-position: center;
+}

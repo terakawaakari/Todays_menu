@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  name: MyString
+  recipe_image_id: MyString
+  serving: MyString
+  genre: 1
+  category: 1
+  taste: 1
+  time: 1
+  direction: MyText
+  popularity: 1.5
+  url: MyText
+  note: MyText
+  is_open: false
+
+two:
+  user_id: 1
+  name: MyString
+  recipe_image_id: MyString
+  serving: MyString
+  genre: 1
+  category: 1
+  taste: 1
+  time: 1
+  direction: MyText
+  popularity: 1.5
+  url: MyText
+  note: MyText
+  is_open: false

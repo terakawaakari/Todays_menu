@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="row">
+    <div class="page_title d-flex align-items-center justify-content-center my-4">
+      <h2>マイレシピ追加</h2>
+    </div>
+
+    <div class="col-8 offset-2">
+
+      <%= form_with model: @recipe, local: true do |f| %>
+        <div class="d-flex">
+          <p class="col-4">画像</p>
+          <%= f.attachment_field :recipe_image, placeholder: "ファイルを選択" %>
+        </div>
+
+        <div class="d-flex">
+          <p class="col-4">料理名</p>
+          <%= f.text_field :name, size: "50", placeholder: "料理名" %>
+        </div>
+
+        <div class="d-flex my-3">
+          <p class="col-4">ジャンル</p>
+          <%= f.select :genre, Recipe.genres.keys %>
+        </div>
+
+        <div class="d-flex my-3">
+          <p class="col-4">カテゴリー</p>
+          <%= f.select :category, Recipe.categories.keys %>
+        </div>
+
+        <div class="d-flex my-3">
+          <p class="col-4">テイスト</p>
+          <%= f.select :taste, Recipe.tastes.keys %>
+        </div>
+
+        <div class="d-flex">
+          <p class="col-4">出来上がりの量</p>
+          <div><%= f.text_field :serving, placeholder: "3人分" %></div>
+        </div>
+
+        <div class="d-flex">
+          <p class="col-4">材料</p>
+          <div><%= f.text_field :ingredient, placeholder: "玉ねぎ", class: "mr-3" %></div>
+          <div><%= f.text_field :quantity, placeholder: "1/2個" %></div>
+        </div>
+
+        <div class="d-flex">
+          <p class="col-4">作り方</p>
+          <%= f.text_area :introduction, size: "50x5", placeholder: "ここに説明文を記述します" %>
+        </div>
+
+        <div class="d-flex my-3">
+          <p class="col-4">公開設定</p>
+          <%= f.radio_button :is_open, :true, class: "mr-1 mt-1" %>
+          <%= f.label :is_open, "公開", {value: :true, style: "display: inline-block;"} %>
+          <%= f.radio_button :is_open, :false, class: "mr-1 ml-3 mt-1" %>
+          <%= f.label :is_open, "非公開", {value: :false, style: "display: inline-block;"} %>
+        </div>
+
+        <div class="text-center"><%= f.submit "レシピを追加", class: "btn btn-success btn-lg" %></div>
+      <% end %>
+
+    </div>
+  </div>
+</div>
