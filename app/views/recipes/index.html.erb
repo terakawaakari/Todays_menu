@@ -3,7 +3,7 @@
     <div class="d-flex flex-wrap">
       <div>
         <% @recipes.each do |recipe| %>
-          <div><%= attachment_image_tag recipe, :recipe_image, size: '200x150', format:'jpeg', fallback: no_image.png %></div>
+          <div><%= attachment_image_tag recipe, :recipe_image, size: '200x150', format:'jpeg', fallback: "no_image.png" %></div>
           <div><%= recipe.name %></div>
           <div><%= recipe.category %></div>
           <div><%= recipe.genre %></div>
