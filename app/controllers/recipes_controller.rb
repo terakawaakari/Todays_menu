@@ -10,6 +10,8 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @ingredients = @recipe.ingredients
+    @directions = @recipe.directions
   end
 
   def new
@@ -26,7 +28,7 @@ class RecipesController < ApplicationController
     #   direction.number = num
     # end
     if @recipe.save
-      redirect_to recipes_path
+      redirect_to recipe_path(@recipe)
     else
       render :new
     end
@@ -43,7 +45,7 @@ class RecipesController < ApplicationController
     @recipe.directions.destroy_all
     @recipe.ingredients.destroy_all
     if @recipe.update(recipe_params)
-      redirect_to recipes_path
+      redirect_to recipe_path(@recipe)
     else
       @ingredients = @recipe.ingredients
       render :edit
