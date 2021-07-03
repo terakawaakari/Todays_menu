@@ -1,0 +1,6 @@
+<div class="nested-fields">
+  <div>
+    <%= f.text_area :description, size: "50x3", placeholder: "作り方を順番に入力してください" %>
+    <%= link_to_remove_association "#{icon "fas", "trash-alt"}".html_safe , f, class: "js-log-remove-btn ml-2" %>
+  </div>
+</div>
