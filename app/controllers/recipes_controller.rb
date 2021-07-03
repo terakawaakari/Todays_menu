@@ -14,11 +14,15 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
     @ingredients = @recipe.ingredients.new
     @directions = @recipe.directions.new
-    @num = 1
   end
 
   def create
     @recipe = Recipe.new(recipe_params)
+    @recipe.user_id = current_user.id
+    @directions = @recipe.directions
+    @directions.each.with_index(1) do |direction, num|
+      direction.number = num
+    end
     if @recipe.save
       redirect_to recipes_path
     else
@@ -30,10 +34,25 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients
     @directions = @recipe.directions
-    @directions.each do |direction|
-      @num = direction.number
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    @recipe.directions.destroy_all
+    @directions = Recipe.new(recipe_params).directions
+    @directions.each.with_index(1) do |direction, num|
+      direction.number = num
+    end
+    @recipe.directions = @directions
+    if @recipe.save
+      redirect_to recipes_path
+    else
+      @ingredients = @recipe.ingredients
+      render :edit
     end
   end
+
+
 
   def recommend
   end
@@ -42,9 +61,9 @@ class RecipesController < ApplicationController
   private
   def recipe_params
     params.require(:recipe).permit(
-      :user_id, :name, :recipe_image, :serving, :genre, :category, :taste, :time, :popularity, :url, :note, :is_open,
+      :name, :recipe_image, :serving, :genre, :category, :taste, :time, :popularity, :url, :note, :is_open,
       ingredients_attributes:[:name, :quantity, :_destroy],
-      directions_attributes:[:description, :process_image, :number, :_destroy]
+      directions_attributes:[:description, :process_image, :_destroy]
     )
   end
 end

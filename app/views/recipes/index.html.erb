@@ -1,15 +1,13 @@
-<div class="container">
+<div class="container mt-5">
   <div class="col-10 offset-1">
     <div class="d-flex flex-wrap">
-      <div>
         <% @recipes.each do |recipe| %>
-          <div><%= attachment_image_tag recipe, :recipe_image, size: '200x150', format:'jpeg', fallback: "no_image.png" %></div>
-          <div><%= recipe.name %></div>
-          <div><%= recipe.category %></div>
-          <div><%= recipe.genre %></div>
-          <div><%= recipe.taste %></div>
+          <div class="mx-4">
+            <div><%= attachment_image_tag recipe, :recipe_image, size: '200x150', format:'jpeg', fallback: "no_image.png" %></div>
+            <div><%= recipe.name %></div>
+            <div><%= recipe.category %> / <%= recipe.genre %> / <%= recipe.taste %></div>
+          </div>
         <% end %>
-      </div>
     </div>
   </div>
 </div>

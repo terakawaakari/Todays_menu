@@ -54,22 +54,22 @@
   <div class="d-flex">
     <p class="col-4">作り方</p>
     <div>
-      <div id="direction-association-insertion-point">
+      <div id="directions">
         <%= f.fields_for :directions do |f| %>
           <%= render "direction_fields", f: f %>
         <% end %>
+        <!--作り方フォームの追加ボタン-->
+        <div class="text-right mb-3">
+          <%= link_to_add_association "+フォームを追加", f, :directions, class: "btn btn-sm btn-secondary"
+            # data: {
+            #   association_insertion_node: '#direction-association-insertion-point',
+            # }
+          %>
+        </div>
       </div>
     </div>
   </div>
-  <!--作り方フォームの追加ボタン-->
-  <div class="text-right mb-3">
-    <%= link_to_add_association "+フォームを追加", f, :directions, class: "btn btn-sm btn-secondary",
-      data: {
-        association_insertion_node: '#direction-association-insertion-point',
-        association_insertion_method: 'after'
-      }
-    %>
-  </div>
+
 
   <div class="d-flex">
     <p class="col-4">メモ</p>
@@ -84,7 +84,6 @@
     <%= f.label :is_open, "非公開", {value: :false, style: "display: inline-block;"} %>
   </div>
 
-  <%= f.hidden_field :user_id, :value => current_user.id %>
   <div class="text-center"><%= f.submit "レシピを追加", class: "btn btn-success btn-lg" %></div>
 <% end %>
 
