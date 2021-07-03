@@ -52,8 +52,11 @@
           <%= @recipe.note %>
         </div>
       <% end %>
-      <div class="text-right">
-        <%= link_to "レシピを編集する", edit_recipe_path(@recipe), class: "btn btn-sm btn-success mt-3" %>
+      <div class="text-right mt-3">
+        <%= link_to "レシピを編集する", edit_recipe_path(@recipe), class: "btn btn-sm btn-success" %>
+        <% if @recipe.user_id == current_user.id %>
+          <%= link_to "レシピを削除する", recipe_path(@recipe), method: :delete, class: "btn btn-sm btn-danger ml-3" %>
+        <% end %>
       </div>
 
     </div>
