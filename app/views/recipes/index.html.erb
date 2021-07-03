@@ -3,8 +3,12 @@
     <div class="d-flex flex-wrap">
       <% @recipes.each do |recipe| %>
         <div class="mx-4">
-          <div><%= attachment_image_tag recipe, :recipe_image, size: '200x150', format:'jpeg', fallback: "no_image.png" %></div>
-          <div><%= recipe.name %></div>
+          <div>
+            <%= link_to recipe_path(recipe) do %>
+              <%= attachment_image_tag recipe, :recipe_image, size: '200x150', format:'jpeg', fallback: "no_image.png" %>
+            <% end %>
+          </div>
+          <div><%= link_to "#{recipe.name}", recipe_path(recipe) %></div>
           <div><%= recipe.category %> / <%= recipe.genre %> / <%= recipe.taste %></div>
         </div>
       <% end %>

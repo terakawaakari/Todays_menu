@@ -1,13 +1,30 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-8 offset-2 bg-white p-5">
-      <h2 class="mb-4"><%= @recipe.name %></h2>
+      <h2 class="mb-4 d-inline-block"><%= @recipe.name %></h2>
+      <input type="button" value="詳細を表示" onclick="clickBtn()" class="ml-3">
+
+      <!--レシピの詳細情報　ボタンクリックで表示-->
+      <div id="details" class="mb-4">
+        <div>ジャンル：<%= @recipe.genre %></div>
+        <div class="my-1">カテゴリー：<%= @recipe.category %></div>
+        <div>味付け：<%= @recipe.taste %></div>
+        <div class="my-1">調理時間：<%= @recipe.time %> 分</div>
+        <div id="star-rate-<%= @recipe.id %>">人気度：</div>
+        <% if @recipe.is_open? %>
+          <div class="my-1">公開設定：公開中</div>
+        <% else %>
+          <div class="my-1">公開設定：非公開</div>
+        <% end %>
+      </div>
+
 
       <div class="d-flex">
         <div><%= attachment_image_tag @recipe, :recipe_image, size: '300x230', format:'jpeg', fallback: "no_image.png" %></div>
 
         <div class="ml-4">
-          <h5 class="d-inline-block">材料　</h5><p class="d-inline-block">(<%= @recipe.serving %>)</p>
+          <h5 class="d-inline-block">材料　</h5>
+          <p class="d-inline-block">(<%= @recipe.serving %>)</p>
           <table class="table">
             <tbody>
               <% @ingredients.each do |i| %>
@@ -29,10 +46,43 @@
           <% end %>
         </ol>
       </div>
+      <% if @recipe.note.present? %>
+        <div class="px-4 pb-4 border rounded">
+          <div class="py-2">-memo-</div>
+          <%= @recipe.note %>
+        </div>
+      <% end %>
       <div class="text-right">
-        <%= link_to "レシピを編集する", edit_recipe_path(@recipe), class: "btn btn-sm btn-success" %>
+        <%= link_to "レシピを編集する", edit_recipe_path(@recipe), class: "btn btn-sm btn-success mt-3" %>
       </div>
 
     </div>
   </div>
 </div>
+
+<!--レシピ詳細の表示切り替え-->
+<script>
+document.getElementById("details").style.display ="none";
+
+function clickBtn(){
+	const details = document.getElementById("details");
+
+	if(details.style.display == "block"){
+		details.style.display = "none";
+	}else{
+		details.style.display = "block";
+	}
+}
+</script>
+
+<!--人気度の表示-->
+<script>
+  $("#star-rate-<%= @recipe.id %>").raty({
+    starOff:  "<%= asset_path("star-off.png") %>",
+    starOn : "<%= asset_path("star-on.png") %>",
+    starHalf: "<%= asset_path("star-half.png") %>",
+    half: true,
+    readOnly: true,
+    score: <%= @recipe.popularity %>
+  });
+</script>
