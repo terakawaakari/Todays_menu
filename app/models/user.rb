@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   enum sex: { "男性": 0, "女性": 1}
 
+  has_many :recipes, dependent: :destroy
+
 end

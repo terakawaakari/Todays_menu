@@ -23,7 +23,11 @@
 
   <div class="d-flex">
     <p class="col-4">人気度</p>
-    <div id="popularity_stars"></div>
+    <% if recipe.popularity.present? %>
+      <div id="star-rate-<%= recipe.id %>"></div>
+    <% else %>
+      <div id="popularity_stars"></div>
+    <% end %>
   </div>
 
   <div class="d-flex">
@@ -84,6 +88,19 @@
     starOn: "<%= asset_path('star-on.png') %>",
     starOff: "<%= asset_path('star-off.png') %>",
     starHalf: "<%= asset_path('star-half.png') %>",
-    scoreName: 'recipe[popularity]'
+    scoreName: "recipe[popularity]"
+  });
+</script>
+
+<script>
+  $("#star-rate-<%= recipe.id %>").raty({
+    size: 36,
+    starOff:  "<%= asset_path("star-off.png") %>",
+    starOn : "<%= asset_path("star-on.png") %>",
+    starHalf: "<%= asset_path("star-half.png") %>",
+    half: true,
+    readOnly: false,
+    score: <%= recipe.popularity %>,
+    scoreName: "recipe[popularity]"
   });
 </script>
