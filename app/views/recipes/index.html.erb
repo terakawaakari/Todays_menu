@@ -5,11 +5,11 @@
         <div class="mx-4">
           <div>
             <%= link_to recipe_path(recipe) do %>
-              <%= attachment_image_tag recipe, :recipe_image, size: '200x150', format:'jpeg', fallback: "no_image.png" %>
+              <%= attachment_image_tag recipe, :recipe_image, size: '250x200', format:'jpeg', fallback: "no_image.png" %>
             <% end %>
           </div>
-          <div><%= link_to "#{recipe.name}", recipe_path(recipe) %></div>
-          <div><%= recipe.category %> / <%= recipe.genre %> / <%= recipe.taste %></div>
+          <h5 class="my-2"><%= link_to "#{recipe.name}", recipe_path(recipe) %></h5>
+          <p><%= recipe.category %> / <%= recipe.genre %> / <%= recipe.taste %></p>
         </div>
       <% end %>
     </div>
