@@ -1,7 +1,7 @@
 <div class="nested-fields">
   <div class="d-flex mb-2">
-    <%= f.text_field :name, class: "mr-3", placeholder: "玉ねぎ" %>
-    <%= f.text_field :quantity, placeholder: "1/2個" %>
+    <%= f.text_field :name, size: "23", class: "mr-4", placeholder: "玉ねぎ" %>
+    <%= f.text_field :quantity, size: "23", placeholder: "1/2個" %>
     <%= link_to_remove_association "#{icon "fas", "trash-alt"}".html_safe , f, class: "js-log-remove-btn ml-2" %>
   </div>
 </div>

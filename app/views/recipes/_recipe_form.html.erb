@@ -18,7 +18,7 @@
 
   <div class="d-flex">
     <p class="col-4">調理時間</p>
-    <div><%= f.text_field :time, placeholder: "30" %>分</div>
+    <div><%= f.text_field :time, size: "23", placeholder: "30" %> 分</div>
   </div>
 
   <div class="d-flex">
@@ -28,7 +28,7 @@
 
   <div class="d-flex">
     <p class="col-4">出来上がりの量</p>
-    <div><%= f.text_field :serving, placeholder: "3人分" %></div>
+    <div><%= f.text_field :serving, size: "23", placeholder: "3人分" %></div>
   </div>
 
   <div class="d-flex">
@@ -38,17 +38,12 @@
         <%= f.fields_for :ingredients do |f| %>
           <%= render "ingredient_fields", f: f %>
         <% end %>
+        <!--材料フォームの追加ボタン-->
+        <div class="text-right mb-3">
+          <%= link_to_add_association "+フォームを追加", f, :ingredients, class: "btn btn-sm btn-secondary" %>
+        </div>
       </div>
     </div>
-  </div>
-  <!--材料フォームの追加ボタン-->
-  <div class="text-right mb-3">
-    <%= link_to_add_association "+フォームを追加", f, :ingredients, class: "btn btn-sm btn-secondary",
-      data: {
-        association_insertion_node: '#detail-association-insertion-point',
-        association_insertion_method: 'after'
-      }
-    %>
   </div>
 
   <div class="d-flex">
@@ -60,11 +55,7 @@
         <% end %>
         <!--作り方フォームの追加ボタン-->
         <div class="text-right mb-3">
-          <%= link_to_add_association "+フォームを追加", f, :directions, class: "btn btn-sm btn-secondary"
-            # data: {
-            #   association_insertion_node: '#direction-association-insertion-point',
-            # }
-          %>
+          <%= link_to_add_association "+フォームを追加", f, :directions, class: "btn btn-sm btn-secondary" %>
         </div>
       </div>
     </div>
@@ -84,7 +75,7 @@
     <%= f.label :is_open, "非公開", {value: :false, style: "display: inline-block;"} %>
   </div>
 
-  <div class="text-center"><%= f.submit "レシピを追加", class: "btn btn-success btn-lg" %></div>
+  <div class="text-center"><%= f.submit "レシピを保存", class: "btn btn-success btn-lg" %></div>
 <% end %>
 
 <!--人気度の登録-->
