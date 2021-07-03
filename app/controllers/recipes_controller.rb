@@ -14,6 +14,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
     @ingredients = @recipe.ingredients.new
     @directions = @recipe.directions.new
+    @num = 1
   end
 
   def create
@@ -26,6 +27,12 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find(params[:id])
+    @ingredients = @recipe.ingredients
+    @directions = @recipe.directions
+    @directions.each do |direction|
+      @num = direction.number
+    end
   end
 
   def recommend

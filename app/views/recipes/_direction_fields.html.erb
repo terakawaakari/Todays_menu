@@ -1,6 +1,7 @@
 <div class="nested-fields">
-  <div><%= f.text_area :description, size: "50x5", placeholder: "手順#{@num}" %></div>
+  <div>
+    <%= f.text_area :description, size: "50x5", placeholder: "手順#{@num}" %>
+    <%= link_to_remove_association "#{icon "fas", "trash-alt"}".html_safe , f, class: "js-log-remove-btn ml-2" %>
+  </div>
   <%= f.hidden_field :number, :value => @num %>
-  <% @num += 1 %>
-  <%#= link_to_remove_association "削除", f, class: "btn btn-sm btn-secondary" %>
 </div>
