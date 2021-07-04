@@ -1,17 +1,22 @@
 class MenusController < ApplicationController
 
   def index
-    @menus = current_user.menus
+    menus = current_user.menus.order(date: :DESC)
+    @menus = Kaminari.paginate_array(menus).page(params[:page]).per(9)
   end
 
   def new
     @menu = Menu.new
+    @menu_recipe = MenuRecipe.new
   end
 
   def create
-    @menu = Menu.new(menu_params)
-    @menu.user_id = current_user.id
+    @menu = current_user.menus.new(menu_params)
+    menu_recipe = MenuRecipe.new
     if @menu.save
+      menu_recipe.menu_id = @menu.id
+      menu_recipe.recipe_id = params[:menu][:recipe_id]
+      menu_recipe.save
       redirect_to menus_path
     else
       render :new
@@ -35,7 +40,6 @@ class MenusController < ApplicationController
   def menu_params
     params.require(:menu).permit(:menu_image, :date, :category, :list)
   end
-
 end
 
 
