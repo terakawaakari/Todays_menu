@@ -24,10 +24,16 @@
 
   <div class="d-flex my-3">
     <p class="col-4">マイレシピから選択</p>
-    <div>
-      <div><%= f.collection_select(:recipe_id, current_user.recipes, :id, :name) %></div>
+    <div id="recipes">
+      <%= f.fields_for :menu_recipes do |f| %>
+        <%= render "menu_recipe_fields", f: f %>
+      <% end %>
+      <!--マイレシピから選択フォームの追加ボタン-->
+      <div class="text-right mb-3">
+        <%= link_to_add_association "+フォームを追加", f, :menu_recipes, class: "btn btn-sm btn-secondary" %>
+      </div>
     </div>
-  </div>
+  </div>  
 
   <div class="text-center"><%= f.submit "メニューを保存", class: "btn btn-success" %></div>
 <% end %>

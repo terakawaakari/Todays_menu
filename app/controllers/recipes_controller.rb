@@ -24,9 +24,6 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user_id = current_user.id
     @directions = @recipe.directions
-    # @directions.each.with_index(1) do |direction, num|
-    #   direction.number = num
-    # end
     if @recipe.save
       redirect_to recipe_path(@recipe)
     else
@@ -67,7 +64,7 @@ class RecipesController < ApplicationController
     params.require(:recipe).permit(
       :name, :recipe_image, :serving, :genre, :category, :taste, :time, :popularity, :url, :note, :is_open,
       ingredients_attributes:[:name, :quantity, :_destroy],
-      directions_attributes:[:description, :process_image, :number, :_destroy]
+      directions_attributes:[:description, :_destroy]
     )
   end
 end

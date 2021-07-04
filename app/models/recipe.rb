@@ -9,6 +9,7 @@ class Recipe < ApplicationRecord
   has_many :ingredients,  dependent: :destroy
   has_many :directions,   dependent: :destroy
   has_many :menu_recipes, dependent: :destroy
+  has_many :menus,        through: :menu_recipes
 
   accepts_nested_attributes_for :ingredients, :directions, allow_destroy: true
 

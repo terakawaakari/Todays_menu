@@ -6,39 +6,43 @@ class MenusController < ApplicationController
   end
 
   def new
-    @menu = Menu.new
-    @menu_recipe = MenuRecipe.new
+    @menu = current_user.menus.new
+    @menu_recipes = @menu.menu_recipes.new
   end
 
   def create
     @menu = current_user.menus.new(menu_params)
-    menu_recipe = MenuRecipe.new
+    @menu_recipes = @menu.menu_recipes
     if @menu.save
-      menu_recipe.menu_id = @menu.id
-      menu_recipe.recipe_id = params[:menu][:recipe_id]
-      menu_recipe.save
       redirect_to menus_path
     else
       render :new
     end
   end
 
-  def show
+  def edit
     @menu = Menu.find(params[:id])
   end
 
-  def edit
-  end
-
   def update
+    @menu = Menu.find(params[:id])
+    @menu.menu_recipes.destroy_all
+    if @menu.update(menu_params)
+      redirect_to menus_path
+    else
+      render :edit
+    end
   end
 
   def destroy
+    menu = Menu.find(params[:id])
+    menu.destroy
+    redirect_to menus_path
   end
 
   private
   def menu_params
-    params.require(:menu).permit(:menu_image, :date, :category, :list)
+    params.require(:menu).permit(:menu_image, :date, :category, :list, menu_recipes_attributes: [:recipe_id, :_destroy])
   end
 end
 
