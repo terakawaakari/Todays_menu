@@ -3,8 +3,11 @@
     <%= render "layouts/page_title", title: "マイメニュー" %>
 
     <div class="col-10 offset-1">
-      <% @menus.each do |menu| %>
-        <%= attachment_image_tag 
+      <div class="mx-2">
+        <% @menus.each do |menu| %>
+          <%= attachment_image_tag menu, :recipe_image, size: '250x200', format:'jpeg' %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

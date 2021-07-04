@@ -1,2 +1,17 @@
-<h1>Menus#show</h1>
-<p>Find me in app/views/menus/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-8 offset-2">
+
+      <div class="mt-5 mr-5 mx-auto">
+        <div>
+          <%= attachment_image_tag @menu, :menu_image, size: '250x180', format:'jpeg' %>
+        </div>
+        <div class="px-2 py-3" style="background-color: #fff">
+          <div><%= @menu.date %></div>
+          <div><%= @menu.list %></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

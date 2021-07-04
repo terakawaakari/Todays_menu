@@ -5,21 +5,23 @@ class MenusController < ApplicationController
   end
 
   def new
+    @menu = Menu.new
   end
-  
+
   def create
   end
 
   def show
+    @menu = Menu.params([:id])
   end
 
   def edit
   end
-  
+
   def update
   end
-  
+
   def destroy
   end
-  
+
 end
