@@ -3,9 +3,19 @@
     <%= render "layouts/page_title", title: "マイメニュー" %>
 
     <div class="col-10 offset-1">
-      <div class="mx-2">
+      <div class="d-flex">
         <% @menus.each do |menu| %>
-          <%= attachment_image_tag menu, :recipe_image, size: '250x200', format:'jpeg' %>
+          <div class="d-table mx-2 bg-white p-2">
+            <%= link_to menu_path(menu) do %>
+              <div><%= attachment_image_tag menu, :menu_image, size: "300x230" %></div>
+            <% end %>
+            <div class="p-2">
+              <div><%= menu.date %></div>
+              <div><%= menu.category %></div>
+              <!--データ登録時の改行を反映して表示-->
+              <div class="pt-2"><%= safe_join(menu.list.split("\n"),tag(:br))%></div>
+            </div>
+          </div>
         <% end %>
       </div>
     </div>

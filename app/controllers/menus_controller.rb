@@ -9,10 +9,17 @@ class MenusController < ApplicationController
   end
 
   def create
+    @menu = Menu.new(menu_params)
+    @menu.user_id = current_user.id
+    if @menu.save
+      redirect_to menus_path
+    else
+      render :new
+    end
   end
 
   def show
-    @menu = Menu.params([:id])
+    @menu = Menu.find(params[:id])
   end
 
   def edit
@@ -24,4 +31,11 @@ class MenusController < ApplicationController
   def destroy
   end
 
+  private
+  def menu_params
+    params.require(:menu).permit(:menu_image, :date, :category, :list)
+  end
+
 end
+
+

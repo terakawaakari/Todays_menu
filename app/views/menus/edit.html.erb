@@ -1,2 +1,9 @@
-<h1>Menus#edit</h1>
-<p>Find me in app/views/menus/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <%= render "layouts/page_title", title: "マイメニュー編集" %>
+
+    <div class="col-8 offset-2">
+      <%= render "menu_form", menu: @menu %>
+    </div>
+  </div>
+</div>
