@@ -12,4 +12,6 @@ Rails.application.routes.draw do
   get 'my_recipe' => 'recipes#my_recipe'
   get 'recommend' => 'recipes#recommend'
 
+  resources :menus
+
 end

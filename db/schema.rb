@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_02_105559) do
+ActiveRecord::Schema.define(version: 2021_07_04_031919) do
 
   create_table "directions", force: :cascade do |t|
     t.integer "recipe_id", null: false
@@ -23,6 +23,23 @@ ActiveRecord::Schema.define(version: 2021_07_02_105559) do
     t.integer "recipe_id", null: false
     t.string "name", null: false
     t.string "quantity", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "menu_recipes", force: :cascade do |t|
+    t.integer "menu_id", null: false
+    t.integer "recipe_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "menus", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "menu_image_id", null: false
+    t.text "list"
+    t.integer "category"
+    t.date "date", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
