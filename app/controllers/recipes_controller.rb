@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.page(params[:page]).per(15)
+    @recipes = Recipe.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
     @tags = Tag.all
   end
 
@@ -15,7 +15,13 @@ class RecipesController < ApplicationController
   def show
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients
+    @ingredients.each do |i|
+      @ingredient = i
+    end
     @directions = @recipe.directions
+    @directions.each do |d|
+      @direction = d
+    end
     @tags = @recipe.tags
   end
 
@@ -57,7 +63,12 @@ class RecipesController < ApplicationController
 
   def destroy
     recipe = Recipe.find(params[:id])
-    recipe.destroy
+    recipe.tags.each do |tag|
+      recipe.destroy
+      if tag.recipes.blank?
+        tag.destroy
+      end
+    end
     redirect_to my_recipe_path
   end
 
@@ -74,7 +85,7 @@ class RecipesController < ApplicationController
   private
   def recipe_params
     params.require(:recipe).permit(
-      :name, :recipe_image, :serving, :genre, :category, :taste, :time, :popularity, :url, :note, :is_open,
+      :name, :recipe_image, :serving, :genre, :category, :taste, :time, :url, :popularity, :note, :is_open,
       ingredients_attributes:[:name, :quantity, :_destroy],
       directions_attributes:[:description, :_destroy]
     )
