@@ -18,7 +18,7 @@
         <% if @tags.present? %>
           <div class="mb-1">タグ：
             <% @tags.each do |tag| %>
-              <%= link_to "# #{tag.tag_name}　" %>
+              <%= link_to "# #{tag.tag_name}　", tag_search_path(tag) %>
             <% end %>
           </div>
         <% end %>
@@ -30,7 +30,6 @@
           <% end %>
         <% end %>
       </div>
-
 
       <div class="d-flex">
         <div><%= attachment_image_tag @recipe, :recipe_image, size: '300x230', format:'jpeg', fallback: "no_image.png" %></div>

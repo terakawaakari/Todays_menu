@@ -63,7 +63,12 @@ class RecipesController < ApplicationController
 
   def destroy
     recipe = Recipe.find(params[:id])
-    recipe.destroy
+    recipe.tags.each do |tag|
+      recipe.destroy
+      if tag.recipes.blank?
+        tag.destroy
+      end
+    end
     redirect_to my_recipe_path
   end
 
