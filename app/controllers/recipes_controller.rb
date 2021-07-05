@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
 
   def index
-    @recipes = Recipe.where(is_open: true).page(params[:page]).per(15)
+    @recipes = Recipe.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
     @tags = Tag.all
   end
 

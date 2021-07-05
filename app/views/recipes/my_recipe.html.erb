@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
-    <%= render "layouts/page_title", title: "マイレシピ" %>
+    <div class="d-flex">
+      <%= render "layouts/page_title", title: "マイレシピ" %>
+      <div class="d-flex align-items-end justify-content-end pb-5"><%= link_to "ブックマークしたレシピを見る＞", user_bookmarks_path(current_user) %></div>
+    </div>
 
     <div class="col-10 offset-1">
 
