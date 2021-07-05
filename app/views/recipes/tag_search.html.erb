@@ -1,13 +1,13 @@
 <div class="container">
   <div class="row">
-    <%= render "layouts/page_title", title: "マイレシピ" %>
-
     <div class="col-10 offset-1">
+
+      <h3 class="my-5"># <%= @tag.name %>タグが付いたレシピ(<%= @tag.recipes.count %>件)</h3>
 
       <%= render "tag_list", tags: @tags %>
 
       <div class="d-flex flex-wrap">
-      <% @my_recipes.each do |recipe| %>
+      <% @recipes.each do |recipe| %>
         <div class="mx-4">
           <div>
             <%= link_to recipe_path(recipe) do %>

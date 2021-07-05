@@ -69,7 +69,11 @@
     <p class="col-4">タグ</p>
     <div>
       <p>半角スペースで区切ると複数入力できます</p>
-      <div><%= f.text_field :tag_name, size: "50", placeholder: "節約 ヘルシー" %></div>
+      <% if recipe.tags.present? %>
+        <div><%= f.text_field :tag_name, value: tags, size: "50", placeholder: "節約 ヘルシー" %></div>
+      <% else %>
+        <div><%= f.text_field :tag_name, size: "50", placeholder: "節約 ヘルシー" %></div>
+      <% end %>
     </div>
   </div>
 

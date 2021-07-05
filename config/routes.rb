@@ -14,4 +14,8 @@ Rails.application.routes.draw do
 
   resources :menus
 
+  resources :tags do
+    get 'search' => 'recipes#tag_search'
+  end
+
 end

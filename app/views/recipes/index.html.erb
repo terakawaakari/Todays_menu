@@ -1,13 +1,7 @@
 <div class="container mt-5">
   <div class="col-10 offset-1">
 
-    <h3>タグリスト</h3>
-    <% @tags.each do |tag| %>
-      <div>
-        <%= link_to tag.name, tag_recipes_path(tag_id: tag.id) %>
-        <%= "#{tag.recipes.count}" %>
-      </div>
-    <% end %>
+    <%= render "tag_list", tags: @tags %>
 
     <div class="d-flex flex-wrap">
       <% @recipes.each do |recipe| %>

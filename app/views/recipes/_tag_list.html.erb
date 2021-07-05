@@ -1,0 +1,9 @@
+<div class="mb-4">
+  <h5>タグリスト</h5>
+  <% tags.each do |tag| %>
+    <div>
+      <%= link_to "# #{tag.tag_name}", tag_search_path(tag_id: tag.id) %>
+      (<%= "#{tag.recipes.count}" %>)
+    </div>
+  <% end %>
+</div>

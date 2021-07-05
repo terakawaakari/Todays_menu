@@ -7,6 +7,9 @@ class RecipesController < ApplicationController
 
   def my_recipe
     @my_recipes = current_user.recipes
+    @my_recipes.each do |recipe|
+      @tags = recipe.tags
+    end
   end
 
   def show
@@ -35,13 +38,16 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
+    @tags = @recipe.tags.pluck(:tag_name).join(" ")
   end
 
   def update
     @recipe = Recipe.find(params[:id])
     @recipe.directions.destroy_all
     @recipe.ingredients.destroy_all
+    tags = params[:recipe][:tag_name].split(nil)
     if @recipe.update(recipe_params)
+      @recipe.save_tag(tags)
       redirect_to recipe_path(@recipe)
     else
       @ingredients = @recipe.ingredients
@@ -53,6 +59,12 @@ class RecipesController < ApplicationController
     recipe = Recipe.find(params[:id])
     recipe.destroy
     redirect_to my_recipe_path
+  end
+
+  def tag_search
+    @tags = Tag.all
+    @tag = Tag.find(params[:tag_id])
+    @recipes = @tag.recipes
   end
 
   def recommend
