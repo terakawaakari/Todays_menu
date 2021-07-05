@@ -5,7 +5,7 @@
     <div class="col-10 offset-1">
       <div class="d-flex flex-wrap">
         <% @menus.each do |menu| %>
-          <div class="d-table mx-2 bg-white p-2 mb-3">
+          <div class="mx-2 bg-white p-2 mb-3" style="width: 290px;">
             <%= link_to menu_path(menu) do %>
               <div><%= attachment_image_tag menu, :menu_image, size: "270x200" %></div>
             <% end %>
@@ -20,10 +20,10 @@
               <div><%= menu.category %></div>
               <!--フォームから登録されたメニューリスト＋レシピ名を表示-->
               <div class="pt-2">
-                <%= safe_join(menu.list.split("\n"),tag(:br))%>
                 <% menu.menu_recipes.each do |menu_recipe| %>
                   <div>・<%= link_to "#{menu_recipe.recipe.name}", recipe_path(menu_recipe.recipe) %></div>
                 <% end %>
+                <div class="d-flex flex-wrap"><%= safe_join(menu.list.split("\n"),tag(:br)) %></div>
               </div>
             </div>
           </div>

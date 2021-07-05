@@ -2,6 +2,7 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.page(params[:page]).per(15)
+    @tags = Tag.all
   end
 
   def my_recipe
@@ -12,19 +13,20 @@ class RecipesController < ApplicationController
     @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients
     @directions = @recipe.directions
+    @tags = @recipe.tags
   end
 
   def new
-    @recipe = Recipe.new
+    @recipe = current_user.recipes.new
     @ingredients = @recipe.ingredients.new
     @directions = @recipe.directions.new
   end
 
   def create
-    @recipe = Recipe.new(recipe_params)
-    @recipe.user_id = current_user.id
-    @directions = @recipe.directions
+    @recipe = current_user.recipes.new(recipe_params)
+    tags = params[:recipe][:tag_name].split(nil)
     if @recipe.save
+      @recipe.save_tag(tags)
       redirect_to recipe_path(@recipe)
     else
       render :new
@@ -33,8 +35,6 @@ class RecipesController < ApplicationController
 
   def edit
     @recipe = Recipe.find(params[:id])
-    @ingredients = @recipe.ingredients
-    @directions = @recipe.directions
   end
 
   def update
