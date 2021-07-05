@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get 'users/withdraw_confirm' => 'users#withdraw_confirm', as: 'withdraw_confirm'
   patch 'users/withdraw' => 'users#withdraw', as: 'withdraw'
 
-  resources :recipes
+  resources :recipes do
+    resource :bookmarks, only: [:create, :destroy]
+  end
   get 'my_recipe' => 'recipes#my_recipe'
   get 'recommend' => 'recipes#recommend'
 
