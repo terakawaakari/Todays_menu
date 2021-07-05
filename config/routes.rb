@@ -12,4 +12,10 @@ Rails.application.routes.draw do
   get 'my_recipe' => 'recipes#my_recipe'
   get 'recommend' => 'recipes#recommend'
 
+  resources :menus
+
+  resources :tags do
+    get 'search' => 'recipes#tag_search'
+  end
+
 end

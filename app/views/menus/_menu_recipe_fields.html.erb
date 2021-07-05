@@ -1,0 +1,6 @@
+<div class="nested-fields">
+  <div class="d-flex mb-2">
+    <%= f.collection_select :recipe_id, current_user.recipes, :id, :name, prompt: "選択してください" %>
+    <%= link_to_remove_association "#{icon "fas", "trash-alt"}".html_safe , f, class: "js-log-remove-btn ml-2" %>
+  </div>
+</div>

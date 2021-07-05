@@ -38,7 +38,7 @@
   <div class="d-flex">
     <p class="col-4">材料</p>
     <div>
-      <div id="detail-association-insertion-point">
+      <div id="ingredients">
         <%= f.fields_for :ingredients do |f| %>
           <%= render "ingredient_fields", f: f %>
         <% end %>
@@ -65,6 +65,17 @@
     </div>
   </div>
 
+  <div class="d-flex my-3">
+    <p class="col-4">タグ</p>
+    <div>
+      <p>半角スペースで区切ると複数入力できます</p>
+      <% if recipe.tags.present? %>
+        <div><%= f.text_field :tag_name, value: tags, size: "50", placeholder: "節約 ヘルシー" %></div>
+      <% else %>
+        <div><%= f.text_field :tag_name, size: "50", placeholder: "節約 ヘルシー" %></div>
+      <% end %>
+    </div>
+  </div>
 
   <div class="d-flex">
     <p class="col-4">メモ</p>

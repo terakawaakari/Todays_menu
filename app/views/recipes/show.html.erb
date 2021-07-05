@@ -6,15 +6,22 @@
 
       <!--レシピの詳細情報　ボタンクリックで表示-->
       <div id="details" class="mb-4">
-        <div>ジャンル：<%= @recipe.genre %></div>
-        <div class="my-1">カテゴリー：<%= @recipe.category %></div>
-        <div>味付け：<%= @recipe.taste %></div>
-        <div class="my-1">調理時間：<%= @recipe.time %> 分</div>
-        <div id="star-rate-<%= @recipe.id %>">人気度：</div>
+        <div class="mb-1">ジャンル：<%= @recipe.genre %></div>
+        <div class="mb-1">カテゴリー：<%= @recipe.category %></div>
+        <div class="mb-1">味付け：<%= @recipe.taste %></div>
+        <div class="mb-1">調理時間：<%= @recipe.time %> 分</div>
+        <div class="mb-1" id="star-rate-<%= @recipe.id %>">人気度：</div>
+        <% if @tags.present? %>
+          <div class="mb-1">タグ：
+            <% @tags.each do |tag| %>
+              <%= link_to "# #{tag.tag_name}　" %>
+            <% end %>
+          </div>
+        <% end %>
         <% if @recipe.is_open? %>
-          <div class="my-1">公開設定：公開中</div>
+          <div class="mb-1">公開設定：公開中</div>
         <% else %>
-          <div class="my-1">公開設定：非公開</div>
+          <div class="mb-1">公開設定：非公開</div>
         <% end %>
       </div>
 
@@ -55,7 +62,7 @@
       <div class="text-right mt-3">
         <%= link_to "レシピを編集する", edit_recipe_path(@recipe), class: "btn btn-sm btn-success" %>
         <% if @recipe.user_id == current_user.id %>
-          <%= link_to "レシピを削除する", recipe_path(@recipe), method: :delete, class: "btn btn-sm btn-danger ml-3" %>
+          <%= link_to "レシピを削除する", recipe_path(@recipe), method: :delete, data: {cofirm: "削除しますか？"}, class: "btn btn-sm btn-danger ml-3" %>
         <% end %>
       </div>
 

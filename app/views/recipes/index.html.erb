@@ -1,5 +1,8 @@
 <div class="container mt-5">
   <div class="col-10 offset-1">
+
+    <%= render "tag_list", tags: @tags %>
+
     <div class="d-flex flex-wrap">
       <% @recipes.each do |recipe| %>
         <div class="mx-4">
