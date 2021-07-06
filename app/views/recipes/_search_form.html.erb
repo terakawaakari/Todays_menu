@@ -1,0 +1,33 @@
+<div class="mb-5">
+  <h3>レシピ検索</h3>
+  <%= search_form_for q, url: search_path do |f| %>
+    <%= f.label :name_cont, 'レシピ名　' %>
+    <%= f.search_field :name_cont %><br>
+
+    <%= f.label :genre_eq, 'ジャンル　' %>
+    <%= f.select :genre_eq, Recipe.genres.keys, :include_blank => '指定しない' %>
+
+    <%= f.label :category_eq, '　カテゴリー' %>
+    <%= f.select :genre_eq, Recipe.categories.keys, :include_blank => '指定しない' %>
+
+    <%= f.label :taste_eq, '　味付け' %>
+    <%= f.select :taste_eq, Recipe.tastes.keys, :include_blank => '指定しない' %><br>
+
+    <span><%= f.label :popularity_gteq, '人気度　　' %></span>
+    <span><%= f.radio_button :popularity_gteq, '' %>指定しない　</span>
+    <span><%= f.radio_button :popularity_gteq, '1.0' %> <%= image_tag "star-on.png", size: "20", class:"pb-1" %>1 以上　</span>
+    <span><%= f.radio_button :popularity_gteq, '2.0' %> <%= image_tag "star-on.png", size: "20", class:"pb-1" %>2 以上　</span>
+    <span><%= f.radio_button :popularity_gteq, '3.0' %> <%= image_tag "star-on.png", size: "20", class:"pb-1" %>3 以上　</span>
+    <span><%= f.radio_button :popularity_gteq, '4.0' %> <%= image_tag "star-on.png", size: "20", class:"pb-1" %>4 以上　</span>
+    <span><%= f.radio_button :popularity_gteq, '5.0' %> <%= image_tag "star-on.png", size: "20", class:"pb-1" %>5</span><br>
+
+    <span><%= f.label :time_lteq, '調理時間　' %></span>
+    <span><%= f.radio_button :time_lteq, '' %> 指定しない　</span>
+    <span><%= f.radio_button :time_lteq, '20' %> 20分以下　</span>
+    <span><%= f.radio_button :time_lteq, '30' %> 30分以下　</span>
+    <span><%= f.radio_button :time_lteq, '40' %> 40分以下　</span>
+    <span><%= f.radio_button :time_lteq, '50' %> 50分以下　</span>
+    <span><%= f.radio_button :time_gteq, '60' %> 60分以上　</span>
+    <span><%= f.submit '検索', class: "btn btn-sm btn-secondary" %>
+  <% end %>
+</div>

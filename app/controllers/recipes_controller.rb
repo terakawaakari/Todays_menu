@@ -1,5 +1,7 @@
 class RecipesController < ApplicationController
 
+  before_action :set_q, only: [:index, :search, :show, :my_recipe]
+
   def index
     @recipes = Recipe.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
     @tags = Tag.all
@@ -87,6 +89,10 @@ class RecipesController < ApplicationController
     recommend_system
   end
 
+  def search
+    @results = @q.result
+  end
+
   private
   def recipe_params
     params.require(:recipe).permit(
@@ -94,6 +100,10 @@ class RecipesController < ApplicationController
       ingredients_attributes:[:name, :quantity, :_destroy],
       directions_attributes:[:description, :_destroy]
     )
+  end
+
+  def set_q
+    @q = Recipe.ransack(params[:q])
   end
 
   #詳細ページのレシピと同じジャンル、異なるテイストの主菜のうち、合計調理時間が90分以内、人気度3以上のレシピを取得
