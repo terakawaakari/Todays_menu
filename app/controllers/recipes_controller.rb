@@ -30,6 +30,20 @@ class RecipesController < ApplicationController
     end
   end
 
+  def show
+    @recipe = Recipe.find(params[:id])
+    @ingredients = @recipe.ingredients
+    @ingredients.each do |i|
+      @ingredient = i
+    end
+    @directions = @recipe.directions
+    @directions.each do |d|
+      @direction = d
+    end
+    @tags = @recipe.tags
+    recommend_system
+  end
+
   def edit
     @recipe = Recipe.find(params[:id])
     #編集フォームに表示させる値を取得
@@ -68,6 +82,21 @@ class RecipesController < ApplicationController
     @recipes = @tag.recipes
   end
 
+  def recommend
+    @recipe = Recipe.find(params[:recipe_id])
+    recommend_system
+  end
+
+  private
+  def recipe_params
+    params.require(:recipe).permit(
+      :name, :recipe_image, :serving, :genre, :category, :taste, :time, :url, :popularity, :note, :is_open,
+      ingredients_attributes:[:name, :quantity, :_destroy],
+      directions_attributes:[:description, :_destroy]
+    )
+  end
+
+  #詳細ページのレシピと同じジャンル、異なるテイストの主菜のうち、合計調理時間が90分以内、人気度3以上のレシピを取得
   def main_recommend
     main_recipes = Recipe.where(genre: @recipe.genre, category: "主菜")
     change_taste = main_recipes.where.not(taste: @recipe.taste)
@@ -86,9 +115,8 @@ class RecipesController < ApplicationController
     @recommend_soup = change_taste.where('time < ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
   end
 
-  def recommend
-    @recipe = Recipe.find(params[:recipe_id])
-
+  #詳細ページのレシピが主菜/主食→副菜と汁物、副菜→主菜と汁物、汁物→主菜と副菜のおすすめレシピを提案
+  def recommend_system
     case @recipe.category
     when "主菜" || "主食"
       sub_recommend
@@ -104,38 +132,4 @@ class RecipesController < ApplicationController
     end
   end
 
-  def show
-    @recipe = Recipe.find(params[:id])
-    @ingredients = @recipe.ingredients
-    @ingredients.each do |i|
-      @ingredient = i
-    end
-    @directions = @recipe.directions
-    @directions.each do |d|
-      @direction = d
-    end
-    @tags = @recipe.tags
-    case @recipe.category
-    when "主菜" || "主食"
-      sub_recommend
-      soup_recommend
-
-    when "副菜"
-      main_recommend
-      soup_recommend
-
-    when "汁物"
-      main_recommend
-      sub_recommend
-    end
-  end
-
-  private
-  def recipe_params
-    params.require(:recipe).permit(
-      :name, :recipe_image, :serving, :genre, :category, :taste, :time, :url, :popularity, :note, :is_open,
-      ingredients_attributes:[:name, :quantity, :_destroy],
-      directions_attributes:[:description, :_destroy]
-    )
-  end
 end
