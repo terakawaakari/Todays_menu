@@ -1,11 +1,26 @@
 <% if tags.present? %>
-<div class="mb-4">
-  <h5>タグリスト</h5>
-  <% tags.each do |tag| %>
-    <div>
-      <%= link_to "# #{tag.tag_name}", tag_search_path(tag_id: tag.id) %>
-      (<%= "#{tag.recipes.count}" %>)
-    </div>
-  <% end %>
-</div>
+  <input type="button" value="タグから探す" onclick="clickBtn()" class="mb-2">
+  <div id="tag_list" class="mb-4">
+    <% tags.each do |tag| %>
+      <div>
+        <%= link_to "# #{tag.tag_name}", tag_search_path(tag_id: tag.id) %>
+        (<%= "#{tag.recipes.count}" %>)
+      </div>
+    <% end %>
+  </div>
 <% end %>
+
+<!--タグリストの表示切り替え-->
+<script>
+document.getElementById("tag_list").style.display ="none";
+
+function clickBtn(){
+	const tag_list = document.getElementById("tag_list");
+
+	if(tag_list.style.display == "block"){
+		tag_list.style.display = "none";
+	}else{
+		tag_list.style.display = "block";
+	}
+}
+</script>
