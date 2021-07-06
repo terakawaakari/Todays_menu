@@ -2,7 +2,10 @@
   <h3>レシピ検索</h3>
   <%= search_form_for q, url: search_path do |f| %>
     <%= f.label :name_cont, 'レシピ名　' %>
-    <%= f.search_field :name_cont %><br>
+    <%= f.search_field :name_cont %>
+
+    <span><%= f.label :ingredients_name_cont, '　材料名　' %></span>
+    <span><%= f.search_field :ingredients_name_cont %>　</span><br>
 
     <%= f.label :genre_eq, 'ジャンル　' %>
     <%= f.select :genre_eq, Recipe.genres.keys, :include_blank => '指定しない' %>
