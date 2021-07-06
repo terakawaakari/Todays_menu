@@ -9,7 +9,13 @@ class UsersController < ApplicationController
     end
   end
 
-  def withdraw_confirm
+  def edit
+  end
+
+  def withdraw
+    current_user.update(is_deleted: true)
+    reset_session
+    redirect_to root_path
   end
 
   private
