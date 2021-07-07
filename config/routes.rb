@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :update, :edit, :index] do
     resources :bookmarks, only: [:index]
-    delete 'withdraw' => 'users#withdraw'
   end
 
   resources :recipes do
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
   end
   get 'my_recipe' => 'recipes#my_recipe'
   get 'search'    => 'recipes#search'
+  get 'my_search'    => 'recipes#my_search'
 
   resources :menus
 

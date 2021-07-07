@@ -1,13 +1,20 @@
-<div class="container mt-5">
+<div class="container">
+  <div class="d-flex">
+    <%= render "layouts/page_title", title: "マイレシピ" %>
+    <div class="mt-5">
+      <h3>レシピ検索</h3>
+      <%= search_form_for @q, url: my_search_path do |f| %>
+        <div class="mb-3"><%= render "search_form", f: f %></div>
+      <% end %>
+    </div>
+  </div>
+
   <div class="col-10 offset-1">
-    <h3>レシピ検索</h3>
-    <%= search_form_for @q, url: search_path do |f| %>
-      <div class="mb-3"><%= render "search_form", f: f %></div>
-    <% end %>
-    <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
+
+    <%= render "tag_list", tags: @tags %>
 
     <div class="d-flex flex-wrap">
-      <% @recipes.each do |recipe| %>
+      <% @results.each do |recipe| %>
         <div class="mx-4 mb-5">
           <div>
             <%= link_to recipe_path(recipe) do %>
