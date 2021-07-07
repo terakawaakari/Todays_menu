@@ -25,4 +25,10 @@ class Users::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to recipes_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
+
 end

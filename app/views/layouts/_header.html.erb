@@ -55,7 +55,7 @@
               <% else %>
                 <%= link_to "会員情報確認", user_path(current_user), class: "dropdown-item" %>
               <% end %>
-              <%= link_to "ログアウト", destroy_user_session_path, class: "dropdown-item" %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             </div>
           </li>
 
@@ -65,6 +65,9 @@
           </li>
           <li class="nav-item">
             <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "nav-link text-light" %>
           </li>
         <% end %>
         </ul>

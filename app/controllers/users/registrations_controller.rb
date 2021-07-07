@@ -60,6 +60,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super(resource)
   # end
 
+  before_action :ensure_normal_user, only: [:destroy]
+
   def destroy
     result = resource.destroy_with_password(destroy_params[:current_password])
     if result
@@ -70,6 +72,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       @user = User.find(params[:id])
       render template: "users/edit"
+    end
+  end
+
+  def ensure_normal_user
+    if resource.email == 'guest@example.com'
+      redirect_to edit_user_path(current_user), alert: 'ゲストユーザーは削除できません。'
     end
   end
 
