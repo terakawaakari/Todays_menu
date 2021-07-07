@@ -2,7 +2,7 @@
   <input type="button" value="タグから探す" onclick="clickBtn()" class="mb-2">
   <div id="tag_list" class="mb-4">
     <% tags.each do |tag| %>
-      <div>
+      <div class="d-inline-block mr-3">
         <%= link_to "# #{tag.tag_name}", tag_search_path(tag_id: tag.id) %>
         (<%= "#{tag.recipes.count}" %>)
       </div>
