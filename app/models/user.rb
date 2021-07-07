@@ -10,4 +10,13 @@ class User < ApplicationRecord
   has_many :menus,     dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com') do |user|
+      user.name = "ゲスト"
+      user.birth_date = "2021-07-01"
+      user.sex = "男性"
+      user.password = SecureRandom.urlsafe_base64
+    end
+  end
+
 end

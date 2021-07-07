@@ -2,13 +2,16 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
 
-  devise_for :users
+  devise_for :users, controllers: {
+    :registrations => "users/registrations"
+  }
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+  end
 
-  resources :users, only: [:show, :update] do
+  resources :users, only: [:show, :update, :edit, :index] do
     resources :bookmarks, only: [:index]
   end
-  get 'users/withdraw_confirm' => 'users#withdraw_confirm', as: 'withdraw_confirm'
-  patch 'users/withdraw'       => 'users#withdraw',         as: 'withdraw'
 
   resources :recipes do
     resource :bookmarks, only: [:create, :destroy]
@@ -16,6 +19,7 @@ Rails.application.routes.draw do
   end
   get 'my_recipe' => 'recipes#my_recipe'
   get 'search'    => 'recipes#search'
+  get 'my_search'    => 'recipes#my_search'
 
   resources :menus
 

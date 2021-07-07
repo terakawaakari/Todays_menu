@@ -3,7 +3,10 @@
 
     <%= render "tag_list", tags: @tags %>
 
-    <div class="mb-5"><%= render "search_form", q: @q %></div>
+    <h3>レシピ検索</h3>
+    <%= search_form_for @q, url: search_path do |f| %>
+      <div class="mb-3"><%= render "search_form", f: f %></div>
+    <% end %>
 
     <div class="d-flex flex-wrap">
       <% @results.each do |recipe| %>
