@@ -6,9 +6,7 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
-    @recipes.each do |recipe|
-      @tags = recipe.tags
-    end
+    @tags = Tag.all
   end
 
   def my_recipe
@@ -131,7 +129,6 @@ class RecipesController < ApplicationController
     sub_recipes = Recipe.where(genre: @recipe.genre, category: "副菜", is_open: true)
     change_taste = sub_recipes.where.not(taste: @recipe.taste)
     @recommend_sub = change_taste.where('time < ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
-
   end
 
   def soup_recommend

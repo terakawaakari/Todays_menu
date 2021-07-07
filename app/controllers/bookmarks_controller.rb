@@ -2,7 +2,6 @@ class BookmarksController < ApplicationController
 
   def index
     @bookmarks = current_user.bookmarks
-    @tags = Tag.all
   end
 
   def create

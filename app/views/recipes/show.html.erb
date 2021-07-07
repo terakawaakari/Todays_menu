@@ -78,7 +78,7 @@
           <% if @recommend_main.present? || @recommend_sub.present? || @recommend_soup.present? %>
             <%= link_to "おすすめレシピを見る", recipe_recommend_path(@recipe), remote: true, class: "btn btn-sm btn-info" %>
           <% end %>
-          <%= link_to "編集する", edit_recipe_path(@recipe), class: "btn btn-sm btn-success" %>
+          <%= link_to "編集する", edit_recipe_path(@recipe), 'data-turbolinks': false, class: "btn btn-sm btn-success" %>
           <%= link_to "削除する", recipe_path(@recipe), method: :delete, data: {cofirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
         </div>
       <% end %>
