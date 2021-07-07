@@ -59,4 +59,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def destroy
+    result = resource.destroy_with_password(destroy_params[:current_password])
+    if result
+      Devise.sign_out_all_scopes ? sign_out : sign_out(resource_name)
+      set_flash_message :notice, :destroyed
+      yield resource if block_given?
+      respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
+    else
+      @user = User.find(params[:id])
+      render template: "users/edit"
+    end
+  end
+
+  private
+  def destroy_params
+    params.require(:user).permit(:current_password)
+  end
 end

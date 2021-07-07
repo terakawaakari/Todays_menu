@@ -4,11 +4,13 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
-    @tags = Tag.all
+    @recipes.each do |recipe|
+      @tags = recipe.tags
+    end
   end
 
   def my_recipe
-    @my_recipes = current_user.recipes
+    @my_recipes = current_user.recipes.where(is_open: true)
     @my_recipes.each do |recipe|
       @tags = recipe.tags
     end
@@ -79,9 +81,11 @@ class RecipesController < ApplicationController
   end
 
   def tag_search
-    @tags = Tag.all
     @tag = Tag.find(params[:tag_id])
-    @recipes = @tag.recipes
+    @recipes = @tag.recipes.where(user_id: user.id, is_open: true)
+    @recipes.each do |recipe|
+      @tags = recipe.tags
+    end
   end
 
   def recommend
@@ -103,24 +107,25 @@ class RecipesController < ApplicationController
   end
 
   def set_q
-    @q = Recipe.ransack(params[:q])
+    @q = Recipe.where(is_open: true).ransack(params[:q])
   end
 
   #詳細ページのレシピと同じジャンル、異なるテイストの主菜のうち、合計調理時間が90分以内、人気度3以上のレシピを取得
   def main_recommend
-    main_recipes = Recipe.where(genre: @recipe.genre, category: "主菜")
+    main_recipes = Recipe.where(genre: @recipe.genre, category: "主菜", is_open: true)
     change_taste = main_recipes.where.not(taste: @recipe.taste)
     @recommend_main = change_taste.where('time < ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
   end
 
   def sub_recommend
-    sub_recipes = Recipe.where(genre: @recipe.genre, category: "副菜")
+    sub_recipes = Recipe.where(genre: @recipe.genre, category: "副菜", is_open: true)
     change_taste = sub_recipes.where.not(taste: @recipe.taste)
     @recommend_sub = change_taste.where('time < ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
+
   end
 
   def soup_recommend
-    soup_recipes = Recipe.where(genre: @recipe.genre, category: "汁物")
+    soup_recipes = Recipe.where(genre: @recipe.genre, category: "汁物", is_open: true)
     change_taste = soup_recipes.where.not(taste: @recipe.taste)
     @recommend_soup = change_taste.where('time < ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
   end

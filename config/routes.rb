@@ -3,12 +3,12 @@ Rails.application.routes.draw do
   root to: 'homes#top'
 
   devise_for :users, controllers: {
-    :sessions => 'users/sessions'
+    :registrations => "users/registrations"
   }
 
   resources :users, only: [:show, :update, :edit, :index] do
     resources :bookmarks, only: [:index]
-    patch 'withdraw' => 'users#withdraw'
+    delete 'withdraw' => 'users#withdraw'
   end
 
   resources :recipes do
