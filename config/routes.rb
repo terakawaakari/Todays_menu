@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
   end
 
-  resources :users, only: [:show, :update, :edit, :index] do
+  resources :users, only: [:show, :update, :edit, :index, :destroy] do
     resources :bookmarks, only: [:index]
   end
 

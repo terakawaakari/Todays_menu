@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container mt-5">
   <div class="col-2"></div>
   <div class="col-8 offset-2">
     <h5 class="d-table" style="background-color: #e6e3de;">　会員一覧　</h5>
@@ -7,29 +7,22 @@
         <tr>
           <th>会員ID</th>
           <th>ユーザーネーム</th>
-          <th>生年月日</th>
+          <th>年齢</th>
           <th>性別</th>
           <th>メールアドレス</th>
-          <th>ステータス</th>
         </tr>
       </thead>
-        <% @users.each do |user| %>
-          <tbody>
+        <tbody>
+          <% @users.each do |user| %>
             <tr>
               <td><%= user.id %></td>
               <td><%= link_to "#{user.name}", edit_user_path(user) %></td>
-              <td><%= user.birth_date %></td>
+              <td><%= (Time.now.strftime("%Y%m%d").to_i - user.birth_date.strftime("%Y%m%d").to_i) / 10000 %> 歳</td>
               <td><%= user.sex %></td>
               <td><%= user.email %></td>
-              <td><% unless user.is_deleted? %>
-                    <p class="text-success">有効</p>
-                  <% else %>
-                    <p class="text-danger">無効</p>
-                  <% end %>
-              </td>
             </tr>
-          </tbody>
-        <% end %>
+          <% end %>
+        </tbody>
     </table>
   </div>
 </div>

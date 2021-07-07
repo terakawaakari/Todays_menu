@@ -27,24 +27,18 @@
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
 
-        <% if current_user.admin? %>
-          <div class="form-group">
-            <%= f.label :is_deleted, "会員ステータス" %><br />
-            <%= f.radio_button :is_deleted, false %>
-            <%= f.label :false, "有効"  %>
-            <%= f.radio_button :is_deleted, true %>
-            <%= f.label :true, "退会"  %>
-          </div>
-        <% end %>
-
         <div class="mx-auto d-table">
           <%= f.submit "変更", class: "btn btn-success mt-5" %>
         </div>
       </form>
     <% end %>
 
-    <!--モーダルのトリガー-->
-    <div class="text-right" data-toggle="modal" data-target="#exampleModalCenter">退会はこちら＞</div>
+    <% if current_user.admin? %>
+      <div class="text-right"><%= link_to "強制退会", user_path(@user), method: :delete, data: {confirm: "強制退会を実行してよろしいですか？"}, class: "btn btn-sm btn-danger" %></div>
+    <% else %>
+      <!--モーダルのトリガー-->
+      <div class="text-right" data-toggle="modal" data-target="#exampleModalCenter">退会はこちら＞</div>
+    <% end %>
 
     <!--退会確認用モーダル-->
     <%= render "confirm" %>
