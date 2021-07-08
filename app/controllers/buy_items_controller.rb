@@ -2,7 +2,7 @@ class BuyItemsController < ApplicationController
 
   def index
     @items = current_user.buy_items
-    @item = current_user.buy_items.new
+    @item  = current_user.buy_items.new
   end
 
   def create

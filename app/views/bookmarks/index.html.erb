@@ -2,10 +2,12 @@
 
   <%= render "layouts/page_title", title: "ブックマーク" %>
   <div class="col-10 offset-1">
-
-    <% @bookmarks.each do |bookmark| %>
-      <%= render "recipes/tag_list", tags: bookmark.recipe.tags %>
+    <h3>レシピ検索</h3>
+    <%= search_form_for @q, url: bookmark_search_path do |f| %>
+      <div class="mb-3"><%= render "recipes/search_form", f: f %></div>
     <% end %>
+
+    <%= render "recipes/tag_list", tags: @tags %>
 
     <div class="d-flex flex-wrap">
       <% @bookmarks.each do |bookmark| %>

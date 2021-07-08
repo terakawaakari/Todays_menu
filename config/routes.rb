@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   get 'my_recipe' => 'recipes#my_recipe'
   get 'search'    => 'recipes#search'
   get 'my_search' => 'recipes#my_search'
+  get 'bookmark_search' => 'bookmarks#bookmark_search'
 
   resources :menus
 
