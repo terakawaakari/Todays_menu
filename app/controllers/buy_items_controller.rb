@@ -11,6 +11,11 @@ class BuyItemsController < ApplicationController
     redirect_to request.referrer
   end
 
+  def destroy
+    item = current_user.buy_items.find(params[:id])
+    item.destroy
+    redirect_to buy_items_path
+  end
 
   private
   def buy_item_params

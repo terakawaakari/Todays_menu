@@ -1,11 +1,17 @@
 <div>
-  <% items.each do |item| %>
-    <%= form_with model: item, local: true do |f| %>
-      <div class="mr-4">
-        <%= f.check_box :is_bought, {class: "check_box"}, true, false %>
-        <%#= check_box_tag :"#{item.name}" %>
-        <%= label_tag  :"#{item.name}" %>
-      </div>
-    <% end %>
-  <% end %>
+
+  <table class="table">
+    <tbody>
+      <% items.each do |item| %>
+      <tr>
+        <td>
+          <%= check_box :is_bought, class: "check_box" %>
+          <%= label_tag  :is_bought, "#{item.name}" %>
+        </td>
+        <td><%= link_to "削除", "buy_items/#{item.id}", method: :delete, class: "small" %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+
 </div>
