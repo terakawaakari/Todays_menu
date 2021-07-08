@@ -45,6 +45,7 @@ class RecipesController < ApplicationController
       @direction = d
     end
     @tags = @recipe.tags
+    @item = current_user.buy_items.new
     recommend_system
   end
 

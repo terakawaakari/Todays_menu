@@ -19,12 +19,16 @@ Rails.application.routes.draw do
   end
   get 'my_recipe' => 'recipes#my_recipe'
   get 'search'    => 'recipes#search'
-  get 'my_search'    => 'recipes#my_search'
+  get 'my_search' => 'recipes#my_search'
 
   resources :menus
 
   resources :tags do
     get 'search' => 'recipes#tag_search'
   end
+
+  resources :buy_items, only: [:index, :create, :update, :destroy]
+  delete 'bought_destroy' => 'buy_items#bought_destroy'
+  delete 'all_destroy' => 'buy_items#all_destroy'
 
 end
