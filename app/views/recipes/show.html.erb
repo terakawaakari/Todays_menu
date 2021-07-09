@@ -33,7 +33,7 @@
 
       <div class="d-flex">
         <div><%= attachment_image_tag @recipe, :recipe_image, size: '300x230', format:'jpeg', fallback: "no_image.png" %></div>
-
+        <!--材料-->
         <% if @ingredient.name.present? %>
           <div class="ml-4">
             <h5 class="d-inline-block">材料　</h5>
@@ -45,10 +45,10 @@
                   <td><%= i.name %></td>
                   <td><%= i.quantity %></td>
                   <td>
+                    <!--買い物リストへの-->
                     <%= form_with model: @item, local: true do |f| %>
                       <%= f.hidden_field :name, :value => i.name %>
-                      <%#= f.submit "リストに追加", class: "btn btn-sm btn-success" %>
-                      <input type="submit" value="&#xf067;" class="fas btn btn-sm btn-secondary rounded-pill">
+                      <%= f.submit "＋", class: "btn btn-sm btn-success rounded-circle" %>
                     <% end %>
                   </td>
                 </tr>
@@ -58,7 +58,7 @@
           </div>
         <% end %>
       </div>
-
+      <!--作り方-->
       <% if @direction.description.present? %>
         <div class="mt-5">
           <h4>作り方</h4>
@@ -75,11 +75,11 @@
           <%= @recipe.note %>
         </div>
       <% end %>
-
+      <!--URL-->
       <% if @recipe.url.present? %>
         <div class="mt-3">URL：<%= text_url_to_link(@recipe.url).html_safe %></div>
       <% end %>
-
+      <!--ボタン-->
       <% if @recipe.user_id == current_user.id || current_user.admin? %>
         <div class="text-right mt-3">
           <% if @recommend_main.present? || @recommend_sub.present? || @recommend_soup.present? %>
@@ -91,6 +91,7 @@
       <% end %>
 
     </div>
+    <!--おすすめレシピ-->
     <div id="recommend", class="ml-5"></div>
   </div>
 </div>

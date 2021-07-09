@@ -7,8 +7,11 @@ class BuyItemsController < ApplicationController
 
   def create
     @item = current_user.buy_items.new(buy_item_params)
-    @item.save
-    redirect_to request.referrer
+    if @item.save && request.referrer.include?("recipes")
+      redirect_to request.referrer, notice: "買い物リストに「#{@item.name}」を追加しました"
+    elsif  @item.save
+      redirect_to buy_items_path
+    end
   end
 
   def update
