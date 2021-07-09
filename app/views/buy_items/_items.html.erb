@@ -2,11 +2,25 @@
 
   <table class="table">
     <tbody>
-      <% items.each do |item| %>
+      <% items.first(items.count).each do |item| %>
       <tr>
         <td>
-          <%= check_box :is_bought, class: "check_box" %>
-          <%= label_tag  :is_bought, "#{item.name}" %>
+          <div class="d-flex">
+            <% if item.is_bought? %>
+              <%= form_with model: item, local: true do |f| %>
+                <%= f.hidden_field :is_bought, :value => false %>
+                <input type="submit" value="&#xf00c;" class="fas btn btn-outline-secondary rounded-circle px-2 mr-3">
+              <% end %>
+              <p><%= item.name %></p>
+            <% else %>
+              <%= form_with model: item, local: true do |f| %>
+                <%= f.hidden_field :is_bought, :value => true %>
+                <%= f.submit "", class: "btn btn-sm btn-outline-secondary rounded-circle px-3 mr-3" %>
+                <!--<input type="submit" value="&#xf0c8;" class="far btn btn-link">-->
+              <% end %>
+              <p><%= item.name %></p>
+            <% end %>
+          </div>
         </td>
         <td><%= link_to "削除", "buy_items/#{item.id}", method: :delete, class: "small" %></td>
       </tr>
