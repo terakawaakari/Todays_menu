@@ -73,9 +73,9 @@ class RecipesController < ApplicationController
 
   def destroy
     recipe = Recipe.find(params[:id])
+    recipe.destroy
     #関連付いたレシピが存在しないタグを消去
     recipe.tags.each do |tag|
-      recipe.destroy
       if tag.recipes.blank?
         tag.destroy
       end

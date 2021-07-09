@@ -1,0 +1,41 @@
+<div class="container">
+  <%= render "layouts/page_title", title: "ルーレット" %>
+
+  <div class="mx-auto d-table mb-4 mt-n5">
+    <button type="button" id="start" onclick="start()" class="mr-3 btn btn-info">スタート</button>
+    <button type="button" id="stop" onclick="stop()" class="btn btn-danger">ストップ</button>
+  </div>
+
+  <div>
+    <div id="point" class="mx-auto d-table">▼</div>
+    <div id="circle" class="mx-auto d-table">
+      <div class="quarter" id="quarter_1"></div>
+      <div class="quarter" id="quarter_2"></div>
+      <div class="quarter" id="quarter_3"></div>
+      <div class="quarter" id="quarter_4"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  var rotate = $("#circle");
+var roulette;
+var count = 0;
+
+function start() {
+    roulette = setInterval(function(){
+    count++;
+    if(count > 360){
+      count = 0;
+    }else{
+      rotate.css({ transform: "rotate("+ count*100+"deg)" });
+    }
+  }, 100);
+}
+
+function stop() {
+  if(roulette) {
+    clearInterval(roulette);
+  }
+}
+</script>
