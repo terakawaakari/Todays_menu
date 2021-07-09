@@ -1,0 +1,4 @@
+$('#items').html("<%= j(render 'items', items: @items) %>");
+
+$("#form").html("<%= j(render 'item_form', item: @item) %>");
+$(".text_field").val('');

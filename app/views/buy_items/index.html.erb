@@ -1,16 +1,10 @@
 <div class="container mt-5">
   <div class="row">
     <div class="col-8 offset-2 bg-white p-5">
-      <div class="d-flex">
-        <h4>買い物リスト</h4>
-        <div class="ml-auto">
-          <%= link_to "購入済みアイテムを削除", bought_destroy_path, method: :delete, class: "btn btn-sm btn-info"%>
-          <%= link_to "全削除", all_destroy_path, method: :delete, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-sm btn-danger" %>
-        </div>
-      </div>
+      
 
-      <%= render "items", items: @items %>
-      <%= render "item_form", item: @item %>
+      <div id="items"><%= render "items", items: @items %></div>
+      <div id="form"><%= render "item_form", item: @item %></div>
     </div>
   </div>
 </div>
