@@ -23,6 +23,16 @@ class BuyItemsController < ApplicationController
     redirect_to buy_items_path
   end
 
+  def all_destroy
+    current_user.buy_items.destroy_all
+    redirect_to buy_items_path
+  end
+
+  def bought_destroy
+    current_user.buy_items.where(is_bought: true).destroy_all
+    redirect_to buy_items_path
+  end
+
   private
   def buy_item_params
     params.require(:buy_item).permit(:name, :is_bought)

@@ -16,7 +16,6 @@
               <%= form_with model: item, local: true do |f| %>
                 <%= f.hidden_field :is_bought, :value => true %>
                 <%= f.submit "", class: "btn btn-sm btn-outline-secondary rounded-circle px-3 mr-3" %>
-                <!--<input type="submit" value="&#xf0c8;" class="far btn btn-link">-->
               <% end %>
               <p><%= item.name %></p>
             <% end %>
