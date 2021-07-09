@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :recipes,   dependent: :destroy
   has_many :menus,     dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :buy_items, dependent: :destroy
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|

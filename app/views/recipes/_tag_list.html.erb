@@ -1,10 +1,10 @@
 <% if tags.present? %>
-  <input type="button" value="タグから探す" onclick="clickBtn()" class="mb-2">
+<input type="button" value="タグから探す" onclick="clickBtn()" class="mb-2">
   <div id="tag_list" class="mb-4">
     <% tags.each do |tag| %>
       <div class="d-inline-block mr-3">
-        <%= link_to "# #{tag.tag_name}", tag_search_path(tag_id: tag.id) %>
-        (<%= "#{tag.recipes.count}" %>)
+        <%= link_to "# #{tag.tag_name}", tag_search_path(tag_id: Tag.find_by(tag_name: tag.tag_name)) %>
+        (<%= "#{Tag.find_by(tag_name: tag.tag_name).recipes.count}" %>)
       </div>
     <% end %>
   </div>

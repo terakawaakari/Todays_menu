@@ -1,0 +1,53 @@
+<div class="d-flex">
+  <h4>買い物リスト</h4>
+  <div class="ml-auto">
+    <%= link_to "購入済みアイテムを削除", bought_destroy_path, method: :delete, remote: true, class: "btn btn-sm btn-info"%>
+    <%= link_to "全削除", all_destroy_path, method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-sm btn-danger" %>
+  </div>
+</div>
+
+<div>
+  <table class="table">
+    <tbody>
+      <% items.first(items.count).each do |item| %>
+      <tr class="list-<%= item.id %>">
+        <td>
+          <div class="d-flex">
+            <% if item.is_bought? %>
+              <%= form_with model: item do |f| %>
+                <%= f.hidden_field :is_bought, :value => false %>
+                <%#= f.submit "✔︎️︎️", class: "btn btn-sm btn-outline-secondary rounded-circle mr-3" %>
+                <input type="submit" value="&#xf00c;" class="fas btn btn-outline-secondary rounded-circle px-2 mr-3">
+              <% end %>
+              <p><%= item.name %></p>
+            <% else %>
+              <%= form_with model: item do |f| %>
+                <%= f.hidden_field :is_bought, :value => true %>
+                <%= f.submit "", class: "btn btn-sm btn-outline-secondary rounded-circle px-3 mr-3" %>
+              <% end %>
+              <p><%= item.name %></p>
+            <% end %>
+          </div>
+        </td>
+        <td><div id="delete-btn-<%= item.id %>"><%= link_to "ー", "buy_items/#{item.id}", method: :delete, remote: true, class: "btn btn-sm rounded-circle btn-danger" %></div></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!--アイテムの列をホバーした時に削除ボタンを表示-->
+<% items.first(items.count).each do |item| %>
+<script>
+  $("#delete-btn-<%= item.id %>").hide();
+
+  $(".list-<%= item.id %>").hover(
+    function () {
+      $("#delete-btn-<%= item.id %>").show();
+    },
+    function () {
+      $("#delete-btn-<%= item.id %>").hide();
+    }
+  );
+</script>
+<% end %>

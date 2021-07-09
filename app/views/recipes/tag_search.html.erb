@@ -4,7 +4,7 @@
 
       <h3 class="my-5"># <%= @tag.tag_name %>タグが付いたレシピ(<%= @tag.recipes.count %>件)</h3>
 
-      <%= render "tag_list", tags: @tags %>
+      <%#= render "tag_list", tags: @tags %>
 
       <div class="d-flex flex-wrap">
       <% @recipes.each do |recipe| %>

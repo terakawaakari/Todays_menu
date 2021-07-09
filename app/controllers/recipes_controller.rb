@@ -6,26 +6,24 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
-    @tags = Tag.all
+    @tags    = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
   def my_recipe
     @my_recipes = current_user.recipes.where(is_open: true)
-    @my_recipes.each do |recipe|
-      @tags = recipe.tags
-    end
+    @tags       = RecipeTag.joins(:tag).where(recipe_id: @my_recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
   def new
-    @recipe = current_user.recipes.new
+    @recipe      = current_user.recipes.new
     @ingredients = @recipe.ingredients.new
-    @directions = @recipe.directions.new
+    @directions  = @recipe.directions.new
   end
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
     #既存のタグと新規タグを判別するため入力されたタグ名を配列に格納
-    tags = params[:recipe][:tag_name].split(nil)
+    tags    = params[:recipe][:tag_name].split(nil)
     if @recipe.save
       @recipe.save_tag(tags)
       redirect_to recipe_path(@recipe)
@@ -45,6 +43,7 @@ class RecipesController < ApplicationController
       @direction = d
     end
     @tags = @recipe.tags
+    @item = current_user.buy_items.new
     recommend_system
   end
 
@@ -61,6 +60,10 @@ class RecipesController < ApplicationController
     tags = params[:recipe][:tag_name].split(nil)
     if @recipe.update(recipe_params)
       @recipe.save_tag(tags)
+      #レシピを非公開に更新した場合、紐づくブックマークを全て削除
+      unless @recipe.is_open?
+        @recipe.bookmarks.destroy_all
+      end
       redirect_to recipe_path(@recipe)
     else
       @ingredients = @recipe.ingredients
@@ -82,10 +85,7 @@ class RecipesController < ApplicationController
 
   def tag_search
     @tag = Tag.find(params[:tag_id])
-    @recipes = @tag.recipes.where(user_id: user.id, is_open: true)
-    @recipes.each do |recipe|
-      @tags = recipe.tags
-    end
+    @recipes = @tag.recipes.where(is_open: true)
   end
 
   def recommend
@@ -95,10 +95,14 @@ class RecipesController < ApplicationController
 
   def search
     @results = @q.result
+    @recipes = Recipe.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
+    @tags = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
   def my_search
     @results = @q.result
+    @my_recipes = current_user.recipes.where(is_open: true)
+    @tags = RecipeTag.joins(:tag).where(recipe_id: @my_recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
   private
