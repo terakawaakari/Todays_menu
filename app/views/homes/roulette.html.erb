@@ -1,20 +1,55 @@
 <div class="container">
   <%= render "layouts/page_title", title: "ルーレット" %>
 
-  <div class="mx-auto d-table mb-4 mt-n5">
-    <button type="button" id="start" onclick="start()" class="mr-3 btn btn-info">スタート</button>
-    <button type="button" id="stop" onclick="stop()" class="btn btn-danger">ストップ</button>
-  </div>
+  <div class="col-10 offset-1 d-flex">
+    <div class="mx-auto d-table">
+      <!--スタート・ストップボタン-->
+      <div class="mx-auto d-table mb-4 mt-n5">
+        <button type="button" id="start" onclick="start()" class="mr-3 btn btn-info">スタート</button>
+        <button type="button" id="stop" onclick="stop()" class="btn btn-danger">ストップ</button>
+      </div>
 
-  <div>
-    <div id="point" class="mx-auto d-table">▼</div>
-    <div id="circle" class="mx-auto d-table">
-      <div class="quarter" id="quarter_1"></div>
-      <div class="quarter" id="quarter_2"></div>
-      <div class="quarter" id="quarter_3"></div>
-      <div class="quarter" id="quarter_4"></div>
+      <!--ルーレット-->
+      <div id="point" class="mx-auto d-table">▼</div>
+      <div id="circle" class="mx-auto d-table">
+        <div class="quarter" id="quarter_1">
+          <% if @label1.present? %>
+            <h3 class="label1"><%= @label1 %></h3>
+          <% end %>
+        </div>
+        <div class="quarter" id="quarter_2">
+          <% if @label2.present? %>
+            <h3 class="label2"><%= @label2 %></h3>
+          <% end %>
+        </div>
+        <div class="quarter" id="quarter_3">
+          <% if @label3.present? %>
+            <h3 class="label3"><%= @label3 %></h3>
+          <% end %>
+        </div>
+        <div class="quarter" id="quarter_4">
+          <% if @label4.present? %>
+            <h3 class="label4"><%= @label4 %></h3>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!--項目名入力フォーム-->
+    <div class="d-flex align-items-end">
+      <div>
+        <h5>項目名入力</h5>
+        <%= form_with url: roulette_path, method: :get, local: true do |f| %>
+          <div><div class="color label1-color d-inline-block mr-2"></div><%= f.text_field :label1 %></div>
+          <div class="my-2"><div class="color label2-color d-inline-block mr-2"></div><%= f.text_field :label2 %></div>
+          <div><div class="color label3-color d-inline-block mr-2"></div><%= f.text_field :label3 %></div>
+          <div class="my-2"><div class="color label4-color d-inline-block mr-2"></div><%= f.text_field :label4 %></div>
+          <%= f.submit "決定", class: "btn btn-sm btn-secondary" %>
+        <% end %>
+      </div>
     </div>
   </div>
+
 </div>
 
 <script>

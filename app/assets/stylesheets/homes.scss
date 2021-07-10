@@ -44,15 +44,9 @@
   color: rgb(223, 64, 64);
   font-size: xx-large;
   font-weight: bold;
-  // position: fixed;
-  // top: 240px;
-  // left: 490px;
 }
 
 #circle {
-  // position: relative;
-  // top: 200px;
-  // left: 300px;
   background-color: #efefef;
   height: 400px;
   width: 400px;
@@ -65,6 +59,9 @@
   position: absolute;
   height: 200px;
   width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #quarter_1 {
@@ -95,3 +92,39 @@
   border-radius: 100% 0 0 0;
 }
 
+.label1 {
+  transform: rotate(45deg);
+}
+
+.label2 {
+  transform: rotate(135deg);
+}
+
+.label3 {
+  transform: rotate(225deg);
+}
+
+.label4 {
+  transform: rotate(315deg);
+}
+
+.color {
+  width: 20px;
+  height: 20px;
+}
+
+.label1-color {
+  background-color: #a5dff9;
+}
+
+.label2-color {
+  background-color: #ef5285;
+}
+
+.label3-color {
+  background-color: #60c5ba;
+}
+
+.label4-color {
+  background-color: #feee7d;
+}
