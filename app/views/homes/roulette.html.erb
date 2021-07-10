@@ -41,10 +41,10 @@
         <h5>項目名入力</h5>
         <%= form_with url: roulette_path, method: :get, local: true do |f| %>
           <div><div class="color label1-color d-inline-block mr-2"></div><%= f.text_field :label1 %></div>
-          <div class="my-2"><div class="color label2-color d-inline-block mr-2"></div><%= f.text_field :label2 %></div>
+          <div class= "my-2"><div class="color label2-color d-inline-block mr-2"></div><%= f.text_field :label2 %></div>
           <div><div class="color label3-color d-inline-block mr-2"></div><%= f.text_field :label3 %></div>
           <div class="my-2"><div class="color label4-color d-inline-block mr-2"></div><%= f.text_field :label4 %></div>
-          <%= f.submit "決定", class: "btn btn-sm btn-secondary" %>
+          <%= f.submit "決定", class: "btn btn-sm btn-success mr-2" %><%= link_to "リセット", roulette_path, class: "btn btn-sm btn-secondary" %>
         <% end %>
       </div>
     </div>

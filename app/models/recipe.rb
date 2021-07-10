@@ -14,6 +14,9 @@ class Recipe < ApplicationRecord
   has_many :tags,         through:   :recipe_tags
   has_many :bookmarks,    dependent: :destroy
 
+  validates :is_open, presence: true
+  validates :name,    presence: true
+
   accepts_nested_attributes_for :ingredients, :directions, allow_destroy: true
 
   def save_tag(sent_tags)
