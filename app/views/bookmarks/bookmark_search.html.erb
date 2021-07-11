@@ -6,6 +6,8 @@
       <div class="mb-3"><%= render "recipes/search_form", f: f %></div>
     <% end %>
 
-    <%= render "layouts/search_result", tags: @tags, results: @results %>
+    <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
+
+    <%= render "recipes/recipe_index", resipes: @results %>
   </div>
 </div>

@@ -1,31 +1,19 @@
 <div class="container mt-5">
-  <div class="col-10 offset-1">
-    <h3>レシピ検索</h3>
-      <%= search_form_for @q, url: search_path do |f| %>
-        <div class="mb-3"><%= render "search_form", f: f %></div>
-      <% end %>
-    <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
+  <div class="row">
+    <div class="d-flex mb-3 mx-auto">
+      <%= render "layouts/page_title", title: "タイムライン" %>
+      <div class="mt-4 p-3 search-bg border bg-white shadow-sm">
+        <h3>レシピ検索</h3>
+        <%= search_form_for @q, url: search_path do |f| %>
+          <div><%= render "search_form", f: f %></div>
+        <% end %>
+      </div>
+    </div>
 
-    <div class="d-flex flex-wrap">
-      <% @recipes.each do |recipe| %>
+    <div class="col-lg-10 offset-lg-1 col-sm-12 offset-sm-0">
+      <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
 
-        <div class="mx-4 mb-5">
-          <div>
-            <%= link_to recipe_path(recipe) do %>
-              <%= attachment_image_tag recipe, :recipe_image, size: '250x200', format:'jpeg', fallback: "no_image.png" %>
-            <% end %>
-          </div>
-          <h5 class="mt-2"><%= link_to "#{recipe.name}", recipe_path(recipe) %></h5>
-          <%= recipe.category %> / <%= recipe.genre %> / <%= recipe.taste %>
-
-          <% if recipe.user_id != current_user.id %>
-            <div id="bookmark-<%= recipe.id %>">
-              <%= render "bookmarks/bookmark_button", recipe: recipe %>
-            </div>
-          <% end %>
-
-        </div>
-      <% end %>
+      <%= render "recipe_index", recipes: @recipes %>
     </div>
   </div>
 </div>
