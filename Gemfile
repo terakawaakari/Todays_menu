@@ -76,3 +76,7 @@ gem 'font-awesome-sass'
 gem 'dotenv-rails'
 gem 'cocoon'
 gem 'ransack'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
