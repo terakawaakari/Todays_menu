@@ -2,11 +2,13 @@ Rails.application.routes.draw do
 
   root to: 'homes#top'
 
+  get 'roulette' => 'homes#roulette'
+
   devise_for :users, controllers: {
     :registrations => "users/registrations"
   }
   devise_scope :user do
-    post 'users/guest_sign_in', to: 'users/sessions#guest_sign_in'
+    post 'users/guest_sign_in' => 'users/sessions#guest_sign_in'
   end
 
   resources :users, only: [:show, :update, :edit, :index, :destroy] do

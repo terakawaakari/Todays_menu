@@ -17,9 +17,10 @@
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
             <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              マイレシピ
+              レシピ
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "レシピタイムライン", recipes_path, class: "dropdown-item" %>
               <%= link_to "マイレシピ一覧", my_recipe_path, class: "dropdown-item" %>
               <%= link_to "マイレシピ追加", new_recipe_path, class: "dropdown-item" %>
             </div>
@@ -27,7 +28,7 @@
 
           <li class="nav-item dropdown">
             <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              マイメニュー
+              メニュー
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "マイメニュー一覧", menus_path, class: "dropdown-item" %>
@@ -41,7 +42,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "買い物リスト", buy_items_path, class: "dropdown-item" %>
-              <%= link_to "ルーレット", new_menu_path, class: "dropdown-item" %>
+              <%= link_to "ルーレット", roulette_path, 'data-turbolinks': false, class: "dropdown-item" %>
             </div>
           </li>
 

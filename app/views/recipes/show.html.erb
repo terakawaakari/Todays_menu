@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col-8 offset-2 bg-white p-5">
       <h2 class="mb-4 d-inline-block"><%= @recipe.name %></h2>
-      <input type="button" value="詳細を表示" onclick="clickBtn()" class="ml-3">
+      <input type="button" value="レシピ詳細" onclick="clickBtn()" class="btn btn-sm btn-info ml-3">
 
       <!--レシピの詳細情報　ボタンクリックで表示-->
       <div id="details" class="mb-4">
@@ -37,7 +37,9 @@
         <% if @ingredient.name.present? %>
           <div class="ml-4">
             <h5 class="d-inline-block">材料　</h5>
-            <p class="d-inline-block">(<%= @recipe.serving %>)</p>
+            <% if @recipe.serving? %>
+              <p class="d-inline-block">(<%= @recipe.serving %>)</p>
+            <% end %>
             <table class="table">
               <tbody>
                 <% @ingredients.each do |i| %>
@@ -45,7 +47,7 @@
                   <td><%= i.name %></td>
                   <td><%= i.quantity %></td>
                   <td>
-                    <!--買い物リストへの-->
+                    <!--買い物リストへの追加ボタン-->
                     <%= form_with model: @item, local: true do |f| %>
                       <%= f.hidden_field :name, :value => i.name %>
                       <%= f.submit "＋", class: "btn btn-sm btn-success rounded-circle" %>

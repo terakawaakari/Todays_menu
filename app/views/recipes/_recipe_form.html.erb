@@ -60,7 +60,7 @@
     <div>
       <div id="directions">
         <%= f.fields_for :directions do |f| %>
-          <%= render "direction_fields", f: f %>
+          <%= render "direction_fields", f: f, num: @num %>
         <% end %>
         <!--作り方フォームの追加ボタン-->
         <div class="text-right mb-3">
