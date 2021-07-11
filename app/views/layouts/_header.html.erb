@@ -1,0 +1,79 @@
+<header class="shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+      <% if user_signed_in? %>
+        <a class="navbar-brand" href="/recipes"><%= image_tag("dish-S.png") %><h3 class="d-inline-block text-light ml-3">Today's menu</h3></a>
+      <% else %>
+        <a class="navbar-brand" href="/"><%= image_tag("dish-S.png") %><h3 class="d-inline-block text-light ml-3">Today's menu</h3></a>
+      <% end %>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              レシピ
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "レシピタイムライン", recipes_path, class: "dropdown-item" %>
+              <%= link_to "マイレシピ一覧", my_recipe_path, class: "dropdown-item" %>
+              <%= link_to "マイレシピ追加", new_recipe_path, class: "dropdown-item" %>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              メニュー
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "マイメニュー一覧", menus_path, class: "dropdown-item" %>
+              <%= link_to "マイメニュー追加", new_menu_path, 'data-turbolinks': false, class: "dropdown-item" %>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              ツール
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <%= link_to "買い物リスト", buy_items_path, class: "dropdown-item" %>
+              <%= link_to "ルーレット", roulette_path, 'data-turbolinks': false, class: "dropdown-item" %>
+            </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a class="nav-link text-light dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              会員情報
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% if current_user.admin? %>
+                <%= link_to "会員情報確認", users_path, class: "dropdown-item" %>
+              <% else %>
+                <%= link_to "会員情報確認", user_path(current_user), class: "dropdown-item" %>
+              <% end %>
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-light" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "nav-link text-light" %>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+
+    </div>
+  </nav>
+</header>

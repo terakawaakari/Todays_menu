@@ -19,3 +19,28 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+//= require cocoon
+//= require jquery.raty.js
+
+
+// ルーレット
+var rotate = $("#circle");
+var roulette;
+var count = 0;
+
+function start() {
+    roulette = setInterval(function(){
+    count++;
+    if(count > 360){
+      count = 0;
+    }else{
+      rotate.css({ transform: "rotate("+ count*100+"deg)" });
+    }
+  }, 100);
+}
+
+function stop() {
+  if(roulette) {
+    clearInterval(roulette);
+  }
+}

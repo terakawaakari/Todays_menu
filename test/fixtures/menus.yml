@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  menu_image_id: MyString
+  name: MyText
+  category: 1
+  date: 2021-07-04
+
+two:
+  user_id: 1
+  menu_image_id: MyString
+  name: MyText
+  category: 1
+  date: 2021-07-04

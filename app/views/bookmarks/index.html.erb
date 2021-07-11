@@ -1,0 +1,35 @@
+<div class="container mt-5">
+
+  <%= render "layouts/page_title", title: "ブックマーク" %>
+  <div class="col-10 offset-1">
+    <h3>レシピ検索</h3>
+    <%= search_form_for @q, url: bookmark_search_path do |f| %>
+      <div class="mb-3"><%= render "recipes/search_form", f: f %></div>
+    <% end %>
+
+    <%= render "recipes/tag_list", tags: @tags %>
+
+    <div class="d-flex flex-wrap">
+      <% @bookmarks.each do |bookmark| %>
+        <% if bookmark.recipe.is_open? %>
+          <div class="mx-4">
+            <div>
+              <%= link_to recipe_path(bookmark.recipe) do %>
+                <%= attachment_image_tag bookmark.recipe, :recipe_image, size: '250x200', format:'jpeg', fallback: "no_image.png" %>
+              <% end %>
+            </div>
+            <h5 class="mt-2"><%= link_to "#{bookmark.recipe.name}", recipe_path(bookmark.recipe) %></h5>
+            <%= bookmark.recipe.category %> / <%= bookmark.recipe.genre %> / <%= bookmark.recipe.taste %>
+
+            <div>
+              <%= link_to recipe_bookmarks_path(bookmark.recipe), method: :delete do %>
+                <span class="btn btn-secondary btn-block fas fa-bookmark mt-2 mb-4"> ブックマーク登録解除</span>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+
+  </div>
+</div>

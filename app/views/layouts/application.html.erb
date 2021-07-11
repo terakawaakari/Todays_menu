@@ -10,6 +10,26 @@
   </head>
 
   <body>
-    <%= yield %>
+    <%= render "layouts/header" %>
+
+    <main class="mb-auto">
+      <!--フラッシュメッセージの表示-->
+      <% flash.each do |message_type, message| %>
+        <% if message_type == "alert" %>
+          <div class="fade show alert alert-danger d-flex">
+            <%= content_tag :div, message %>
+            <button class="close ml-auto" data-dismiss="alert"> &times; </button>
+          </div>
+        <% else %>
+          <div class="fade show alert alert-success d-flex">
+            <%= content_tag :div, message %>
+            <button class="close ml-auto" data-dismiss="alert"> &times; </button>
+          </div>
+        <% end %>
+      <% end %>
+      <%= yield %>
+    </main>
+
+    <div class="mt-5"><%= render "layouts/footer" %></div>
   </body>
 </html>

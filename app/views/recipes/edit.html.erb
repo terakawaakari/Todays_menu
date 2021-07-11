@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="row">
+    <%= render "layouts/page_title", title: "マイレシピ編集" %>
+
+    <div class="col-8 offset-2">
+      <%= render "recipe_form", recipe: @recipe, tags: @tags %>
+    </div>
+  </div>
+</div>

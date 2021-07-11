@@ -1,0 +1,25 @@
+<div class="container my-5">
+  <div class="d-flex">
+    <% if @recommend_main.present? %>
+      <div>
+        <h4>おすすめ主菜レシピ</h4>
+        <div class="mt-4"><%= render "recipe", recipe: @recommend_main %></div>
+      </div>
+    <% end %>
+
+    <% if @recommend_sub.present? %>
+      <div>
+        <h4>おすすめ副菜レシピ</h4>
+        <div class="mt-4"><%= render "recipe", recipe: @recommend_sub %></div>
+      </div>
+    <% end %>
+
+    <% if @recommend_soup.present? %>
+      <div>
+        <h4>おすすめ汁物レシピ</h4>
+        <div class="mt-4"><%= render "recipe", recipe: @recommend_soup %></div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

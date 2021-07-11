@@ -1,0 +1,14 @@
+// Place all the styles related to the recipes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+// レシピ詳細画面の作り方リスト
+.directions-list {
+  line-height: 3rem;
+  list-style-position:inside;
+  border-top: 1px solid #dee2e6;
+}
+
+// ol :first-child {
+//   border-top: 1px solid #dee2e6;
+// }

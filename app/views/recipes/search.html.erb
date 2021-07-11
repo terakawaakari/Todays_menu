@@ -1,0 +1,11 @@
+<div class="container mt-5">
+  <div class="col-10 offset-1">
+
+    <h3>レシピ検索</h3>
+    <%= search_form_for @q, url: search_path do |f| %>
+      <div class="mb-3"><%= render "search_form", f: f %></div>
+    <% end %>
+
+    <%= render "layouts/search_result", tags: @tags, results: @results %>
+  </div>
+</div>

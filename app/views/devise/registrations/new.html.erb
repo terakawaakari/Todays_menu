@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="col-6 offset-3">
+    <h2 class="my-5">新規会員登録</h2>
+    <%= form_with model: @user, url: user_registration_path, id: 'new_user', class: 'new_user', local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <form class="form-horizontal">
+        <div class="form-group">
+          <%= f.label :name, "ユーザーネーム" %><br />
+          <%= f.text_field :name, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :birth_date, "生年月日" %><br />
+          <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), prompt: "--", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :sex, "性別" %><br />
+          <%= f.radio_button :sex, "男性" %>
+          <%= f.label :"男性"  %>
+          <%= f.radio_button :sex, "女性" %>
+          <%= f.label :"女性"  %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password, "パスワード" %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation, "パスワード(確認用)" %><br />
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "新規登録", class: "btn btn-info d-table mx-auto mt-5" %>
+        </div>
+      </form>
+    <% end %>
+
+    <h4 class='mt-5'>すでに登録済みの方</h4>
+    <p class='mt-3'><%= link_to "こちら", new_user_session_path %>からログインして下さい</p>
+  </div>
+</div>

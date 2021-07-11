@@ -1,0 +1,28 @@
+<div class="container mt-5">
+  <div class="col-2"></div>
+  <div class="col-8 offset-2">
+    <h5 class="d-table" style="background-color: #e6e3de;">　会員一覧　</h5>
+    <table class="table table-bordered text-center mt-5">
+      <thead class="thead-light">
+        <tr>
+          <th>会員ID</th>
+          <th>ユーザーネーム</th>
+          <th>年齢</th>
+          <th>性別</th>
+          <th>メールアドレス</th>
+        </tr>
+      </thead>
+        <tbody>
+          <% @users.each do |user| %>
+            <tr>
+              <td><%= user.id %></td>
+              <td><%= link_to "#{user.name}", edit_user_path(user) %></td>
+              <td><%= (Time.now.strftime("%Y%m%d").to_i - user.birth_date.strftime("%Y%m%d").to_i) / 10000 %> 歳</td>
+              <td><%= user.sex %></td>
+              <td><%= user.email %></td>
+            </tr>
+          <% end %>
+        </tbody>
+    </table>
+  </div>
+</div>

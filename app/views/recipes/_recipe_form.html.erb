@@ -1,0 +1,123 @@
+<%= form_with model: recipe, local: true do |f| %>
+  <div class="d-flex">
+    <p class="col-4">画像</p>
+    <%= f.attachment_field :recipe_image, placeholder: "ファイルを選択" %>
+  </div>
+
+  <div class="d-flex">
+    <p class="col-4">料理名</p>
+    <%= f.text_field :name, size: "50", placeholder: "料理名" %>
+  </div>
+
+  <div class="d-flex my-3">
+    <p class="col-4">ジャンル</p>
+    <div><%= f.select :genre, Recipe.genres.keys %></div>
+    <div class="mx-2"><%= f.select :category, Recipe.categories.keys %></div>
+    <div><%= f.select :taste, Recipe.tastes.keys %></div>
+  </div>
+
+  <div class="d-flex">
+    <p class="col-4">調理時間</p>
+    <div><%= f.text_field :time, size: "23", placeholder: "30" %> 分</div>
+  </div>
+
+  <div class="d-flex">
+    <p class="col-4">人気度</p>
+    <% if recipe.popularity.present? %>
+      <div id="star-rate-<%= recipe.id %>"></div>
+    <% else %>
+      <div id="popularity_stars"></div>
+    <% end %>
+  </div>
+
+  <div class="d-flex">
+    <p class="col-4">URL</p>
+    <div><%= f.text_field :url, size: "50" %></div>
+  </div>
+
+  <div class="d-flex">
+    <p class="col-4">出来上がりの量</p>
+    <div><%= f.text_field :serving, size: "23", placeholder: "3人分" %></div>
+  </div>
+
+  <div class="d-flex">
+    <p class="col-4">材料</p>
+    <div>
+      <div id="ingredients">
+        <%= f.fields_for :ingredients do |f| %>
+          <%= render "ingredient_fields", f: f %>
+        <% end %>
+        <!--材料フォームの追加ボタン-->
+        <div class="text-right mb-3">
+          <%= link_to_add_association "+フォームを追加", f, :ingredients, class: "btn btn-sm btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <p class="col-4">作り方</p>
+    <div>
+      <div id="directions">
+        <%= f.fields_for :directions do |f| %>
+          <%= render "direction_fields", f: f, num: @num %>
+        <% end %>
+        <!--作り方フォームの追加ボタン-->
+        <div class="text-right mb-3">
+          <%= link_to_add_association "+フォームを追加", f, :directions, class: "btn btn-sm btn-secondary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex my-3">
+    <p class="col-4">タグ</p>
+    <div>
+      <p>半角スペースで区切ると複数入力できます</p>
+      <% if recipe.tags.present? %>
+        <div><%= f.text_field :tag_name, value: tags, size: "50", placeholder: "節約 ヘルシー" %></div>
+      <% else %>
+        <div><%= f.text_field :tag_name, size: "50", placeholder: "節約 ヘルシー" %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <p class="col-4">メモ</p>
+    <div><%= f.text_area :note, size: "50x5" %></div>
+  </div>
+
+  <div class="d-flex my-3">
+    <p class="col-4">公開設定</p>
+    <%= f.radio_button :is_open, :true, class: "mr-1 mt-1" %>
+    <%= f.label :is_open, "公開", {value: :true, style: "display: inline-block;"} %>
+    <%= f.radio_button :is_open, :false, class: "mr-1 ml-3 mt-1" %>
+    <%= f.label :is_open, "非公開", {value: :false, style: "display: inline-block;"} %>
+  </div>
+
+  <div class="text-center"><%= f.submit "レシピを保存", class: "btn btn-success btn-lg" %></div>
+<% end %>
+
+<!--人気度の登録-->
+<script>
+  $('#popularity_stars').raty({
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    half: true,
+    scoreName: "recipe[popularity]"
+  });
+</script>
+
+<!--人気度の編集-->
+<script>
+  $("#star-rate-<%= recipe.id %>").raty({
+    starOff:  "<%= asset_path("star-off.png") %>",
+    starOn : "<%= asset_path("star-on.png") %>",
+    starHalf: "<%= asset_path("star-half.png") %>",
+    half: true,
+    readOnly: false,
+    score: <%= recipe.popularity %>,
+    scoreName: "recipe[popularity]"
+  });
+</script>

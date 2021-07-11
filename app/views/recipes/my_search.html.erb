@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="d-flex">
+    <%= render "layouts/page_title", title: "マイレシピ" %>
+    <div class="mt-5">
+      <h3>レシピ検索</h3>
+      <%= search_form_for @q, url: my_search_path do |f| %>
+        <div class="mb-3"><%= render "search_form", f: f %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="col-10 offset-1">
+    <%= render "layouts/search_result", tags: @tags, results: @results %>
+  </div>
+
+</div>

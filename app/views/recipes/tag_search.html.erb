@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1">
+
+      <h3 class="my-5"># <%= @tag.tag_name %>タグが付いたレシピ(<%= @tag.recipes.count %>件)</h3>
+
+      <%#= render "tag_list", tags: @tags %>
+
+      <div class="d-flex flex-wrap">
+      <% @recipes.each do |recipe| %>
+        <div class="mx-4">
+          <div>
+            <%= link_to recipe_path(recipe) do %>
+              <%= attachment_image_tag recipe, :recipe_image, size: '250x200', format:'jpeg', fallback: "no_image.png" %>
+            <% end %>
+          </div>
+          <h5 class="my-2"><%= link_to "#{recipe.name}", recipe_path(recipe) %></h5>
+          <p><%= recipe.category %> / <%= recipe.genre %> / <%= recipe.taste %></p>
+        </div>
+      <% end %>
+    </div>
+    </div>
+  </div>
+
+</div>
