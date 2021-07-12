@@ -28,15 +28,16 @@ body {
   background-color: #fff7f3;
 }
 
-// .search-bg {
-//  background-color: #FFF8f2;
-//  border: 2px solid #eeeeee;
-// }
-
 main {
  font-family: Lato,Hiragino Kaku Gothic ProN,Yu Gothic,Noto Sans CJK JP,Hiragino Sans,sans-serif;
 }
 
+// 検索フォームの背景色
+.search-bg {
+ background-color: rgba(255,255,255,0.7);
+}
+
+// リンクの文字色を黒に変更
 a {
 color: #000;
 }
@@ -57,8 +58,19 @@ color: #000;
  background-position: center;
 }
 
-.page_title > h2 {
- letter-spacing: 0.1em;
+// ページネーション
+.pagination > li > a {
+  border: none;
+  color: #999;
+}
+
+.pagination > .active > a {
+  color: turquoise;
+  background-color: #e0a2a7;
+}
+
+.page-item.active .page-link {
+  background-color: #e0a2a7;
 }
 
 // フッターを最下部に固定
@@ -76,3 +88,4 @@ footer {
  position: absolute;
  bottom: 0;
 }
+

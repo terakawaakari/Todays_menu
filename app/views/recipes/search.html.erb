@@ -1,18 +1,26 @@
-<div class="container mt-5">
-  <div class="col-10 offset-1">
+<div class="container">
+  <div class="row">
+    <div class="d-flex mb-3 mx-auto">
+      <%= render "layouts/page_title", title: "タイムライン" %>
 
-    <h3>レシピ検索</h3>
-    <%= search_form_for @q, url: search_path do |f| %>
-      <div class="mb-3"><%= render "search_form", f: f %></div>
-    <% end %>
+      <div class="mt-4 p-3 search-bg border border-secondary rounded">
+        <h3>レシピ検索</h3>
+        <%= search_form_for @q, url: search_path do |f| %>
+          <div><%= render "search_form", f: f %></div>
+        <% end %>
+      </div>
+    </div>
 
-    <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
+    <div class="col-10 offset-1">
 
-    <% if @resulys.present? %>
-      <%= render "recipes/recipe_index", resipes: @results %>
-    <% else %>
-      <h3 class="d-table mx-auto mt-5">該当するレシピはありません</h3>
-    <% end %>
+      <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
 
+      <% if @results.present? %>
+        <%= render "recipes/recipe_index", recipes: @results %>
+      <% else %>
+        <h3 class="d-table mx-auto mt-5">該当するレシピはありません</h3>
+      <% end %>
+
+    </div>
   </div>
 </div>

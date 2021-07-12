@@ -1,8 +1,9 @@
-<div class="container mt-5">
+<div class="container">
   <div class="row">
     <div class="d-flex mb-3 mx-auto">
       <%= render "layouts/page_title", title: "タイムライン" %>
-      <div class="mt-4 p-3 search-bg border bg-white shadow-sm">
+
+      <div class="mt-4 p-3 search-bg border border-secondary rounded">
         <h3>レシピ検索</h3>
         <%= search_form_for @q, url: search_path do |f| %>
           <div><%= render "search_form", f: f %></div>

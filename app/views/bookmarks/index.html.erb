@@ -1,12 +1,17 @@
-<div class="container mt-5">
+<div class="container">
   <div class="row">
-    <%= render "layouts/page_title", title: "ブックマーク" %>
-    
+    <div class="d-flex mb-3 mx-auto">
+      <%= render "layouts/page_title", title: "ブックマーク" %>
+
+      <div class="mt-4 p-3 search-bg border border-secondary rounded">
+        <h3>レシピ検索</h3>
+        <%= search_form_for @q, url: bookmark_search_path do |f| %>
+          <div><%= render "recipes/search_form", f: f %></div>
+        <% end %>
+      </div>
+    </div>
+
     <div class="col-10 offset-1">
-      <h3>レシピ検索</h3>
-      <%= search_form_for @q, url: bookmark_search_path do |f| %>
-        <div class="mb-3"><%= render "recipes/search_form", f: f %></div>
-      <% end %>
 
       <%= render "recipes/tag_list", tags: @tags %>
 
@@ -48,6 +53,8 @@
           <h3 class="d-table mx-auto mt-5">ブックマークしたレシピはありません</h3>
         <% end %>
       </div>
+      
+      <div class="d-table mx-auto mt-3"><%= paginate @bookmarks %></div>
     </div>
   </div>
 </div>

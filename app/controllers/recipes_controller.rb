@@ -5,12 +5,14 @@ class RecipesController < ApplicationController
 
 
   def index
+    # 公開中のレシピを新着順に並べてページネート
     @recipes = Recipe.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
+    #公開中のレシピのタグを重複を省いて取得
     @tags    = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
   def my_recipe
-    @my_recipes = current_user.recipes.where(is_open: true)
+    @my_recipes = current_user.recipes.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
     @tags       = RecipeTag.joins(:tag).where(recipe_id: @my_recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
@@ -84,8 +86,9 @@ class RecipesController < ApplicationController
   end
 
   def tag_search
-    @tag = Tag.find(params[:tag_id])
-    @recipes = @tag.recipes.where(is_open: true)
+    @tag     = Tag.find(params[:tag_id])
+    @recipes = @tag.recipes.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
+    @tags    = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
   def recommend
@@ -94,13 +97,13 @@ class RecipesController < ApplicationController
   end
 
   def search
-    @results = @q.result
-    @recipes = Recipe.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
+    @results = @q.result.order(created_at: :DESC).page(params[:page]).per(15)
+    @recipes = Recipe.where(is_open: true)
     @tags = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
   def my_search
-    @results = @q.result
+    @results = @q.result.order(created_at: :DESC).page(params[:page]).per(15)
     @my_recipes = current_user.recipes.where(is_open: true)
     @tags = RecipeTag.joins(:tag).where(recipe_id: @my_recipes.pluck(:id)).select('tags.tag_name').distinct
   end
