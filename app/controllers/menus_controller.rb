@@ -1,8 +1,7 @@
 class MenusController < ApplicationController
 
   def index
-    menus = current_user.menus.order(date: :DESC)
-    @menus = Kaminari.paginate_array(menus).page(params[:page]).per(9)
+    @menus = current_user.menus.order(date: :DESC).page(params[:page]).per(9)
   end
 
   def new

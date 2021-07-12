@@ -8,13 +8,13 @@ class RecipesController < ApplicationController
 
   def index
     # 公開中のレシピを新着順に並べてページネート
-    @recipes = Recipe.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
+    @recipes = Recipe.open_sort.page(params[:page]).per(15)
     #公開中のレシピのタグを重複を省いて取得
     @tags    = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
   def my_recipe
-    @my_recipes = current_user.recipes.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
+    @my_recipes = current_user.recipes.order(created_at: :DESC).page(params[:page]).per(15)
     @tags       = RecipeTag.joins(:tag).where(recipe_id: @my_recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
@@ -85,7 +85,7 @@ class RecipesController < ApplicationController
 
   def tag_search
     @tag     = Tag.find(params[:tag_id])
-    @recipes = @tag.recipes.where(is_open: true).order(created_at: :DESC).page(params[:page]).per(15)
+    @recipes = @tag.recipes.open_sort.page(params[:page]).per(15)
     @tags    = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
   end
 
@@ -95,7 +95,7 @@ class RecipesController < ApplicationController
   end
 
   def search
-    @results = @q.result.order(created_at: :DESC).page(params[:page]).per(15)
+    @results = @q.result.open_sort.page(params[:page]).per(15)
     @recipes = Recipe.where(is_open: true)
     @tags = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
   end
@@ -165,6 +165,7 @@ class RecipesController < ApplicationController
 
   def confirm_user
     unless Recipe.find(params[:id]).user_id == current_user.id || current_user.admin?
+      binding.pry
       redirect_to recipes_path
     end
   end

@@ -74,6 +74,7 @@ gem 'jquery-rails'
 gem 'pry-byebug'
 gem 'cocoon'
 gem 'ransack'
+gem 'rails-i18n'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
