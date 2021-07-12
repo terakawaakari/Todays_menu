@@ -61,7 +61,18 @@ color: #000;
  letter-spacing: 0.1em;
 }
 
+// フッターを最下部に固定
+body{
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 67px;
+  box-sizing: border-box;
+}
+
 // フッター
-.foot-color {
+footer {
+ width: 100%;
  background-color: #ccc5c2;
+ position: absolute;
+ bottom: 0;
 }

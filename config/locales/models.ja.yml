@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザーネーム
+        email: メールアドレス
+        password: パスワード
+        birth_date: 生年月日
+        sex: 性別
+        password_confirmation: パスワード(確認用)
+        remember_me: 次回から自動的にログイン

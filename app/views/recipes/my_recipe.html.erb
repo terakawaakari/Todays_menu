@@ -14,7 +14,11 @@
       <div class="d-flex justify-content-end"><%= link_to "ブックマークしたレシピを見る＞", user_bookmarks_path(current_user) %></div>
       <%= render "tag_list", tags: @tags %>
 
-      <%= render "recipe_index", recipes: @my_recipes %>
+      <% if @my_recipes.present? %>
+        <%= render "recipe_index", recipes: @my_recipes %>
+      <% else %>
+        <h3 class="d-table mx-auto mt-5">マイレシピはありません</h3>
+      <% end %>
     </div>
   </div>
 

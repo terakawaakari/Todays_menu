@@ -6,17 +6,17 @@
 
       <form class="form-horizontal">
         <div class="form-group">
-          <%= f.label :name, "ユーザーネーム" %><br />
+          <%= f.label :name %><br />
           <%= f.text_field :name, autofocus: true, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :birth_date, "生年月日" %><br />
+          <%= f.label :birth_date %><br />
           <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), prompt: "--", class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :sex, "性別" %><br />
+          <%= f.label :sex %><br />
           <%= f.radio_button :sex, "男性" %>
           <%= f.label :"男性"  %>
           <%= f.radio_button :sex, "女性" %>
@@ -24,20 +24,20 @@
         </div>
 
         <div class="form-group">
-          <%= f.label :email, "メールアドレス" %><br />
+          <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :password, "パスワード" %>
+          <%= f.label :password %>
           <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <span>(<%= @minimum_password_length %>文字以上)</span>
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :password_confirmation, "パスワード(確認用)" %><br />
+          <%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
         </div>
 

@@ -12,7 +12,11 @@
   <div class="col-10 offset-1">
     <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
 
-    <%= render "recipe_index", recipes: @results %>
+    <% if @resulys.present? %>
+      <%= render "recipes/recipe_index", resipes: @results %>
+    <% else %>
+      <h3 class="d-table mx-auto mt-5">該当するレシピはありません</h3>
+    <% end %>
   </div>
 
 </div>
