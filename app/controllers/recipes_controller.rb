@@ -1,8 +1,10 @@
 class RecipesController < ApplicationController
 
-  before_action :set_q, only: [:index, :search]
-  before_action :my_q,  only: [:my_recipe, :my_search]
-
+  before_action :confirm_user,   only: [:edit, :update, :destroy]
+  before_action :confirm_status, only: [:show]
+  before_action :find_recipe,    only: [:show, :edit, :update, :destroy]
+  before_action :set_q,          only: [:index, :search]
+  before_action :my_q,           only: [:my_recipe, :my_search]
 
   def index
     # 公開中のレシピを新着順に並べてページネート
@@ -35,7 +37,6 @@ class RecipesController < ApplicationController
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
     @ingredients = @recipe.ingredients
     @ingredients.each do |i|
       @ingredient = i
@@ -50,13 +51,11 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
     #編集フォームに表示させる値を取得
     @tags = @recipe.tags.pluck(:tag_name).join(" ")
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
     @recipe.directions.destroy_all
     @recipe.ingredients.destroy_all
     tags = params[:recipe][:tag_name].split(nil)
@@ -74,10 +73,9 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    recipe = Recipe.find(params[:id])
-    recipe.destroy
+    @recipe.destroy
     #関連付いたレシピが存在しないタグを消去
-    recipe.tags.each do |tag|
+    @recipe.tags.each do |tag|
       if tag.recipes.blank?
         tag.destroy
       end
@@ -115,6 +113,10 @@ class RecipesController < ApplicationController
       ingredients_attributes:[:name, :quantity, :_destroy],
       directions_attributes:[:description, :_destroy]
     )
+  end
+
+  def find_recipe
+    @recipe = Recipe.find(params[:id])
   end
 
   def set_q
@@ -158,6 +160,18 @@ class RecipesController < ApplicationController
     when "汁物"
       main_recommend
       sub_recommend
+    end
+  end
+
+  def confirm_user
+    unless Recipe.find(params[:id]).user_id == current_user.id || current_user.admin?
+      redirect_to recipes_path
+    end
+  end
+
+  def confirm_status
+    unless Recipe.find(params[:id]).is_open? || current_user.admin?
+      redirect_to recipes_path
     end
   end
 

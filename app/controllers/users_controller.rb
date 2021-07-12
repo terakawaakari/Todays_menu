@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  before_action :redirect_top_page, only: [:index]
+  before_action :confirm_user,  except: [:index]
+  before_action :confirm_admin, only:   [:index]
 
   def index
     @users = User.all
@@ -31,8 +32,16 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :birth_date, :sex, :is_deleted)
   end
 
-  def redirect_top_page
-    redirect_to recipes_path unless current_user.admin?
+  def confirm_user
+    unless params[:id] == current_user.id || current_user.admin?
+      redirect_to recipes_path
+    end
+  end
+
+  def confirm_admin
+    unless current_user.admin?
+      redirect_to recipes_path
+    end
   end
 
 end
