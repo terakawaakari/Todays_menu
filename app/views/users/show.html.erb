@@ -1,29 +1,41 @@
 <div class="container">
   <%= render "layouts/page_title", title: "会員情報確認" %>
 
-  <div class="col-10 offset-1">
+  <div class="col-8 offset-2">
 
     <div class="text-right mb-2"><%= link_to "編集", edit_user_path(current_user), class: "btn btn-sm btn-outline-secondary" %></div>
-    <table class="table table-bordered mb-5">
+    <table class="table table-bordered mb-5 bg-white">
       <tbody>
         <tr>
-          <th class="col-5 pl-5">ユーザネーム</th>
+          <th class="col-4 pl-5">ユーザネーム</th>
           <td><%= current_user.name %></td>
         </tr>
         <tr>
-          <th class="col-5 pl-5">生年月日</th>
-          <td><%= current_user.birth_date %></td>
+          <th class="col-4 pl-5">登録日</th>
+          <td><%= current_user.created_at.strftime("%Y年%-m月%-d日") %></td>
         </tr>
         <tr>
-          <th class="col-5 pl-5">性別</th>
+          <th class="col-4 pl-5">生年月日</th>
+          <td><%= current_user.birth_date.strftime("%Y年%-m月%-d日") %></td>
+        </tr>
+        <tr>
+          <th class="col-4 pl-5">性別</th>
           <td><%= current_user.sex %></td>
         </tr>
         <tr>
-          <th class="col-5 pl-5">メールアドレス</th>
+          <th class="col-4 pl-5">メールアドレス</th>
           <td><%= current_user.email %></td>
         </tr>
       </tbody>
     </table>
+
+    <% if !current_user.admin? %>
+      <!--モーダルのトリガー-->
+      <div class="text-right withdraw-link" data-toggle="modal" data-target="#exampleModalCenter">退会はこちら＞</div>
+    <% end %>
+
+    <!--退会確認用モーダル-->
+    <%= render "confirm" %>
 
   </div>
 </div>
