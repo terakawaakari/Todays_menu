@@ -23,6 +23,7 @@
               <%= link_to "レシピタイムライン", recipes_path, class: "dropdown-item" %>
               <%= link_to "マイレシピ一覧", my_recipe_path, class: "dropdown-item" %>
               <%= link_to "マイレシピ追加", new_recipe_path, class: "dropdown-item" %>
+              <%= link_to "ブックマーク一覧", user_bookmarks_path(current_user), class: "dropdown-item" %>
             </div>
           </li>
 

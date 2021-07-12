@@ -11,9 +11,12 @@ class BuyItemsController < ApplicationController
     if request.referrer.include?("recipes")
       @item.save
       redirect_to request.referrer, notice: "買い物リストに「#{@item.name}」を追加しました"
-    else
-      @item.save
+    end
+    if @item.save
       @item = current_user.buy_items.new
+    else
+      @items = current_user.buy_items
+      render :index
     end
   end
 

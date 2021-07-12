@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
-    <%= render "layouts/page_title", title: "マイレシピ追加" %>
+    <div class="d-flex mb-3 ml-5">
+      <%= render "layouts/page_title", title: "マイレシピ追加" %>
+      <%= render "layouts/errors", obj: @recipe %>
+    </div>
 
     <div class="col-8 offset-2">
       <%= render "recipe_form", recipe: @recipe %>
