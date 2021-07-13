@@ -25,7 +25,9 @@
 }
 
 body {
-  background-color: #fff7f3;
+  // background-color: #fff7f3;
+  // background-color: #f3f0e9;
+  background-color: #fffcf5;
 }
 
 main {
@@ -34,7 +36,7 @@ main {
 
 // 検索フォームの背景色
 .search-bg {
- background-color: rgba(255,255,255,0.7);
+ background-color: rgba(255,255,255,0.5);
 }
 
 // リンクの文字色を黒に変更
@@ -66,11 +68,11 @@ color: #000;
 
 .pagination > .active > a {
   color: turquoise;
-  background-color: #e0a2a7;
+  background-color: #d1b9b0;
 }
 
 .page-item.active .page-link {
-  background-color: #e0a2a7;
+  background-color: #d1b9b0;
 }
 
 // フッターを最下部に固定
