@@ -75,6 +75,7 @@ gem 'pry-byebug'
 gem 'cocoon'
 gem 'ransack'
 gem 'rails-i18n'
+gem 'simple_calendar', '~> 2.0'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

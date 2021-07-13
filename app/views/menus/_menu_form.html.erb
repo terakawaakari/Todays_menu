@@ -8,7 +8,7 @@
         <% end %>
       <% end %>
       <%= f.attachment_field :menu_image, placeholder: "ファイルを選択" %>
-      <img id="preview", class="my-3 col-8">
+      <img id="menu-preview", class="my-3 col-8">
     </div>
   </div>
 
@@ -48,9 +48,9 @@
   $('#menu_menu_image').on('change', function (e) {
     var reader = new FileReader();
     reader.onload = function (e) {
-        $("#preview").attr('src', e.target.result);
+      $("#menu-preview").attr('src', e.target.result);
     }
     reader.readAsDataURL(e.target.files[0]);
-});
+  });
 </script>
 

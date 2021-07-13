@@ -11,4 +11,8 @@ class Menu < ApplicationRecord
 
   accepts_nested_attributes_for :menu_recipes, allow_destroy: true
 
+  def start_time
+    self.date
+  end
+
 end

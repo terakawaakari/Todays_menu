@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   get 'bookmark_search' => 'bookmarks#bookmark_search'
 
   resources :menus
+  get 'calendar' => 'menus#calendar'
 
   resources :tags do
     get 'search' => 'recipes#tag_search'

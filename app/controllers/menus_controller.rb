@@ -4,6 +4,10 @@ class MenusController < ApplicationController
     @menus = current_user.menus.order(date: :DESC).page(params[:page]).per(9)
   end
 
+  def calendar
+    @menus = current_user.menus
+  end
+
   def new
     @menu = current_user.menus.new
     @menu_recipes = @menu.menu_recipes.new
