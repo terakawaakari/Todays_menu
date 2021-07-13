@@ -2,6 +2,12 @@ class MenusController < ApplicationController
 
   def index
     @menus = current_user.menus.order(date: :DESC).page(params[:page]).per(9)
+    @q = current_user.menus.ransack(params[:q])
+  end
+
+  def menu_sort
+    @q = current_user.menus.ransack(params[:q])
+    @menus = @q.result.order(date: :DESC).page(params[:page]).per(15)
   end
 
   def calendar
