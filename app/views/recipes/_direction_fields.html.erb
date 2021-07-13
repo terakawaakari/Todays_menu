@@ -1,7 +1,7 @@
 <div class="nested-fields">
-  <div>
-    <%= f.text_area :description, size: "50x3", placeholder: "作り方を順番に入力してください" %>
-    <%= link_to_remove_association "#{icon "fas", "trash-alt"}".html_safe , f, class: "js-log-remove-btn ml-2" %>
-    <i class="fas fa-bars ml-2"></i>
+  <div class="d-flex align-items-center">
+    <%= f.text_area :description, size: "50x3", placeholder: "作り方を順番に入力してください", class: "form-control form-control-sm d-inline-block mb-2" %>
+    <%= link_to_remove_association "#{icon "fas", "trash-alt"}".html_safe , f, class: "js-log-remove-btn ml-3 h5" %>
+    <i class="fas fa-bars ml-3 h5"></i>
   </div>
 </div>

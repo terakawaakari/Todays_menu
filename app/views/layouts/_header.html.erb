@@ -23,6 +23,7 @@
               <%= link_to "レシピタイムライン", recipes_path, class: "dropdown-item" %>
               <%= link_to "マイレシピ一覧", my_recipe_path, class: "dropdown-item" %>
               <%= link_to "マイレシピ追加", new_recipe_path, class: "dropdown-item" %>
+              <%= link_to "ブックマーク一覧", user_bookmarks_path(current_user), class: "dropdown-item" %>
             </div>
           </li>
 
@@ -31,7 +32,7 @@
               メニュー
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "マイメニュー一覧", menus_path, class: "dropdown-item" %>
+              <%= link_to "マイメニューカレンダー", calendar_path, class: "dropdown-item" %>
               <%= link_to "マイメニュー追加", new_menu_path, 'data-turbolinks': false, class: "dropdown-item" %>
             </div>
           </li>

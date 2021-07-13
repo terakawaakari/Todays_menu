@@ -3,7 +3,7 @@ class BookmarksController < ApplicationController
   before_action :set_q, only: [:index, :bookmark_search]
 
   def index
-    @bookmarks = current_user.bookmarks
+    @bookmarks = current_user.bookmarks.order(created_at: :DESC).page(params[:page]).per(15)
     @tags      = RecipeTag.joins(:tag).where(recipe_id: @bookmarks.pluck(:recipe_id)).select('tags.tag_name').distinct
   end
 
@@ -20,7 +20,7 @@ class BookmarksController < ApplicationController
   end
 
   def bookmark_search
-    @results   = @q.result
+    @results   = @q.result.order(created_at: :DESC).page(params[:page]).per(15)
     @bookmarks = current_user.bookmarks
     @tags      = RecipeTag.joins(:tag).where(recipe_id: @bookmarks.pluck(:recipe_id)).select('tags.tag_name').distinct
   end

@@ -10,6 +10,7 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
+ *= require simple_calendar
  *= require_tree .
  *= require_self
  */
@@ -25,18 +26,21 @@
 }
 
 body {
-  background-color: #fff7f3;
+  // background-color: #fff7f3;
+  // background-color: #f3f0e9;
+  background-color: #fffcf5;
 }
-
-// .search-bg {
-//  background-color: #FFF8f2;
-//  border: 2px solid #eeeeee;
-// }
 
 main {
  font-family: Lato,Hiragino Kaku Gothic ProN,Yu Gothic,Noto Sans CJK JP,Hiragino Sans,sans-serif;
 }
 
+// 検索フォームの背景色
+.search-bg {
+ background-color: rgba(255,255,255,0.5);
+}
+
+// リンクの文字色を黒に変更
 a {
 color: #000;
 }
@@ -57,11 +61,34 @@ color: #000;
  background-position: center;
 }
 
-.page_title > h2 {
- letter-spacing: 0.1em;
+// ページネーション
+.pagination > li > a {
+  border: none;
+  color: #999;
+}
+
+.pagination > .active > a {
+  color: turquoise;
+  background-color: #d1b9b0;
+}
+
+.page-item.active .page-link {
+  background-color: #d1b9b0;
+}
+
+// フッターを最下部に固定
+body{
+  min-height: 100vh;
+  position: relative;
+  padding-bottom: 67px;
+  box-sizing: border-box;
 }
 
 // フッター
-.foot-color {
+footer {
+ width: 100%;
  background-color: #ccc5c2;
+ position: absolute;
+ bottom: 0;
 }
+

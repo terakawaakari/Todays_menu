@@ -1,0 +1,28 @@
+ja:
+  activerecord:
+    attributes:
+      user:
+        name: ユーザーネーム
+        email: メールアドレス
+        password: パスワード
+        birth_date: 生年月日
+        sex: 性別
+        password_confirmation: パスワード(確認用)
+        remember_me: 次回から自動的にログイン
+
+ja:
+  activerecord:
+    models:
+      recipe: レシピ
+    attributes:
+      recipe:
+        name: 料理名
+        is_open: 公開/非公開
+
+ja:
+  activerecord:
+    models:
+      menu: メニュー
+    attributes:
+      menu:
+        menu_image: 画像

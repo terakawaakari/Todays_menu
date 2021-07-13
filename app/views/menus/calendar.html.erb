@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="row">
+    <%= render "layouts/page_title", title: "マイメニュー" %>
+
+    <div class="col-10 offset-1">
+      <%= month_calendar events: @menus do |date, menus| %>
+        <%= date.day %>
+
+        <% menus.each do |menu| %>
+          <!--モーダルのトリガー-->
+          <div data-toggle="modal" data-target="#menu-modal-<%= menu.id %>" class="withdraw-link">
+            <%= attachment_image_tag menu, :menu_image, size: "100x70" %>
+          </div>
+          <!--メニューモーダル-->
+          <%= render "menu", menu: menu %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,17 +1,17 @@
 <div class="container">
   <%= render "layouts/page_title", title: "ルーレット" %>
 
-  <div class="col-10 offset-1 d-flex">
-    <div class="mx-auto d-table">
+  <div class="col-9 offset-3 d-flex mt-n5">
+    <div class="d-table mr-5">
       <!--スタート・ストップボタン-->
       <div class="mx-auto d-table mb-4 mt-n5">
-        <button type="button" id="stop" onclick="stop()" class="btn btn-danger">ストップ</button>
-        <button type="button" id="start" onclick="start()" class="ml-3 btn btn-info">スタート</button>
+        <button type="button" id="stop" onclick="stop()" class="btn btn-outline-danger">ストップ</button>
+        <button type="button" id="start" onclick="start()" class="ml-3 btn btn-outline-info">スタート</button>
       </div>
 
       <!--ルーレット-->
       <div id="point" class="mx-auto d-table">▼</div>
-      <div id="circle" class="mx-auto d-table">
+      <div id="circle" class="mx-auto d-table shadow">
         <div class="quarter" id="quarter_1">
           <% if @label1.present? %>
             <h3 class="label1"><%= @label1 %></h3>
@@ -36,7 +36,7 @@
     </div>
 
     <!--項目名入力フォーム-->
-    <div class="d-flex align-items-end">
+    <div class="d-flex align-items-end ml-5">
       <div>
         <h5>項目名入力</h5>
         <%= form_with url: roulette_path, method: :get, local: true do |f| %>
@@ -54,23 +54,23 @@
 
 <script>
   var rotate = $("#circle");
-var roulette;
-var count = 0;
+  var roulette;
+  var count = 0;
 
-function start() {
+  function start() {
     roulette = setInterval(function(){
-    count++;
-    if(count > 360){
-      count = 0;
-    }else{
-      rotate.css({ transform: "rotate("+ count*100+"deg)" });
-    }
-  }, 100);
-}
-
-function stop() {
-  if(roulette) {
-    clearInterval(roulette);
+      count++;
+      if(count > 360){
+        count = 0;
+      }else{
+        rotate.css({ transform: "rotate("+ count*100+"deg)" });
+      }
+    }, 100);
   }
-}
+
+  function stop() {
+    if(roulette) {
+      clearInterval(roulette);
+    }
+  }
 </script>

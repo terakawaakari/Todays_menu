@@ -1,4 +1,6 @@
 <%= form_with model: item do |f| %>
   <%= f.text_field :name, class: "form-control text_field" %>
-  <div><%= f.submit "リストに追加", class: "btn btn-sm btn-success mt-2" %></div>
+  <div>
+    <%= f.submit "リストに追加", class: "btn btn-sm btn-success mt-2" %>
+  </div>
 <% end %>
