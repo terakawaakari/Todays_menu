@@ -1,6 +1,6 @@
 <% if tags.present? %>
 <!--<input type="button" value="タグから探す" onclick="clickBtn()" class="btn btn-sm btn-info mb-2">-->
-  <div id="tag_list" class="mb-4">
+  <div id="tag_list">
     <% tags.each do |tag| %>
       <div class="d-inline-block mr-3">
         <div><%= link_to "# #{tag.tag_name}", tag_search_path(tag_id: Tag.find_by(tag_name: tag.tag_name)), class: "badge badge-pill badge-success" %></div>
