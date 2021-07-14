@@ -14,7 +14,7 @@
 
   <div class="d-flex mb-3">
     <p class="col-4">日付</p>
-    <div><%= f.date_select :date, {use_month_numbers: true}, {class: "form-control form-control-sm d-inline-block w-auto"} %></div>
+    <div><%= f.date_field :date, include_blank: true, class: "form-control form-control-sm d-inline-block" %></div>
   </div>
 
   <div class="d-flex">
@@ -34,13 +34,16 @@
         <%= render "menu_recipe_fields", f: f %>
       <% end %>
       <!--マイレシピから選択フォームの追加ボタン-->
-      <div class="text-right mb-3">
-        <%= link_to_add_association "+フォームを追加", f, :menu_recipes, class: "btn btn-sm btn-secondary" %>
+      <div class="mb-3">
+        <%= link_to_add_association "+フォームを追加", f, :menu_recipes, class: "btn btn-sm btn-secondary rounded-pill" %>
       </div>
     </div>
   </div>
 
-  <div class="text-center"><%= f.submit "メニューを保存", class: "btn btn-success" %></div>
+  <div class="d-flex justify-content-center">
+    <div><%= link_to "キャンセル", menus_path, class: "btn btn-secondary mr-2" %></div>
+    <div><%= f.submit "メニューを保存", class: "btn btn-success" %></div>
+  </div>
 <% end %>
 
 <!--画像のプレビュー表示-->

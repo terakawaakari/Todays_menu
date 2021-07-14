@@ -1,4 +1,4 @@
-<div class="d-flex flex-wrap">
+<div class="d-flex flex-wrap mt-4">
   <% recipes.each do |recipe| %>
     <div class="mx-2 bg-white p-2 mb-3 border shadow-sm" style="width: 290px;">
 
@@ -22,7 +22,9 @@
         <% end %>
         <% if recipe.tags.present? %>
           <% recipe.tags.each do |tag| %>
-            <p class="badge badge-pill badge-success">#<%= tag.tag_name %></p>
+            <%= link_to tag_search_path(tag) do %>
+              <p class="badge badge-pill badge-success">#<%= tag.tag_name %></p>
+            <% end %>
           <% end %>
         <% end %>
 

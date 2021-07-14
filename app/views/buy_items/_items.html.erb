@@ -1,6 +1,6 @@
 <div class="d-flex">
   <h4>買い物リスト</h4>
-  <div class="ml-auto">
+  <div class="ml-auto mb-2">
     <%= link_to "購入済みアイテムを削除", bought_destroy_path, method: :delete, remote: true, class: "btn btn-sm btn-info"%>
     <%= link_to "全削除", all_destroy_path, method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-sm btn-danger" %>
   </div>

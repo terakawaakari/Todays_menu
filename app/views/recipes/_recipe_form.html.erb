@@ -98,7 +98,10 @@
     <%= f.label :is_open, "非公開", {value: :false, style: "display: inline-block;"} %>
   </div>
 
-  <div class="text-center"><%= f.submit "レシピを保存", class: "btn btn-success" %></div>
+  <div class="d-flex  justify-content-center">
+    <div><%= link_to "キャンセル", my_recipe_path(current_user), class: "btn btn-secondary mr-2" %></div>
+    <div><%= f.submit "レシピを保存", class: "btn btn-success" %></div>
+  </div>
 <% end %>
 
 <!--人気度の登録-->

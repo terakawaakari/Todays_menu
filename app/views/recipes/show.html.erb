@@ -71,6 +71,7 @@
           </ol>
         </div>
       <% end %>
+      <!--メモ-->
       <% if @recipe.note.present? %>
         <div class="px-4 pb-4 border rounded">
           <div class="py-2">-memo-</div>
@@ -88,7 +89,7 @@
         <% end %>
         <% if @recipe.user_id == current_user.id || current_user.admin? %>
           <%= link_to "編集する", edit_recipe_path(@recipe), 'data-turbolinks': false, class: "btn btn-sm btn-success" %>
-          <%= link_to "削除する", recipe_path(@recipe), method: :delete, data: {cofirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
+          <%= link_to "削除する", recipe_path(@recipe), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
         <% end %>
       </div>
 

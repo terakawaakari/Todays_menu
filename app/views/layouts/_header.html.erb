@@ -32,7 +32,8 @@
               メニュー
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "マイメニューカレンダー", calendar_path, class: "dropdown-item" %>
+              <%= link_to "マイメニュー一覧", menus_path, class: "dropdown-item" %>
+              <%= link_to "カレンダー", calendar_path, class: "dropdown-item" %>
               <%= link_to "マイメニュー追加", new_menu_path, 'data-turbolinks': false, class: "dropdown-item" %>
             </div>
           </li>

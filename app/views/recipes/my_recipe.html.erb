@@ -1,17 +1,14 @@
-<div class="container">
+<div class="container mt-5">
   <div class="row">
-    <div class="d-flex mb-3 mx-auto">
-      <%= render "layouts/page_title", title: "マイレシピ" %>
 
-      <div class="mt-4 p-3 search-bg border border-secondary rounded">
-        <h3>レシピ検索</h3>
+    <div class="col-10">
+      <div class="p-3 search-bg border rounded shadow-sm">
+        <h3>マイレシピ検索</h3>
         <%= search_form_for @q, url: my_search_path do |f| %>
           <div><%= render "search_form", f: f %></div>
         <% end %>
       </div>
-    </div>
 
-    <div class="col-10 offset-1">
       <div class="d-flex justify-content-end mt-3"><%= link_to "ブックマークしたレシピを見る＞", user_bookmarks_path(current_user) %></div>
       <%= render "tag_list", tags: @tags %>
 
@@ -21,6 +18,7 @@
         <h3 class="d-table mx-auto mt-5">マイレシピはありません</h3>
       <% end %>
     </div>
-  </div>
 
+    <%= render "layouts/sidebar" %>
+  </div>
 </div>
