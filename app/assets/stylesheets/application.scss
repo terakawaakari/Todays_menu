@@ -113,3 +113,23 @@ footer {
  bottom: 0;
 }
 
+
+@media (max-width: 768px) {
+
+ .container {
+  width: 100%;
+ }
+
+ #recipe-container {
+  justify-content: center!important;
+  margin: 0 auto;
+ }
+ .recipe-box {
+  width: 100%;
+ }
+ .recipe-image {
+  width: 100%;
+  height: auto;
+ }
+
+}

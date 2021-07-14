@@ -6,17 +6,17 @@
 
       <form class="form-horizontal">
         <div class="form-group">
-          <%= f.label :name %><br />
+          <%= f.label :name, "ユーザーネーム" %><br />
           <%= f.text_field :name, autofocus: true, class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :birth_date %><br />
+          <%= f.label :birth_date, "生年月日" %><br />
           <%= f.date_select :birth_date, use_month_numbers: true, start_year: 1930, end_year: (Time.now.year - 10), prompt: "--", class: "form-control" %>
         </div>
 
         <div class="form-group">
-          <%= f.label :sex %><br />
+          <%= f.label :sex, "性別" %><br />
           <%= f.radio_button :sex, "男性" %>
           <%= f.label :"男性"  %>
           <%= f.radio_button :sex, "女性" %>
