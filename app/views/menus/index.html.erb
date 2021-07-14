@@ -12,7 +12,7 @@
       </div>
     </div>
 
-    <div class="col-10 offset-1">
+    <div class="col-10">
       <div class="d-flex flex-wrap">
         <% if @menus.present? %>
           <% @menus.each do |menu| %>
@@ -52,5 +52,7 @@
       </div>
       <div class='d-table mx-auto'><%= paginate @menus %></div>
     </div>
+
+    <%= render "layouts/sidebar" %>
   </div>
 </div>

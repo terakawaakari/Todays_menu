@@ -1,7 +1,11 @@
+<% if current_page?(buy_items_path) || current_page?(roulette_path) || current_page?(user_path(current_user)) || current_page?( users_path) %>
+<div class="col-3">
+<% else %>
 <div class="col-2">
-  <div class="search-bg shadow-sm" style="white: 100%;">
+<% end %>
+  <div class="side-bg shadow-sm">
   <div>
-    <h5 class="py-2 text-white px-3 py-2 shadow-sm" style="background-color: #d1b9b0;"><i class="fas fa-book mr-2"></i>レシピ</h5>
+    <h5 class="py-2 text-white px-3 py-2 shadow-sm side-title"><i class="fas fa-book mr-2"></i>レシピ</h5>
     <div class="ml-2 pt-2">
       <p><%= link_to "タイムライン", recipes_path %></p>
       <p><%= link_to "マイレシピ", my_recipe_path %></p>
@@ -10,20 +14,20 @@
     </div>
   </div>
   <div class="my-4">
-    <h5 class="text-white px-3 py-2 pb-2 shadow-sm" style="background-color: #d1b9b0;"><i class="fas fa-utensils mr-2"></i>メニュー</h5>
+    <h5 class="text-white px-3 py-2 pb-2 shadow-sm side-title"><i class="fas fa-utensils mr-2"></i>メニュー</h5>
     <div class="ml-2 pt-2">
       <p><%= link_to "カレンダー", calendar_path %></p>
       <p><%= link_to "マイメニュー一覧", menus_path %></p>
       <p><%= link_to "マイメニュー追加", new_menu_path, 'data-turbolinks': false %></p>
     </div>
   </div>
-    <h5 class="text-white px-3 py-2 py-2 pb-2 shadow-sm" style="background-color: #d1b9b0;"><i class="fas fa-shopping-basket mr-2"></i>ツール</h5>
+    <h5 class="text-white px-3 py-2 py-2 pb-2 shadow-sm side-title"><i class="fas fa-shopping-basket mr-2"></i>ツール</h5>
     <div class="ml-2 pt-2">
       <p><%= link_to "買い物リスト", buy_items_path %></p>
       <p><%= link_to "ルーレット", roulette_path, 'data-turbolinks': false %></p>
     </div>
   <div class="mt-4">
-    <h5 class="text-white px-3 py-2 pb-2 shadow-sm" style="background-color: #d1b9b0;"><i class="fas fa-user-circle mr-2"></i>会員情報</h5>
+    <h5 class="text-white px-3 py-2 pb-2 shadow-sm side-title"><i class="fas fa-user-circle mr-2"></i>会員情報</h5>
     <div class="ml-2 py-2">
       <% if current_user.admin? %>
         <p><%= link_to "会員情報確認", users_path %></p>
