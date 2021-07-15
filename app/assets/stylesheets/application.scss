@@ -178,12 +178,10 @@ section {
   transition: .8s;
   white-space: nowrap;
 }
-
 .open-menu {
   width: 60%;
-  
-}
 
+}
 .r-side-bg {
  background-color: #fffcf5;
 }
@@ -200,10 +198,22 @@ section {
   // font-weight: bold;
 }
 
+// 検索
+.search-icon {
+ position: fixed;
+ top: 20px;
+ left: 20px;
+ font-size: 10px;
+}
+
+.recipe-box {
+ width: 380px;
+}
+
 @media (max-width: 768px) {
 
  main {
-  padding-top: 50px;
+  padding-top: 30px;
  }
 
  .container {
@@ -220,6 +230,18 @@ section {
  .recipe-image {
   width: 100%;
   height: auto;
+ }
+
+ #search-form {
+  position: fixed;
+  top: 66px;
+  left: 0;
+  width: 100%;
+  background-color: #fffcf5;
+  min-height: 90vh;
+  display: none;
+  z-index: 9;
+  overflow-y: scroll;
  }
 
 }

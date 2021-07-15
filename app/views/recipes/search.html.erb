@@ -1,12 +1,8 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-9">
-      <div class="p-3 mb-3 search-bg border shadow-sm rounded">
-        <h3>レシピ検索</h3>
-        <%= search_form_for @q, url: search_path do |f| %>
-          <div><%= render "search_form", f: f %></div>
-        <% end %>
-      </div>
+    <div class="col-lg-9 col-md-12">
+      <div class="d-none d-md-block"><%= render "search_form", title: "レシピ検索", q: @q %></div>
+      <div class="d-block d-md-none"><%= render "responsive_search", title: "レシピ検索", q: @q %></div>
 
       <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
 

@@ -3,9 +3,10 @@
     <div class="container">
 
       <% if user_signed_in? %>
-        <a class="navbar-brand mx-auto" href="/recipes"><%= image_tag "dish-S.png", size: "30x40", class: "pb-1" %><h4 class="d-inline-block text-light ml-2">Today's menu</h3></a>
+        <div class="search-icon text-light pl-n3"><i class="fas fa-search text-light h5 mb-n3"></i><br>検索</div>
+        <a class="navbar-brand mx-auto" href="/recipes"><%= image_tag "dish-S.png", size: "30x40", class: "pb-1" %><h5 class="d-inline-block text-light ml-2">Today's menu</h5></a>
       <% else %>
-        <a class="navbar-brand mx-auto" href="/"><%= image_tag("dish-S.png") %><h4 class="d-inline-block text-light ml-3">Today's menu</h3></a>
+        <a class="navbar-brand mx-auto" href="/"><%= image_tag "dish-S.png", size: "30x40", class: "pb-1" %><h5 class="d-inline-block text-light ml-2">Today's menu</h5></a>
       <% end %>
 
       <% if user_signed_in? %>
