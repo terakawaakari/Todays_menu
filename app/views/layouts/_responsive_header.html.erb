@@ -1,0 +1,80 @@
+<header class="shadow-sm fixed-top r-head">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+      <% if user_signed_in? %>
+        <a class="navbar-brand mx-auto" href="/recipes"><%= image_tag "dish-S.png", size: "30x40", class: "pb-1" %><h4 class="d-inline-block text-light ml-2">Today's menu</h3></a>
+      <% else %>
+        <a class="navbar-brand mx-auto" href="/"><%= image_tag("dish-S.png") %><h4 class="d-inline-block text-light ml-3">Today's menu</h3></a>
+      <% end %>
+
+      <% if user_signed_in? %>
+      <div id="hm-icon">
+        <a class="menu-trigger" href="#">
+          <span></span>
+          <span></span>
+          <span></span>
+        </a>
+      </div>
+
+      <section id="navigation" class="shadow-lg">
+        <ul>
+          <li class="r-side-bg shadow-sm">
+            <h3 class="py-2 text-white px-3 shadow-sm side-title"><i class="fas fa-book mr-2"></i>レシピ</h3>
+            <p class="pt-2"><%= link_to "タイムライン", recipes_path %></p>
+            <p><%= link_to "マイレシピ", my_recipe_path %></p>
+            <p><%= link_to "マイレシピ追加", new_recipe_path %></p>
+            <p><%= link_to "ブックマーク", user_bookmarks_path(current_user) %></p>
+          </li>
+
+          <li class="r-side-bg shadow-sm">
+            <h3 class="text-white px-3 py-2 pb-2 shadow-sm side-title"><i class="fas fa-utensils mr-2"></i>メニュー</h3>
+            <p class="pt-2"><%= link_to "カレンダー", calendar_path %></p>
+            <p><%= link_to "マイメニュー一覧", menus_path %></p>
+            <p><%= link_to "マイメニュー追加", new_menu_path, 'data-turbolinks': false %></p>
+          </li>
+
+          <li class="r-side-bg shadow-sm">
+            <h3 class="text-white px-3 py-2 py-2 pb-2 shadow-sm side-title"><i class="fas fa-shopping-basket mr-2"></i>ツール</h3>
+            <p class="pt-2"><%= link_to "買い物リスト", buy_items_path %></p>
+            <p><%= link_to "ルーレット", roulette_path, 'data-turbolinks': false %></p>
+          </li>
+
+          <li class="r-side-bg shadow-sm">
+            <h3 class="text-white px-3 py-2 pb-2 shadow-sm side-title"><i class="fas fa-user-circle mr-2"></i>会員情報</h3>
+              <% if current_user.admin? %>
+                <p class="pt-2"><%= link_to "会員情報確認", users_path %></p>
+              <% else %>
+                <p><%= link_to "会員情報確認", user_path(current_user) %></p>
+              <% end %>
+              <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+          </li>
+
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-light" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "nav-link text-light" %>
+          </li>
+        <% end %>
+        </ul>
+      </section>
+
+    </div>
+  </nav>
+</header>
+
+<script>
+  $(function() {
+    $('.menu-trigger').on('click', function(event) {
+      $(this).toggleClass('active');
+      document.querySelector('section').classList.toggle('open-menu');
+      // $('body').not('section').css('background-color', 'rgba(0,0,0,0.7)');
+      event.preventDefault();
+    });
+  });
+</script>

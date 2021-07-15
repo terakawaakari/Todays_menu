@@ -11,7 +11,8 @@
   </head>
 
   <body>
-    <%= render "layouts/header" %>
+    <div class="d-none d-lg-block"><%= render "layouts/header" %></div>
+    <div class="d-block d-lg-none"><%= render "layouts/responsive_header" %></div>
 
     <main>
       <!--フラッシュメッセージの表示-->
