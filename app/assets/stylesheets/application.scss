@@ -172,7 +172,7 @@ section {
   top: 66px;
   right: 0;
   width: 0%;
-  // min-height: 100%;
+  height: 100vh;
   overflow-y: scroll;
   z-index: 9;
   transition: .8s;
@@ -180,7 +180,6 @@ section {
 }
 .open-menu {
   width: 60%;
-
 }
 .r-side-bg {
  background-color: #fffcf5;
@@ -220,6 +219,7 @@ section {
   width: 100%;
  }
 
+// レシピ表示サイズ
  #recipe-container {
   justify-content: center!important;
   margin: 0 auto;
@@ -232,6 +232,7 @@ section {
   height: auto;
  }
 
+// レスポンシブ検索フォーム
  #search-form {
   position: fixed;
   top: 66px;
@@ -242,6 +243,15 @@ section {
   display: none;
   z-index: 9;
   overflow-y: scroll;
+ }
+
+ // フッター
+ .foot-label {
+  font-size: 10px;
+  margin-bottom: 0;
+ }
+ footer {
+  position: fixed;
  }
 
 }

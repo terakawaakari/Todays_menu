@@ -1,5 +1,5 @@
-<div class="px-4 pt-3 pb-2 mb-3" id="search-form">
-  <h3><%= title %></h3>
+<div class="px-4 pt-4 pb-2 mb-3" id="search-form">
+  <h3 class="mb-3"><%= title %></h3>
   <%= search_form_for @q, url: search_path do |f| %>
 
     <span><%= f.label :name_cont, 'レシピ名　' %></span>
@@ -32,7 +32,8 @@
     <span class="mr-2"><%= f.radio_button :time_lteq, '40' %> 40分以下</span><br>
     <span class="mr-3"><%= f.radio_button :time_lteq, '50' %> 50分以下</span>
     <span class="mr-2"><%= f.radio_button :time_gteq, '60' %> 60分以上</span><br>
-    <input type="submit" value="&#xf002; 検索" class="fas btn btn-secondary mt-2">
+    <input type="submit" value="&#xf002; 検索" class="fas btn btn-secondary mt-3">
 
   <% end %>
 </div>
+

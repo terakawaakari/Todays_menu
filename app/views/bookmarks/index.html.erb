@@ -1,13 +1,9 @@
 <div class="container mt-5">
   <div class="row">
 
-    <div class="col-9">
-      <div class="p-3 mb-3 search-bg border shadow-sm rounded">
-        <h3>ブックマーク検索</h3>
-        <%= search_form_for @q, url: bookmark_search_path do |f| %>
-          <div><%= render "recipes/search_form", f: f %></div>
-        <% end %>
-      </div>
+    <div class="col-lg-9 col-md-12">
+      <div class="d-none d-md-block"><%= render "recipes/search_form", title: "ブックマーク検索", q: @q, search_path: bookmark_search_path %></div>
+      <div class="d-block d-md-none"><%= render "recipes/responsive_search", title: "ブックマーク検索", q: @q, search_path: bookmark_search_path %></div>
 
       <%= render "recipes/tag_list", tags: @tags %>
 

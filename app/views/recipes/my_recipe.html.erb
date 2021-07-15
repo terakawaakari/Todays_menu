@@ -1,15 +1,11 @@
 <div class="container mt-5">
   <div class="row">
 
-    <div class="col-9">
-      <div class="p-3 search-bg border rounded shadow-sm">
-        <h3>マイレシピ検索</h3>
-        <%= search_form_for @q, url: my_search_path do |f| %>
-          <div><%= render "search_form", f: f %></div>
-        <% end %>
-      </div>
+    <div class="col-lg-9 col-md-12">
+      <div class="d-none d-md-block"><%= render "search_form", title: "マイレシピ検索", q: @q, search_path: my_search_path %></div>
+      <div class="d-block d-md-none"><%= render "responsive_search", title: "マイレシピ検索", q: @q, search_path: my_search_path %></div>
 
-      <div class="d-flex justify-content-end mt-3"><%= link_to "ブックマークしたレシピを見る＞", user_bookmarks_path(current_user) %></div>
+      <!--<div class="d-flex justify-content-end mt-3"><%#= link_to "ブックマークしたレシピを見る＞", user_bookmarks_path(current_user) %></div>-->
       <%= render "tag_list", tags: @tags %>
 
       <% if @my_recipes.present? %>

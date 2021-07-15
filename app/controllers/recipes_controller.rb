@@ -124,7 +124,7 @@ class RecipesController < ApplicationController
   end
 
   def my_q
-    @q = current_user.recipes.where(is_open: true).ransack(params[:q])
+    @q = current_user.recipes.ransack(params[:q])
   end
 
   #詳細ページのレシピと同じジャンル、異なるテイストの主菜のうち、合計調理時間が90分以内、人気度3以上のレシピを取得

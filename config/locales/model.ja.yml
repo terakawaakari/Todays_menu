@@ -12,11 +12,9 @@ ja:
         sex: 性別
         password_confirmation: パスワード(確認用)
         remember_me: 次回から自動的にログイン
-    attributes:
       recipe:
         name: 料理名
         is_open: 公開ステータス
-    attributes:
       menu:
         menu_image: 画像
 

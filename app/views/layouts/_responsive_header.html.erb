@@ -48,7 +48,7 @@
               <% else %>
                 <p><%= link_to "会員情報確認", user_path(current_user) %></p>
               <% end %>
-              <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
+            <p><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></p>
           </li>
 
         <% else %>
@@ -68,14 +68,3 @@
     </div>
   </nav>
 </header>
-
-<script>
-  $(function() {
-    $('.menu-trigger').on('click', function(event) {
-      $(this).toggleClass('active');
-      document.querySelector('section').classList.toggle('open-menu');
-      // $('body').not('section').css('background-color', 'rgba(0,0,0,0.7)');
-      event.preventDefault();
-    });
-  });
-</script>
