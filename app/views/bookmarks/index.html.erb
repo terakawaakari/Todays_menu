@@ -7,14 +7,14 @@
 
       <%= render "recipes/tag_list", tags: @tags %>
 
-      <div class="d-flex flex-wrap mt-4 justify-content-between">
+      <div class="d-flex flex-wrap mt-4 justify-content-between" id="recipe-container">
         <% if @bookmarks.present? %>
 
           <% @bookmarks.each do |bookmark| %>
-            <div class="mx-3 bg-white p-2 mb-3 border shadow-sm" style="width: 380px;">
+            <div class="mx-3 bg-white p-2 mb-3 border shadow-sm recipe-box">
               <div>
                 <%= link_to recipe_path(bookmark.recipe) do %>
-                  <%= attachment_image_tag bookmark.recipe, :recipe_image, size: '360x260', format:'jpeg', fallback: "no_image.png" %>
+                  <%= attachment_image_tag bookmark.recipe, :recipe_image, size: '360x260', format:'jpeg', fallback: "no_image.png", class: "recipe-image" %>
                 <% end %>
               </div>
               <!--レシピ名・ブックマークボタン-->

@@ -1,6 +1,6 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-9 bg-white p-5">
+    <div class="col-lg-8 col-md-12 bg-white p-5 border recipe-show-container">
       <h2 class="mb-4 d-inline-block"><%= @recipe.name %></h2>
       <input type="button" value="レシピ詳細" onclick="clickBtn()" class="btn btn-sm btn-info ml-3">
 
@@ -31,12 +31,12 @@
         <% end %>
       </div>
 
-      <div class="d-flex">
-        <div><%= attachment_image_tag @recipe, :recipe_image, size: '300x230', format:'jpeg', fallback: "no_image.png" %></div>
+      <div class="d-flex ingredient">
+        <div><%= attachment_image_tag @recipe, :recipe_image, size: '300x230', format:'jpeg', fallback: "no_image.png", class: "recipe-show-image" %></div>
         <!--材料-->
         <% if @ingredient.name.present? %>
-          <div class="ml-4">
-            <h5 class="d-inline-block">材料　</h5>
+          <div class="ml-4 ingredient-table">
+            <h4 class="d-inline-block">材料　</h4>
             <% if @recipe.serving? %>
               <p class="d-inline-block">(<%= @recipe.serving %>)</p>
             <% end %>
@@ -62,7 +62,7 @@
       </div>
       <!--作り方-->
       <% if @direction.description.present? %>
-        <div class="mt-5">
+        <div class="mt-5 direction">
           <h4>作り方</h4>
           <ol>
             <% @directions.each do |d| %>
@@ -94,6 +94,7 @@
       </div>
 
     </div>
+    <div class="col-lg-1"></div>
     <%= render "layouts/sidebar" %>
 
     <!--おすすめレシピ-->
