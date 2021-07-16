@@ -1,15 +1,15 @@
 <div class="container">
   <div class="row">
 
-    <div class="d-flex mb-3">
+    <div class="d-flex mb-3 tag-search">
       <%= render "layouts/page_title", title: "タグ検索" %>
-      <div class="d-flex align-items-center ml-5 mt-5">
-        <h3>#<%= @tag.tag_name %></h3>
+      <div class="d-flex align-items-center ml-5 mt-5 tag-search-title">
+        <h3 class="tag-name">#<%= @tag.tag_name %></h3>
         <h6 class="ml-2">(<%= @tag.recipes.count %>件)</h6>
       </div>
     </div>
 
-    <div class="col-9">
+    <div class="col-lg-9 col-md-12">
 
       <%= render "tag_list", tags: @tags %>
 

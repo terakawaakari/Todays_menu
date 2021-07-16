@@ -210,6 +210,22 @@ section {
 }
 
 @media (max-width: 768px) {
+ // ページタイトル
+ .page_title {
+  margin-top: 30px;
+  width: 200px;
+  height: 160px;
+ }
+ .title {
+  font-size: 24px;
+ }
+ .tag-name {
+  font-size: 22px;
+ }
+
+}
+
+@media (max-width: 992px) {
 
  main {
   padding-top: 30px;
@@ -270,6 +286,13 @@ section {
 
  .direction {
   margin-top: 20px!important;
+ }
+
+ .tag-search {
+  display: block!important;
+ }
+ .tag-search-title {
+  margin: 0 0 0 30px!important;
  }
 
  // フッター
