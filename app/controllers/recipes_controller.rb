@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
   before_action :confirm_user,   only: [:edit, :update, :destroy]
   before_action :confirm_status, only: [:show]
   before_action :find_recipe,    only: [:show, :edit, :update, :destroy]
-  before_action :set_q,          only: [:index, :search]
+  before_action :set_q,          only: [:index, :search, :show, :new, :edit]
   before_action :my_q,           only: [:my_recipe, :my_search]
 
   def index
