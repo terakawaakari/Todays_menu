@@ -3,13 +3,13 @@ class MenusController < ApplicationController
   before_action :set_q
 
   def index
-    @menus = current_user.menus.order(date: :DESC).page(params[:page]).per(9)
-    @q = current_user.menus.ransack(params[:q])
+    @menus = current_user.menus.order(date: :DESC).page(params[:page]).per(12)
+    @menu_q = current_user.menus.ransack(params[:q])
   end
 
   def menu_sort
-    @q = current_user.menus.ransack(params[:q])
-    @menus = @q.result.order(date: :DESC).page(params[:page]).per(15)
+    @menu_q = current_user.menus.ransack(params[:q])
+    @menus = @menu_q.result.page(params[:page]).per(12)
   end
 
   def calendar

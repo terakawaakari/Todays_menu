@@ -2,21 +2,21 @@
   <% if @recommend_main.present? %>
     <div class="mx-2">
       <h4 class="text-center">おすすめ主菜レシピ</h4>
-      <div class="mt-4"><%= render "recipe", recipe: @recommend_main %></div>
+      <div class="mt-4"><%= render "recommend_recipe", recipe: @recommend_main %></div>
     </div>
   <% end %>
 
   <% if @recommend_sub.present? %>
     <div  class="mx-2">
       <h4 class="text-center">おすすめ副菜レシピ</h4>
-      <div class="mt-4"><%= render "recipe", recipe: @recommend_sub %></div>
+      <div class="mt-4"><%= render "recommend_recipe", recipe: @recommend_sub %></div>
     </div>
   <% end %>
 
   <% if @recommend_soup.present? %>
     <div  class="mx-2">
       <h4 class="text-center">おすすめ汁物レシピ</h4>
-      <div class="mt-4"><%= render "recipe", recipe: @recommend_soup %></div>
+      <div class="mt-4"><%= render "recommend_recipe", recipe: @recommend_soup %></div>
     </div>
   <% end %>
 </div>

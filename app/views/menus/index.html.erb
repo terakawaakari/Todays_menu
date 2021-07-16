@@ -1,58 +1,13 @@
 <div class="container">
   <div class="row">
-    <div class="d-flex">
+    <div class="d-flex menus-title">
       <%= render "layouts/page_title", title: "マイメニュー" %>
-      <div class="d-flex align-items-end pb-5 ml-3">
-        <%= search_form_for @q, url: menu_sort_path do |f| %>
-          <div class="d-inline-block"><%= f.date_field :date_gteq, include_blank: true, class: "form-control form-control-sm" %></div>
-          <div class="d-inline-block">〜</div>
-          <div class="d-inline-block"><%= f.date_field :date_lteq, include_blank: true, class: "form-control form-control-sm" %></div>
-          <div class="d-inline-block"><%= f.submit "絞り込み", class: "btn btn-sm btn-secondary" %></div>
-        <% end %>
-      </div>
+      <%= render "menu_sort_form", menu_q: @menu_q %>
     </div>
 
-    <div class="col-9">
-      <div class="d-flex flex-wrap justify-content-between">
-        <% if @menus.present? %>
-          <% @menus.each do |menu| %>
-            <div class="mx-1 bg-white p-2 mb-3 border" style="width: 260px;">
-              <div><%= attachment_image_tag menu, :menu_image, size: "240x180" %></div>
-              <div class="p-2">
-                <div class="d-flex">
-                  <div><%= menu.date.strftime("%Y年%-m月%-d日") %></div>
-                  <div class="ml-auto">
-                    <%= link_to edit_menu_path(menu) do %>
-                      <i class="fas fa-edit h5 mr-2 text-secondary"></i>
-                    <% end %>
-                    <%= link_to menu_path(menu), method: :delete, data: {confirm: "削除しますか？"} do %>
-                      <i class="fas fa-trash-alt h5 text-secondary"></i>
-                    <% end %>
-                  </div>
-                </div>
-                <div><%= menu.category %></div>
-                <!--フォームから登録されたメニューリスト＋レシピ名を表示-->
-                <div class="pt-2">
-                  <% menu.menu_recipes.each do |menu_recipe| %>
-                    <div>
-                      <%= link_to recipe_path(menu_recipe.recipe) do %>
-                        <%= "・#{menu_recipe.recipe.name}" %>
-                        <i class="fas fa-external-link-alt"></i>
-                      <% end %>
-                    </div>
-                  <% end %>
-                  <div class="d-flex flex-wrap"><%= safe_join(menu.list.split("\n"),tag(:br)) %></div>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% else %>
-          <h3 class="d-table mx-auto mt-5">マイメニューはありません</h3>
-        <% end %>
-      </div>
-      <div class='d-table mx-auto'><%= paginate @menus %></div>
+    <div class="col-lg-9 col-md-12">
+      <%= render "menu", menus: @menus %>
     </div>
-
     <%= render "layouts/sidebar" %>
   </div>
 </div>
