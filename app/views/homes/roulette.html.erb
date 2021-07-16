@@ -1,7 +1,7 @@
 <div class="container mt-5">
   <div class="row">
-    <div class="col-9 d-flex">
-      <div class="d-table mr-5 ml-5">
+    <div class="col-lg-9 col-md-12 d-flex flex-block">
+      <div class="d-table mr-5 ml-5 roulette-container">
         <!--スタート・ストップボタン-->
         <div class="mx-auto d-table mb-4">
           <button type="button" id="stop" onclick="stop()" class="btn btn-outline-danger">ストップ</button>
@@ -35,7 +35,7 @@
       </div>
 
       <!--項目名入力フォーム-->
-      <div class="d-flex align-items-center mt-5 ml-5">
+      <div class="d-flex align-items-center mt-5 ml-5 roulette-form">
         <div class="mt-5">
           <h5 class="mt-4">項目名入力</h5>
           <%= form_with url: roulette_path, method: :get, local: true do |f| %>
