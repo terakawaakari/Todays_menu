@@ -1,5 +1,7 @@
 class BuyItemsController < ApplicationController
 
+  before_action :set_q
+
   def index
     @items = current_user.buy_items
     @item  = current_user.buy_items.new
@@ -45,6 +47,10 @@ class BuyItemsController < ApplicationController
   private
   def buy_item_params
     params.require(:buy_item).permit(:name, :is_bought)
+  end
+
+  def set_q
+    @q = Recipe.where(is_open: true).ransack(params[:q])
   end
 
 end

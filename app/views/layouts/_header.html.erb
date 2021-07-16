@@ -22,7 +22,7 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <%= link_to "レシピタイムライン", recipes_path, class: "dropdown-item" %>
               <%= link_to "マイレシピ一覧", my_recipe_path, class: "dropdown-item" %>
-              <%= link_to "マイレシピ追加", new_recipe_path, class: "dropdown-item" %>
+              <%= link_to "マイレシピ追加", new_recipe_path, 'data-turbolinks': false, class: "dropdown-item" %>
               <%= link_to "ブックマーク一覧", user_bookmarks_path(current_user), class: "dropdown-item" %>
             </div>
           </li>
@@ -43,7 +43,7 @@
               ツール
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <%= link_to "買い物リスト", buy_items_path, class: "dropdown-item" %>
+              <%= link_to "買い物リスト", buy_items_path, 'data-turbolinks': false, class: "dropdown-item" %>
               <%= link_to "ルーレット", roulette_path, 'data-turbolinks': false, class: "dropdown-item" %>
             </div>
           </li>

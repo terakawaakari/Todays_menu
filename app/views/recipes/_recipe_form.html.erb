@@ -1,5 +1,5 @@
 <%= form_with model: recipe, local: true do |f| %>
-  <div class="d-flex">
+  <div class="d-flex recipe-form">
     <p class="col-4">画像</p>
     <div>
       <%= f.attachment_field :recipe_image, placeholder: "ファイルを選択" %>
@@ -7,24 +7,24 @@
     </div>
   </div>
 
-  <div class="d-flex my-2">
+  <div class="d-flex my-2 recipe-form">
     <p class="col-4">料理名</p>
     <div><%= f.text_field :name, size: "50", placeholder: "料理名", class: "form-control form-control-sm" %></div>
   </div>
 
-  <div class="d-flex my-2">
+  <div class="d-flex my-2 recipe-form">
     <p class="col-4">ジャンル</p>
-    <div><%= f.select :genre, Recipe.genres.keys, {}, {class: "form-control form-control-sm"} %></div>
-    <div class="mx-2"><%= f.select :category, Recipe.categories.keys, {}, {class: "form-control form-control-sm"} %></div>
-    <div><%= f.select :taste, Recipe.tastes.keys, {}, {class: "form-control form-control-sm"} %></div>
+    <div class="genre-form"><%= f.select :genre, Recipe.genres.keys, {}, {class: "form-control form-control-sm"} %></div>
+    <div class="mx-2 genre-form"><%= f.select :category, Recipe.categories.keys, {}, {class: "form-control form-control-sm"} %></div>
+    <div class="genre-form"><%= f.select :taste, Recipe.tastes.keys, {}, {class: "form-control form-control-sm"} %></div>
   </div>
 
-  <div class="d-flex">
+  <div class="d-flex recipe-form">
     <p class="col-4">調理時間</p>
     <div class="d-flex"><%= f.text_field :time, size: "23", placeholder: "30", class: "form-control form-control-sm mr-2" %>分</div>
   </div>
 
-  <div class="d-flex my-2">
+  <div class="d-flex my-2 recipe-form">
     <p class="col-4">人気度</p>
     <% if recipe.popularity.present? %>
       <div id="star-rate-<%= recipe.id %>"></div>
@@ -33,17 +33,17 @@
     <% end %>
   </div>
 
-  <div class="d-flex">
+  <div class="d-flex recipe-form">
     <p class="col-4">URL</p>
     <div><%= f.text_field :url, size: "50", class: "form-control form-control-sm" %></div>
   </div>
 
-  <div class="d-flex my-2">
+  <div class="d-flex my-2 recipe-form">
     <p class="col-4">出来上がりの量</p>
     <div><%= f.text_field :serving, size: "23", placeholder: "3人分", class: "form-control form-control-sm" %></div>
   </div>
 
-  <div class="d-flex">
+  <div class="d-flex recipe-form">
     <p class="col-4">材料</p>
     <div>
       <div id="ingredients">
@@ -58,7 +58,7 @@
     </div>
   </div>
 
-  <div class="d-flex">
+  <div class="d-flex recipe-form">
     <p class="col-4">作り方</p>
     <div>
       <div id="directions">
@@ -73,7 +73,7 @@
     </div>
   </div>
 
-  <div class="d-flex my-3">
+  <div class="d-flex my-3 recipe-form">
     <p class="col-4">タグ</p>
     <div>
       <p>半角スペースで区切ると複数入力できます</p>
@@ -85,12 +85,12 @@
     </div>
   </div>
 
-  <div class="d-flex">
+  <div class="d-flex recipe-form">
     <p class="col-4">メモ</p>
     <div><%= f.text_area :note, size: "50x5", class: "form-control form-control-sm" %></div>
   </div>
 
-  <div class="d-flex my-3">
+  <div class="d-flex my-3 recipe-form">
     <p class="col-4">公開設定</p>
     <%= f.radio_button :is_open, :true, class: "mr-1 mt-1" %>
     <%= f.label :is_open, "公開", {value: :true, style: "display: inline-block;"} %>

@@ -1,5 +1,7 @@
 class MenusController < ApplicationController
 
+  before_action :set_q
+
   def index
     @menus = current_user.menus.order(date: :DESC).page(params[:page]).per(9)
     @q = current_user.menus.ransack(params[:q])
@@ -51,6 +53,10 @@ class MenusController < ApplicationController
   private
   def menu_params
     params.require(:menu).permit(:menu_image, :date, :category, :list, menu_recipes_attributes: [:recipe_id, :_destroy])
+  end
+
+  def set_q
+    @q = Recipe.where(is_open: true).ransack(params[:q])
   end
 end
 

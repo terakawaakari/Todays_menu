@@ -3,7 +3,6 @@
 
     <div class="col-lg-9 col-md-12">
       <div class="d-none d-md-block"><%= render "recipes/search_form", title: "ブックマーク検索", q: @q, search_path: bookmark_search_path %></div>
-      <div class="d-block d-md-none"><%= render "recipes/responsive_search", title: "ブックマーク検索", q: @q, search_path: bookmark_search_path %></div>
 
       <%= render "recipes/tag_list", tags: @tags %>
 

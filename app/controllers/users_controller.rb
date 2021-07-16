@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :confirm_user,  except: [:index]
   before_action :confirm_admin, only:   [:index]
   before_action :find_user,     except: [:index, :show]
+  before_action :set_q
 
   def index
     @users = User.all
@@ -44,6 +45,10 @@ class UsersController < ApplicationController
 
   def find_user
     @user = User.find(params[:id])
+  end
+
+  def set_q
+    @q = Recipe.where(is_open: true).ransack(params[:q])
   end
 
 end

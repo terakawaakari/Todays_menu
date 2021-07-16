@@ -1,5 +1,7 @@
 class HomesController < ApplicationController
 
+  before_action :set_q
+
   def top
   end
 
@@ -32,6 +34,10 @@ class HomesController < ApplicationController
     # @label2 = params[:label2]
     # @label3 = params[:label3]
     # @label4 = params[:label4]
+  end
+
+  def set_q
+    @q = Recipe.where(is_open: true).ransack(params[:q])
   end
 
 end

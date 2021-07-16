@@ -288,11 +288,44 @@ section {
   margin-top: 20px!important;
  }
 
+// タグ検索
  .tag-search {
   display: block!important;
  }
  .tag-search-title {
   margin: 0 0 0 30px!important;
+ }
+
+// レシピ投稿・編集s
+ .recipe-form-title {
+  margin-left: 0!important;
+ }
+ .recipe-form {
+    display: block!important;
+  }
+  .recipe-form > p {
+   max-width: 100%!important;
+   padding: 10px 0 10px 5px;
+   margin-bottom: 0!important;
+  }
+ .genre-form {
+  margin: 0 5px 0 0;
+  width: 100px;
+  display: inline-block;
+ }
+
+ .calendar-image {
+  max-width: 100%;
+  height: 80%;
+ }
+ .calendar-modal-link {
+  height: 80%;
+ }
+ .menu_image {
+  width: 100%;
+ }
+ .table-striped > tbody > tr > td {
+  padding: 0;
  }
 
  // フッター
