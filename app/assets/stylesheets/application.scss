@@ -235,6 +235,39 @@ section {
   display: table!important;
  }
 
+ // レシピ投稿・編集
+ .recipe-form {
+    display: block!important;
+  }
+  .recipe-form > p {
+   max-width: 100%!important;
+   padding: 10px 0 10px 5px;
+   margin-bottom: 0!important;
+  }
+ .genre-form {
+  margin: 0 5px 0 0;
+  width: 100px;
+  display: inline-block;
+ }
+
+ // メニュー投稿・編集フォーム
+ .menu-form {
+    display: block!important;
+  }
+ .menu-form > p {
+  max-width: 100%!important;
+  padding: 10px 0 10px 5px;
+  margin-bottom: 0!important;
+ }
+ .menu-form {
+  margin: 0 5px 0 0;
+  max-width: 100%!important;
+  display: inline-block;
+ }
+ .mini-form {
+  max-width: 180px;
+ }
+
 }
 
 @media (max-width: 992px) {
@@ -245,6 +278,14 @@ section {
 
  .container {
   width: 100%;
+ }
+
+ // フォーム表示時のタイトル
+ .recipe-form-title {
+  margin-left: 0!important;
+ }
+ .menu-form-title {
+  margin-left: 10px!important;
  }
 
 // レシピ表示サイズ
@@ -306,24 +347,6 @@ section {
  }
  .tag-search-title {
   margin: 0 0 0 30px!important;
- }
-
-// レシピ投稿・編集
- .recipe-form-title {
-  margin-left: 0!important;
- }
- .recipe-form {
-    display: block!important;
-  }
-  .recipe-form > p {
-   max-width: 100%!important;
-   padding: 10px 0 10px 5px;
-   margin-bottom: 0!important;
-  }
- .genre-form {
-  margin: 0 5px 0 0;
-  width: 100px;
-  display: inline-block;
  }
 
 // カレンダー
