@@ -1,14 +1,9 @@
-<div class="container">
-  <div class="row">
-    <div class="d-flex mb-3 ml-5 menu-form-title">
-      <%= render "layouts/page_title", title: "マイメニュー編集" %>
-      <%= render "layouts/errors", obj: @menu %>
-    </div>
-
-    <div class="col-lg-8 offset-lg-2 col-md-12">
-      <%= render "menu_form", menu: @menu %>
-    </div>
-  </div>
+<div class="d-flex mb-3 ml-5 menu-form-title">
+  <%= render "layouts/page_title", title: "マイメニュー編集" %>
+  <%= render "layouts/errors", obj: @menu %>
 </div>
 
+<div class="col-lg-9 col-md-12">
+  <%= render "menu_form", menu: @menu %>
+</div>
 

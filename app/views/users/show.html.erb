@@ -1,43 +1,36 @@
-<div class="container mt-5">
-  <div class="row">
+<div class="col-lg-9 col-md-12">
+  <div class="edit-title"><%= render "layouts/page_title", title: "会員情報確認" %></div>
+  <div class="text-right mb-2"><%= link_to "編集", edit_user_path(current_user), class: "btn btn-sm btn-outline-secondary" %></div>
+  <table class="table table-bordered mb-5 bg-white user-table">
+    <tbody>
+      <tr>
+        <th class="col-4 pl-5">ユーザネーム</th>
+        <td><%= current_user.name %></td>
+      </tr>
+      <tr>
+        <th class="col-4 pl-5">登録日</th>
+        <td><%= current_user.created_at.strftime("%Y年%-m月%-d日") %></td>
+      </tr>
+      <tr>
+        <th class="col-4 pl-5">生年月日</th>
+        <td><%= current_user.birth_date.strftime("%Y年%-m月%-d日") %></td>
+      </tr>
+      <tr>
+        <th class="col-4 pl-5">性別</th>
+        <td><%= current_user.sex %></td>
+      </tr>
+      <tr>
+        <th class="col-4 pl-5">メールアドレス</th>
+        <td><%= current_user.email %></td>
+      </tr>
+    </tbody>
+  </table>
 
-    <div class="col-lg-9 col-md-12">
-      <div class="ml-n5 mt-n5 edit-title"><%= render "layouts/page_title", title: "会員情報確認" %></div>
-      <div class="text-right mb-2"><%= link_to "編集", edit_user_path(current_user), class: "btn btn-sm btn-outline-secondary" %></div>
-      <table class="table table-bordered mb-5 bg-white user-table">
-        <tbody>
-          <tr>
-            <th class="col-4 pl-5">ユーザネーム</th>
-            <td><%= current_user.name %></td>
-          </tr>
-          <tr>
-            <th class="col-4 pl-5">登録日</th>
-            <td><%= current_user.created_at.strftime("%Y年%-m月%-d日") %></td>
-          </tr>
-          <tr>
-            <th class="col-4 pl-5">生年月日</th>
-            <td><%= current_user.birth_date.strftime("%Y年%-m月%-d日") %></td>
-          </tr>
-          <tr>
-            <th class="col-4 pl-5">性別</th>
-            <td><%= current_user.sex %></td>
-          </tr>
-          <tr>
-            <th class="col-4 pl-5">メールアドレス</th>
-            <td><%= current_user.email %></td>
-          </tr>
-        </tbody>
-      </table>
+  <% if !current_user.admin? %>
+    <!--モーダルのトリガー-->
+    <div class="text-right withdraw-link" data-toggle="modal" data-target="#confirm-modal">退会はこちら＞</div>
+  <% end %>
 
-      <% if !current_user.admin? %>
-        <!--モーダルのトリガー-->
-        <div class="text-right withdraw-link" data-toggle="modal" data-target="#confirm-modal">退会はこちら＞</div>
-      <% end %>
-
-      <!--退会確認用モーダル-->
-      <%= render "confirm" %>
-    </div>
-
-    <%= render "layouts/sidebar" %>
-  </div>
+  <!--退会確認用モーダル-->
+  <%= render "confirm" %>
 </div>

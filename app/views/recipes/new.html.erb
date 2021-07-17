@@ -1,12 +1,8 @@
-<div class="container">
-  <div class="row">
-    <div class="d-flex mb-3 ml-5 recipe-form-title flex-block">
-      <%= render "layouts/page_title", title: "マイレシピ追加" %>
-      <%= render "layouts/errors", obj: @recipe %>
-    </div>
+<div class="d-flex mb-3 ml-5 recipe-form-title flex-block">
+  <%= render "layouts/page_title", title: "マイレシピ追加" %>
+  <%= render "layouts/errors", obj: @recipe %>
+</div>
 
-    <div class="col-lg-8 offset-lg-2 col-md-12">
-      <%= render "recipe_form", recipe: @recipe %>
-    </div>
-  </div>
+<div class="col-lg-9 col-md-12">
+  <%= render "recipe_form", recipe: @recipe %>
 </div>

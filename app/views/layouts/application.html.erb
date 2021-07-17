@@ -10,29 +10,47 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <% if user_signed_in? %>
   <body>
+  <% else %>
+  <body class="subheader-padding">
+  <% end %>
     <div class="d-none d-md-block"><%= render "layouts/header" %></div>
     <div class="d-block d-md-none"><%= render "layouts/responsive_header" %></div>
 
-    <main>
-      <!--フラッシュメッセージの表示-->
-      <% flash.each do |message_type, message| %>
-        <% if message_type == "alert" %>
-          <div class="fade show alert alert-danger d-flex">
-            <%= content_tag :div, message %>
-            <button class="close ml-auto" data-dismiss="alert"> &times; </button>
-          </div>
-        <% else %>
-          <div class="fade show alert alert-success d-flex">
-            <%= content_tag :div, message %>
-            <button class="close ml-auto" data-dismiss="alert"> &times; </button>
-          </div>
-        <% end %>
+    <!--フラッシュメッセージの表示-->
+    <% flash.each do |message_type, message| %>
+      <% if message_type == "alert" %>
+        <div class="fade show alert alert-danger d-flex">
+          <%= content_tag :div, message %>
+          <button class="close ml-auto" data-dismiss="alert"> &times; </button>
+        </div>
+      <% else %>
+        <div class="fade show alert alert-success d-flex">
+          <%= content_tag :div, message %>
+          <button class="close ml-auto" data-dismiss="alert"> &times; </button>
+        </div>
       <% end %>
-      <%= yield %>
+    <% end %>
+
+    <main>
+      <% if user_signed_in? && (!current_page?(root_path) || !current_page?(new_user_registration_path) || !current_page?(new_user_session_path)) %>
+        <div class="container mt-3">
+          <div class="row">
+            <%= yield %>
+            <%= render "layouts/sidebar" %>
+          </div>
+        </div>
+      <% else %>
+        <%= yield %>
+      <% end %>
     </main>
 
     <div class="mt-5 d-none d-lg-block"><%= render "layouts/footer" %></div>
-    <div class="mt-5 d-block d-lg-none"><%= render "layouts/responsive_footer" %></div>
+    <% if user_signed_in? %>
+      <div class="mt-5 d-block d-lg-none"><%= render "layouts/responsive_footer" %></div>
+    <% else %>
+      <div class="mt-5"><%= render "layouts/footer" %></div>
+    <% end %>
   </body>
 </html>

@@ -1,61 +1,55 @@
-<div class="container mt-5">
-  <div class="row">
-    <div class="col-lg-9 col-md-12 d-flex flex-block">
-      <div class="d-table mr-5 ml-5 roulette-container">
-        <!--スタート・ストップボタン-->
-        <div class="mx-auto d-table mb-4">
-          <button type="button" id="stop" onclick="stop()" class="btn btn-outline-danger">ストップ</button>
-          <button type="button" id="start" onclick="start()" class="ml-3 btn btn-outline-info">スタート</button>
-        </div>
-
-        <!--ルーレット-->
-        <div id="point" class="mx-auto d-table">▼</div>
-        <div id="circle" class="mx-auto d-table shadow">
-          <div class="quarter" id="quarter_1">
-            <% if @label1.present? %>
-              <h3 class="label1"><%= @label1 %></h3>
-            <% end %>
-          </div>
-          <div class="quarter" id="quarter_2">
-            <% if @label2.present? %>
-              <h3 class="label2"><%= @label2 %></h3>
-            <% end %>
-          </div>
-          <div class="quarter" id="quarter_3">
-            <% if @label3.present? %>
-              <h3 class="label3"><%= @label3 %></h3>
-            <% end %>
-          </div>
-          <div class="quarter" id="quarter_4">
-            <% if @label4.present? %>
-              <h3 class="label4"><%= @label4 %></h3>
-            <% end %>
-          </div>
-        </div>
-      </div>
-
-      <!--項目名入力フォーム-->
-      <div class="d-flex align-items-center mt-5 ml-5 roulette-form">
-        <div class="mt-5">
-          <h5 class="mt-4">項目名入力</h5>
-          <%= form_with url: roulette_path, method: :get, local: true do |f| %>
-            <div><div class="color label1-color d-inline-block mr-2"></div><%= f.text_field :label1 %></div>
-            <div class= "my-2"><div class="color label2-color d-inline-block mr-2"></div><%= f.text_field :label2 %></div>
-            <div><div class="color label3-color d-inline-block mr-2"></div><%= f.text_field :label3 %></div>
-            <div class="my-2"><div class="color label4-color d-inline-block mr-2"></div><%= f.text_field :label4 %></div>
-            <%= link_to "リセット", roulette_path, class: "btn btn-sm btn-secondary" %>
-
-            <%#= f.hidden_field :h_label1, :value => current_user.recipes.order(Arel.sql('RANDOM()')).first.name %>
-            <%#= f.hidden_field :h_label2, :value => current_user.recipes.where.not(name: @label1).order(Arel.sql('RANDOM()')).first.name %>
-            <%#= f.hidden_field :h_label3, :value => current_user.recipes.where.not(name: @label1).where.not(name: @label2).order(Arel.sql('RANDOM()')).first.name %>
-            <%#= f.hidden_field :h_label4, :value => current_user.recipes.where.not(name: @label1).where.not(name: @label2).where.not(name: @label3).order(Arel.sql('RANDOM()')).first.name %>
-            <%= f.submit "決定", class: "btn btn-sm btn-success ml-2" %>
-          <% end %>
-        </div>
-      </div>
+<div class="col-lg-9 col-md-12 d-flex flex-block mt-4">
+  <div class="d-table mr-5 ml-5 roulette-container">
+    <!--スタート・ストップボタン-->
+    <div class="mx-auto d-table mb-4">
+      <button type="button" id="stop" onclick="stop()" class="btn btn-outline-danger">ストップ</button>
+      <button type="button" id="start" onclick="start()" class="ml-3 btn btn-outline-info">スタート</button>
     </div>
 
-    <%= render "layouts/sidebar" %>
+    <!--ルーレット-->
+    <div id="point" class="mx-auto d-table">▼</div>
+    <div id="circle" class="mx-auto d-table shadow">
+      <div class="quarter" id="quarter_1">
+        <% if @label1.present? %>
+          <h3 class="label1"><%= @label1 %></h3>
+        <% end %>
+      </div>
+      <div class="quarter" id="quarter_2">
+        <% if @label2.present? %>
+          <h3 class="label2"><%= @label2 %></h3>
+        <% end %>
+      </div>
+      <div class="quarter" id="quarter_3">
+        <% if @label3.present? %>
+          <h3 class="label3"><%= @label3 %></h3>
+        <% end %>
+      </div>
+      <div class="quarter" id="quarter_4">
+        <% if @label4.present? %>
+          <h3 class="label4"><%= @label4 %></h3>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!--項目名入力フォーム-->
+  <div class="d-flex align-items-center mt-5 ml-5 roulette-form">
+    <div class="mt-5">
+      <h5 class="mt-4">項目名入力</h5>
+      <%= form_with url: roulette_path, method: :get, local: true do |f| %>
+        <div><div class="color label1-color d-inline-block mr-2"></div><%= f.text_field :label1 %></div>
+        <div class= "my-2"><div class="color label2-color d-inline-block mr-2"></div><%= f.text_field :label2 %></div>
+        <div><div class="color label3-color d-inline-block mr-2"></div><%= f.text_field :label3 %></div>
+        <div class="my-2"><div class="color label4-color d-inline-block mr-2"></div><%= f.text_field :label4 %></div>
+        <%= link_to "リセット", roulette_path, class: "btn btn-sm btn-secondary" %>
+
+        <%#= f.hidden_field :h_label1, :value => current_user.recipes.order(Arel.sql('RANDOM()')).first.name %>
+        <%#= f.hidden_field :h_label2, :value => current_user.recipes.where.not(name: @label1).order(Arel.sql('RANDOM()')).first.name %>
+        <%#= f.hidden_field :h_label3, :value => current_user.recipes.where.not(name: @label1).where.not(name: @label2).order(Arel.sql('RANDOM()')).first.name %>
+        <%#= f.hidden_field :h_label4, :value => current_user.recipes.where.not(name: @label1).where.not(name: @label2).where.not(name: @label3).order(Arel.sql('RANDOM()')).first.name %>
+        <%= f.submit "決定", class: "btn btn-sm btn-success ml-2" %>
+      <% end %>
+    </div>
   </div>
 </div>
 

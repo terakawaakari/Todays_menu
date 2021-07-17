@@ -58,23 +58,23 @@
             </li>
           </ul>
         </section>
-
       <% else %>
         <a class="navbar-brand mx-auto" href="/"><%= image_tag "dish-S.png", size: "30x40", class: "pb-1" %><h5 class="d-inline-block text-light ml-2">Today's menu</h5></a>
-
-        <ul>
-          <li class="nav-item">
-            <%= link_to "新規登録", new_user_registration_path, class: "nav-link text-light" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "ログイン", new_user_session_path, class: "nav-link text-light" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: "nav-link text-light" %>
-          </li>
-        </ul>
       <% end %>
 
     </div>
   </nav>
 </header>
+<% unless user_signed_in? %>
+  <div class="sub-header d-flex justify-content-around py-1 small">
+    <div>
+      <%= link_to "新規登録", new_user_registration_path, class: " text-light" %>
+    </div>
+    <div>
+      <%= link_to "ログイン", new_user_session_path, class: " text-light" %>
+    </div>
+    <div>
+      <%= link_to 'ゲストログイン', users_guest_sign_in_path, method: :post, class: " text-light" %>
+    </div>
+  </div>
+<% end %>

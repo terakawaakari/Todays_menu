@@ -1,19 +1,11 @@
-<div class="container mt-5">
-  <div class="row">
+<div class="col-lg-9 col-md-12">
+  <div class="d-none d-md-block"><%= render "search_form", title: "マイレシピ検索", q: @q, search_path: my_search_path %></div>
 
-    <div class="col-lg-9 col-md-12">
-      <div class="d-none d-md-block"><%= render "search_form", title: "マイレシピ検索", q: @q, search_path: my_search_path %></div>
+  <%= render "tag_list", tags: @tags %>
 
-      <!--<div class="d-flex justify-content-end mt-3"><%#= link_to "ブックマークしたレシピを見る＞", user_bookmarks_path(current_user) %></div>-->
-      <%= render "tag_list", tags: @tags %>
-
-      <% if @my_recipes.present? %>
-        <%= render "recipe_index", recipes: @my_recipes %>
-      <% else %>
-        <h3 class="d-table mx-auto mt-5">マイレシピはありません</h3>
-      <% end %>
-    </div>
-
-    <%= render "layouts/sidebar" %>
-  </div>
+  <% if @my_recipes.present? %>
+    <%= render "recipe_index", recipes: @my_recipes %>
+  <% else %>
+    <h3 class="d-table mx-auto mt-5">マイレシピはありません</h3>
+  <% end %>
 </div>
