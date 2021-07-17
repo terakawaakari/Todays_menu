@@ -128,3 +128,37 @@
 .label4-color {
   background-color: #feee7d;
 }
+
+ // レスポンシブトップページ
+.r-main-visual-container,
+.r-about-container,
+.r-trouble-container,
+.r-PR-container {
+  height: 100vw;
+  width: 100%;
+  margin: 0 auto;
+  // margin-bottom: 50px;
+}
+
+.r-main-visual,
+.r-about,
+.r-trouble,
+.r-PR {
+  height: 100vw;
+  width: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.r-main-visual {
+ background-image: image-url("r-top1.png");
+}
+.r-about {
+ background-image: image-url("r-top2.png");
+}
+.r-trouble {
+ background-image: image-url("r-top3.png");
+}
+.r-PR {
+ background-image: image-url("r-top4.png");
+}

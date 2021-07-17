@@ -38,4 +38,12 @@ class Recipe < ApplicationRecord
     bookmarks.where(user_id: user.id).exists?
   end
 
+  def self.open_sort
+    where(is_open: true).order(created_at: :DESC)
+  end
+
+  # def self.unique_tag(recipes)
+  #   joins(:tag).where(recipe_id: recipes.pluck(:id)).select('tags.tag_name').distinct
+  # end
+
 end

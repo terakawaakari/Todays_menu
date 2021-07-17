@@ -44,3 +44,22 @@ function stop() {
     clearInterval(roulette);
   }
 }
+
+// レスポンシブ検索フォーム
+$(document).on('turbolinks:load', function() {
+  $('.search-icon').on('click', function(event) {
+    $('#search-form').fadeToggle();
+    event.preventDefault();
+  });
+});
+
+
+// レスポンシブサイドバー
+$(document).on('turbolinks:load', function() {
+  $('.menu-trigger').on('click', function(event) {
+    $(this).toggleClass('active');
+    document.querySelector('section').classList.toggle('open-menu');
+    // $('body').not('section').css('background-color', 'rgba(0,0,0,0.7)');
+    event.preventDefault();
+  });
+});

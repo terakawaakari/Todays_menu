@@ -1,13 +1,13 @@
-<div class="container mt-5">
-  <div class="col-10 offset-1">
+<div class="col-lg-9 col-md-12">
+  <div class="d-none d-md-block"><%= render "recipes/search_form", title: "ブックマーク検索", q: @q, search_path: bookmark_search_path %></div>
 
-    <h3>レシピ検索</h3>
-    <%= search_form_for @q, url: bookmark_search_path do |f| %>
-      <div class="mb-3"><%= render "recipes/search_form", f: f %></div>
-    <% end %>
+  <div class="mb-3"><%= render "recipes/tag_list", tags: @tags %></div>
 
-    <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
+  <% if @results.present? %>
+    <%= render "recipes/recipe_index", recipes: @results %>
+  <% else %>
+    <h3 class="d-table mx-auto mt-5">該当するレシピはありません</h3>
+  <% end %>
 
-    <%= render "recipes/recipe_index", resipes: @results %>
-  </div>
+  <div class="d-table mx-auto mt-3"><%= paginate @results %></div>
 </div>

@@ -1,5 +1,7 @@
 class BuyItemsController < ApplicationController
 
+  before_action :set_q
+
   def index
     @items = current_user.buy_items
     @item  = current_user.buy_items.new
@@ -11,9 +13,12 @@ class BuyItemsController < ApplicationController
     if request.referrer.include?("recipes")
       @item.save
       redirect_to request.referrer, notice: "買い物リストに「#{@item.name}」を追加しました"
-    else
-      @item.save
+    end
+    if @item.save
       @item = current_user.buy_items.new
+    else
+      @items = current_user.buy_items
+      render :index
     end
   end
 
@@ -42,6 +47,10 @@ class BuyItemsController < ApplicationController
   private
   def buy_item_params
     params.require(:buy_item).permit(:name, :is_bought)
+  end
+
+  def set_q
+    @q = Recipe.where(is_open: true).ransack(params[:q])
   end
 
 end

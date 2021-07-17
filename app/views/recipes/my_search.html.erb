@@ -1,18 +1,11 @@
-<div class="container">
-  <div class="d-flex">
-    <%= render "layouts/page_title", title: "マイレシピ" %>
-    <div class="mt-5">
-      <h3>レシピ検索</h3>
-      <%= search_form_for @q, url: my_search_path do |f| %>
-        <div class="mb-3"><%= render "search_form", f: f %></div>
-      <% end %>
-    </div>
-  </div>
+<div class="col-lg-9 col-md-12">
+  <div class="d-none d-md-block"><%= render "search_form", title: "マイレシピ検索", q: @q, search_path: my_search_path %></div>
 
-  <div class="col-10 offset-1">
-    <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
+  <div class="mb-3"><%= render "tag_list", tags: @tags %></div>
 
-    <%= render "recipe_index", recipes: @results %>
-  </div>
-
+  <% if @results.present? %>
+    <%= render "recipes/recipe_index", recipes: @results %>
+  <% else %>
+    <h3 class="d-table mx-auto mt-5">該当するレシピはありません</h3>
+  <% end %>
 </div>

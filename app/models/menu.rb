@@ -5,8 +5,14 @@ class Menu < ApplicationRecord
   enum category: { "朝食": 0, "昼食": 1, "夕食": 2, "その他": 3 }
 
   has_many :menu_recipes, dependent: :destroy
-  has_many :menus,        through: :menu_recipes
+  has_many :menus,        through:   :menu_recipes
+
+  validates :menu_image,  presence: true
 
   accepts_nested_attributes_for :menu_recipes, allow_destroy: true
+
+  def start_time
+    self.date
+  end
 
 end
