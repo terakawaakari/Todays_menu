@@ -1,0 +1,8 @@
+<div class="d-flex align-items-end pb-5 ml-3">
+  <%= search_form_for menu_q, url: menu_sort_path do |f| %>
+    <div class="d-inline-block sort_form"><%= f.date_field :date_gteq, include_blank: true, class: "form-control form-control-sm" %></div>
+    <div class="d-inline-block">〜</div>
+    <div class="d-inline-block sort_form"><%= f.date_field :date_lteq, include_blank: true, class: "form-control form-control-sm" %></div>
+    <div class="d-inline-block sort-button"><%= f.submit "絞り込み", class: "btn btn-sm btn-secondary" %></div>
+  <% end %>
+</div>

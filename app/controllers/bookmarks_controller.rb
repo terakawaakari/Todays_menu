@@ -29,5 +29,4 @@ class BookmarksController < ApplicationController
   def set_q
     @q = Recipe.joins(:bookmarks).where(id: current_user.bookmarks.pluck(:recipe_id)).ransack(params[:q])
   end
-
 end

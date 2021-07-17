@@ -1,5 +1,5 @@
 <% if obj.errors.any? %>
-  <div class="mt-5 mb-3">
+  <div class="mt-5 mb-3 error text-danger alert-danger p-3 rounded">
     <h5 class="pl-2 mb-2"><%= obj.errors.count %>件のエラーが発生しました</h5>
     <ul>
       <% obj.errors.full_messages.each do |message| %>

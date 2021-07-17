@@ -1,10 +1,10 @@
 class RecipesController < ApplicationController
 
-  before_action :confirm_user,   only: [:edit, :update, :destroy]
-  before_action :confirm_status, only: [:show]
-  before_action :find_recipe,    only: [:show, :edit, :update, :destroy]
-  before_action :set_q,          only: [:index, :search]
-  before_action :my_q,           only: [:my_recipe, :my_search]
+  before_action :confirm_user,   only:   [:edit, :update, :destroy]
+  before_action :confirm_status, only:   [:show]
+  before_action :find_recipe,    only:   [:show, :edit, :update, :destroy]
+  before_action :set_q,          except: [:my_recipe, :my_search]
+  before_action :my_q,           only:   [:my_recipe, :my_search]
 
   def index
     # 公開中のレシピを新着順に並べてページネート
@@ -124,7 +124,7 @@ class RecipesController < ApplicationController
   end
 
   def my_q
-    @q = current_user.recipes.where(is_open: true).ransack(params[:q])
+    @q = current_user.recipes.ransack(params[:q])
   end
 
   #詳細ページのレシピと同じジャンル、異なるテイストの主菜のうち、合計調理時間が90分以内、人気度3以上のレシピを取得

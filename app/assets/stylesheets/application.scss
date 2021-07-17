@@ -31,7 +31,6 @@ body {
 }
 
 main {
- // padding-top: 120px;
  font-family: Lato,Hiragino Kaku Gothic ProN,Yu Gothic,Noto Sans CJK JP,Hiragino Sans,sans-serif;
 }
 
@@ -41,18 +40,23 @@ main {
  letter-spacing: 0.2em;
  color: #efefef;
 }
-// header {
-//  position: fixed;
-//  width: 100%;
-//  height: 74px;
-//  z-index: 100;
-// }
+.r-head {
+ margin-botton: 30px;
+}
+
+// 未ログイン時のレスポンシブヘッダー
+.sub-header {
+ width: 100%;
+ background-color: #d1b9b0;
+ position: fixed;
+ top: 66px;
+ z-index: 10;
+}
 
 // サイドバー
 .side-title {
  background-color: #d1b9b0;
 }
-
 .side-bg {
  background-color: rgba(255,255,255,0.5);
  width: 100%;
@@ -67,7 +71,6 @@ main {
 a {
 color: #000;
 }
-
 a:hover {
  text-decoration: none;
  color: #d1b9b0;
@@ -87,12 +90,10 @@ a:hover {
   border: none;
   color: #999;
 }
-
 .pagination > .active > a {
   color: turquoise;
   background-color: #d1b9b0;
 }
-
 .page-item.active .page-link {
   background-color: #d1b9b0;
 }
@@ -104,8 +105,6 @@ body{
   padding-bottom: 67px;
   box-sizing: border-box;
 }
-
-// フッター
 footer {
  width: 100%;
  background-color: #ccc5c2;
@@ -113,3 +112,333 @@ footer {
  bottom: 0;
 }
 
+// ハンバーガーアイコン
+#hm-icon {
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  z-index: 10;
+}
+.menu-trigger,
+.menu-trigger span {
+  display: inline-block;
+  transition: all .4s;
+  box-sizing: border-box;
+}
+.menu-trigger {
+  position: relative;
+  width: 30px;
+  height: 35px;
+}
+.menu-trigger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.menu-trigger span:nth-child(1) {
+  top: 0;
+}
+.menu-trigger span:nth-child(2) {
+  top: 10px;
+}
+.menu-trigger span:nth-child(3) {
+  top: 20px;
+}
+.menu-trigger.active span:nth-child(1) {
+  -webkit-transform: translateY(10px) rotate(-45deg);
+  transform: translateY(10px) rotate(-45deg);
+  background-color: #fff;
+}
+.menu-trigger.active span:nth-child(2) {
+  opacity: 0;
+}
+.menu-trigger.active span:nth-child(3) {
+  -webkit-transform: translateY(-10px) rotate(45deg);
+  transform: translateY(-10px) rotate(45deg);
+  background-color: #fff;
+}
+
+// スライドバー
+section {
+  position: fixed;
+  top: 66px;
+  right: 0;
+  width: 0%;
+  height: 100vh;
+  overflow-y: scroll;
+  z-index: 9;
+  transition: .8s;
+  white-space: nowrap;
+}
+.open-menu {
+  width: 60%;
+}
+.r-side-bg {
+ background-color: #fffcf5;
+}
+.r-side-bg > p {
+ margin-bottom: 0;
+ padding: 0 0 16px 20px;
+}
+#navigation li {
+ list-style: none;
+}
+#navigation a {
+  // color: #fff;
+  text-decoration: none;
+  // font-weight: bold;
+}
+
+// 検索
+.search-icon {
+ position: fixed;
+ top: 20px;
+ left: 20px;
+ font-size: 10px;
+}
+
+.recipe-box,
+.menu-box {
+ width: 380px;
+}
+
+.edit-title {
+ margin-left: -150px!important;
+}
+
+@media (max-width: 767px) {
+
+ body {
+  padding-top: 66px;
+ }
+
+ .subheader-padding {
+  padding-top: 90px!important;
+ }
+
+ // ページタイトル
+ .page_title {
+  // margin-top: 30px;
+  width: 200px;
+  height: 160px;
+ }
+ .title {
+  font-size: 24px;
+ }
+ .tag-name {
+  font-size: 22px;
+ }
+
+ // メニュー絞り込みフォーム
+ .sort_form {
+  width: 43%;
+ }
+ .sort-button {
+  margin: 10px 20px 0 auto;
+  display: table!important;
+ }
+
+ // レシピ投稿・編集
+ .recipe-form {
+    display: block!important;
+  }
+  .recipe-form > p {
+   max-width: 100%!important;
+   padding: 10px 0 10px 5px;
+   margin-bottom: 0!important;
+  }
+ .genre-form {
+  margin: 0 5px 0 0;
+  width: 100px;
+  display: inline-block;
+ }
+ .error {
+  margin: 0 0 0 20px!important;
+ }
+
+ // メニュー投稿・編集フォーム
+ .menu-form {
+    display: block!important;
+  }
+ .menu-form > p {
+  max-width: 100%!important;
+  padding: 10px 0 10px 5px;
+  margin-bottom: 0!important;
+ }
+ .menu-form {
+  margin: 0 5px 0 0;
+  max-width: 100%!important;
+  display: inline-block;
+ }
+ .mini-form {
+  max-width: 180px;
+ }
+
+ // レスポンシブレシピ詳細
+ .recipe-show-container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px!important;
+ }
+
+ .recipe-show-image {
+  width: 100%;
+  margin-top: 20px;
+ }
+
+ #details {
+  margin-top: 20px;
+ }
+
+ .ingredient {
+  display: block!important;
+ }
+ .ingredient-table{
+  margin: 40px auto 0!important;
+ }
+
+ .direction {
+  margin-top: 20px!important;
+ }
+
+ // 買い物リスト
+ .flex-block {
+  display: block!important;
+ }
+ .item-container {
+  width: 90%;
+  margin: 0 auto;
+  padding: 10px!important;
+ }
+ .delete-button {
+  text-align: right;
+ }
+
+ // ルーレット
+ #circle {
+   height: 300px;
+   width: 300px;
+ }
+ .quarter {
+   height: 150px;
+   width: 150px;
+ }
+ .roulette-container {
+  margin: 0 auto!important;
+ }
+ .roulette-form {
+  margin: 0!important;
+  justify-content: center;
+ }
+
+ // 会員詳細
+ .user-table {
+  margin-bottom: 10px!important;
+ }
+ .user-table > tbody > tr > th,
+ .user-table > tbody > tr > td,
+ .user-table > thead > tr > th {
+  padding: 0.75rem!important;
+  font-size: 11px;
+ }
+
+}
+
+@media (max-width: 992px) {
+ .container {
+  width: 100%;
+ }
+
+ .edit-title {
+  margin-left: -20px!important;
+ }
+
+ // フォーム表示時のタイトル
+ .recipe-form-title {
+  margin-left: 0!important;
+ }
+ .menu-form-title {
+  margin-left: 10px!important;
+ }
+
+// レシピ表示サイズ
+ #recipe-container {
+  justify-content: center!important;
+  margin: 0 auto;
+ }
+ .recipe-box {
+  width: 100%;
+ }
+ .recipe-image {
+  width: 100%;
+  height: auto;
+ }
+
+// レスポンシブ検索フォーム
+ #search-form {
+  position: fixed;
+  top: 66px;
+  left: 0;
+  width: 100%;
+  background-color: #fffcf5;
+  min-height: 90vh;
+  display: none;
+  z-index: 9;
+  overflow-y: scroll;
+ }
+
+// タグ検索
+ .tag-search {
+  display: block!important;
+ }
+ .tag-search-title {
+  margin: 0 0 0 30px!important;
+ }
+
+// カレンダー
+ .calendar-image {
+  max-width: 100%;
+  height: 80%;
+ }
+ .calendar-modal-link {
+  height: 80%;
+ }
+ .menu_image {
+  width: 100%;
+ }
+ .table-striped > tbody > tr > td {
+  padding: 0;
+ }
+
+ // メニュー一覧
+ .menus-title {
+  display: block!important;
+ }
+
+ // メニュー表示サイズ
+ .menu-container {
+  justify-content: center!important;
+  width: 100%;
+  margin: 0 auto;
+ }
+ .menu-box {
+  width: 100%;
+ }
+ .menu-image {
+  width: 100%;
+  height: auto;
+ }
+
+ // フッター
+ .foot-label {
+  font-size: 10px;
+  margin-bottom: 0;
+ }
+ footer {
+  position: fixed;
+ }
+
+}

@@ -1,35 +1,56 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TodaysMenu</title>
+    <title>Today's Menu</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <% if user_signed_in? %>
   <body>
-    <%= render "layouts/header" %>
+  <% else %>
+  <body class="subheader-padding">
+  <% end %>
+    <div class="d-none d-md-block"><%= render "layouts/header" %></div>
+    <div class="d-block d-md-none"><%= render "layouts/responsive_header" %></div>
+
+    <!--フラッシュメッセージの表示-->
+    <% flash.each do |message_type, message| %>
+      <% if message_type == "alert" %>
+        <div class="fade show alert alert-danger d-flex">
+          <%= content_tag :div, message %>
+          <button class="close ml-auto" data-dismiss="alert"> &times; </button>
+        </div>
+      <% else %>
+        <div class="fade show alert alert-success d-flex">
+          <%= content_tag :div, message %>
+          <button class="close ml-auto" data-dismiss="alert"> &times; </button>
+        </div>
+      <% end %>
+    <% end %>
 
     <main>
-      <!--フラッシュメッセージの表示-->
-      <% flash.each do |message_type, message| %>
-        <% if message_type == "alert" %>
-          <div class="fade show alert alert-danger d-flex">
-            <%= content_tag :div, message %>
-            <button class="close ml-auto" data-dismiss="alert"> &times; </button>
+      <% if user_signed_in? && (!current_page?(root_path) || !current_page?(new_user_registration_path) || !current_page?(new_user_session_path)) %>
+        <div class="container mt-3">
+          <div class="row">
+            <%= yield %>
+            <%= render "layouts/sidebar" %>
           </div>
-        <% else %>
-          <div class="fade show alert alert-success d-flex">
-            <%= content_tag :div, message %>
-            <button class="close ml-auto" data-dismiss="alert"> &times; </button>
-          </div>
-        <% end %>
+        </div>
+      <% else %>
+        <%= yield %>
       <% end %>
-      <%= yield %>
     </main>
 
-    <div class="mt-5"><%= render "layouts/footer" %></div>
+    <div class="mt-5 d-none d-lg-block"><%= render "layouts/footer" %></div>
+    <% if user_signed_in? %>
+      <div class="mt-5 d-block d-lg-none"><%= render "layouts/responsive_footer" %></div>
+    <% else %>
+      <div><%= render "layouts/footer" %></div>
+    <% end %>
   </body>
 </html>

@@ -1,27 +1,22 @@
-<div class="container my-5">
-  <div class="col-6 offset-3">
-    <div class="d-flex">
-      <% if @recommend_main.present? %>
-        <div class="mx-2">
-          <h4 class="text-center">おすすめ主菜レシピ</h4>
-          <div class="mt-4"><%= render "recipe", recipe: @recommend_main %></div>
-        </div>
-      <% end %>
-
-      <% if @recommend_sub.present? %>
-        <div  class="mx-2">
-          <h4 class="text-center">おすすめ副菜レシピ</h4>
-          <div class="mt-4"><%= render "recipe", recipe: @recommend_sub %></div>
-        </div>
-      <% end %>
-
-      <% if @recommend_soup.present? %>
-        <div  class="mx-2">
-          <h4 class="text-center">おすすめ汁物レシピ</h4>
-          <div class="mt-4"><%= render "recipe", recipe: @recommend_soup %></div>
-        </div>
-      <% end %>
-
+<div class="d-flex justify-content-around mt-5">
+  <% if @recommend_main.present? %>
+    <div class="mx-2">
+      <h4 class="text-center">おすすめ主菜レシピ</h4>
+      <div class="mt-4"><%= render "recommend_recipe", recipe: @recommend_main %></div>
     </div>
-  </div>
+  <% end %>
+
+  <% if @recommend_sub.present? %>
+    <div  class="mx-2">
+      <h4 class="text-center">おすすめ副菜レシピ</h4>
+      <div class="mt-4"><%= render "recommend_recipe", recipe: @recommend_sub %></div>
+    </div>
+  <% end %>
+
+  <% if @recommend_soup.present? %>
+    <div  class="mx-2">
+      <h4 class="text-center">おすすめ汁物レシピ</h4>
+      <div class="mt-4"><%= render "recommend_recipe", recipe: @recommend_soup %></div>
+    </div>
+  <% end %>
 </div>

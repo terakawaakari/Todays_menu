@@ -1,22 +1,16 @@
-<div class="container">
-  <div class="row">
-    <%= render "layouts/page_title", title: "マイメニュー" %>
+<%= render "layouts/page_title", title: "マイメニュー" %>
 
-    <div class="col-10">
-      <%= month_calendar events: @menus do |date, menus| %>
-        <%= date.day %>
+<div class="col-lg-9 col-md-12">
+  <%= month_calendar events: @menus do |date, menus| %>
+    <%= date.day %>
 
-        <% menus.each do |menu| %>
-          <!--モーダルのトリガー-->
-          <div data-toggle="modal" data-target="#menu-modal-<%= menu.id %>" class="withdraw-link">
-            <%= attachment_image_tag menu, :menu_image, size: "100x70" %>
-          </div>
-          <!--メニューモーダル-->
-          <%= render "menu", menu: menu %>
-        <% end %>
-      <% end %>
-    </div>
-
-    <%= render "layouts/sidebar" %>
-  </div>
+    <% menus.each do |menu| %>
+      <!--モーダルのトリガー-->
+      <div data-toggle="modal" data-target="#menu-modal-<%= menu.id %>" class="calendar-modal-link">
+        <%= attachment_image_tag menu, :menu_image, size: "100x70", class: "calendar-image" %>
+      </div>
+      <!--メニューモーダル-->
+      <%= render "menu_modal", menu: menu %>
+    <% end %>
+  <% end %>
 </div>
