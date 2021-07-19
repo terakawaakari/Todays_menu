@@ -47,7 +47,7 @@
               <p><%= link_to "ルーレット", roulette_path, 'data-turbolinks': false %></p>
             </li>
 
-            <li class="r-side-bg shadow-sm">
+            <li class="r-side-bg shadow-sm pb-5">
               <h3 class="text-white px-3 py-2 pb-2 shadow-sm side-title"><i class="fas fa-user-circle mr-2"></i>会員情報</h3>
                 <% if current_user.admin? %>
                   <p class="pt-2"><%= link_to "会員情報確認", users_path %></p>
