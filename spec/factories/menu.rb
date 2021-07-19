@@ -1,11 +1,28 @@
 FactoryBot.define do
   factory :menu do
-    menu_image_id { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.png'), 'image/png') }
-    # menu_image_id { ("test.png", "image/png", true) }
-    user_id       { 1 }
-    # user
-    list          { "・テスト" }
-    category      { "朝食" }
-    date          { "2021-01-01" }
+    trait :valid do
+      menu_image    { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.png'), 'image/png') }
+      user_id       { 1 }
+      # user
+      list          { "・テスト" }
+      category      { "朝食" }
+      date          { "2021-01-01" }
+    end
+
+    trait :no_image do
+      user_id       { 1 }
+      # user
+      list          { "・テスト" }
+      category      { "朝食" }
+      date          { "2021-01-01" }
+    end
+    
+    trait :no_date do
+      menu_image    { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.png'), 'image/png') }
+      user_id       { 1 }
+      # user
+      list          { "・テスト" }
+      category      { "朝食" }
+    end
   end
 end

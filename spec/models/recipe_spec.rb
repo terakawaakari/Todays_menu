@@ -7,7 +7,7 @@ describe 'recipeモデルのテスト' do
     expect(FactoryBot.build(:recipe)).to be_valid
   end
 
-  context '空白のバリデーションチェック' do
+  context '空白のバリデーションのテスト' do
     it 'nameが空白の場合は保存されないか' do
       recipe = Recipe.create(name: '', is_open: true)
       expect(recipe).to be_invalid
