@@ -43,10 +43,10 @@
         <div class="my-2"><div class="color label4-color d-inline-block mr-2"></div><%= f.text_field :label4 %></div>
         <%= link_to "リセット", roulette_path, class: "btn btn-sm btn-secondary" %>
 
-        <%#= f.hidden_field :h_label1, :value => current_user.recipes.order(Arel.sql('RANDOM()')).first.name %>
-        <%#= f.hidden_field :h_label2, :value => current_user.recipes.where.not(name: @label1).order(Arel.sql('RANDOM()')).first.name %>
-        <%#= f.hidden_field :h_label3, :value => current_user.recipes.where.not(name: @label1).where.not(name: @label2).order(Arel.sql('RANDOM()')).first.name %>
-        <%#= f.hidden_field :h_label4, :value => current_user.recipes.where.not(name: @label1).where.not(name: @label2).where.not(name: @label3).order(Arel.sql('RANDOM()')).first.name %>
+        <%= f.hidden_field :h_label1, :value => Faker::Food.dish %>
+        <%= f.hidden_field :h_label2, :value => Faker::Food.dish %>
+        <%= f.hidden_field :h_label3, :value => Faker::Food.dish %>
+        <%= f.hidden_field :h_label4, :value => Faker::Food.dish %>
         <%= f.submit "決定", class: "btn btn-sm btn-success ml-2" %>
       <% end %>
     </div>
@@ -78,12 +78,4 @@
       clearInterval(roulette);
     }
   }
-
-  // function random() {
-    <%# @label1 = current_user.recipes.order(Arel.sql('RANDOM()')).first.name %>
-    <%# @label2 = current_user.recipes.where.not(name: @label1).order(Arel.sql('RANDOM()')).first.name %>
-    <%# @label3 = current_user.recipes.where.not(name: @label1).where.not(name: @label2).order(Arel.sql('RANDOM()')).first.name %>
-    <%# @label4 = current_user.recipes.where.not(name: @label1).where.not(name: @label2).where.not(name: @label3).order(Arel.sql('RANDOM()')).first.name %>
-    // location.reload();
-  // }
 </script>

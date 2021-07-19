@@ -85,6 +85,44 @@ a:hover {
  background-position: center;
 }
 
+// 必須入力バッチの色
+.badge-brown {
+ background-color: #8895B3;
+ color: white;
+}
+
+// カスタマイズボタン
+// 通常のボタン色
+.btn-brown,
+.btn-brown.disabled, .btn-brown:disabled {
+  color: #fff;
+  background-color: #d1b9b0;
+  border-color: #d1b9b0;
+}
+
+// focus時の枠線の色
+.btn-brown:focus, .btn-brown.focus,
+.btn-brown:not(:disabled):not(.disabled):active:focus, .btn-brown:not(:disabled):not(.disabled).active:focus,
+.show > .btn-brown.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem #fff;
+}
+
+// hover時
+.btn-brown:hover {
+  color: #fff;
+  background-color: #9E8C85;
+  opacity: 0.8;
+  border-color: #9E8C85;
+}
+
+// active時
+.btn-brown:not(:disabled):not(.disabled):active, .btn-brown:not(:disabled):not(.disabled).active,
+.show > .btn-brown.dropdown-toggle {
+  color: #fff;
+  background-color: #d1b9b0;
+  border-color: #d1b9b0;
+}
+
 // ページネーション
 .pagination > li > a {
   border: none;

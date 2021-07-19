@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container registaration">
   <div class="row">
     <div class="col-lg-6 offset-lg-3 col-sm-12">
       <div class="ml-n5 mt-n3 edit-title"><%= render "layouts/page_title", title: "新規会員登録" %></div>
@@ -7,7 +7,7 @@
 
         <form class="form-horizontal">
           <div class="form-group">
-            <%= f.label :name, "ユーザーネーム" %><br />
+            <%= f.label :name, "ユーザーネーム" %> <%= render "layouts/not_null_badge" %><br />
             <%= f.text_field :name, autofocus: true, class: "form-control" %>
           </div>
 
@@ -25,7 +25,7 @@
           </div>
 
           <div class="form-group">
-            <%= f.label :email %><br />
+            <%= f.label :email %> <%= render "layouts/not_null_badge" %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
           </div>
 
@@ -33,17 +33,18 @@
             <%= f.label :password %>
             <% if @minimum_password_length %>
             <span>(<%= @minimum_password_length %>文字以上)</span>
+            <%= render "layouts/not_null_badge" %>
             <% end %><br />
             <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
           </div>
 
           <div class="form-group">
-            <%= f.label :password_confirmation %><br />
+            <%= f.label :password_confirmation %> <%= render "layouts/not_null_badge" %><br />
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
           </div>
 
           <div class="actions">
-            <%= f.submit "新規登録", class: "btn btn-info d-table mx-auto mt-5" %>
+            <%= f.submit "新規登録", class: "btn btn-brown d-table mx-auto mt-5" %>
           </div>
         </form>
       <% end %>
