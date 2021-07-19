@@ -4,17 +4,14 @@ require 'rails_helper'
 
 describe 'recipeモデルのテスト' do
   it '有効な投稿内容の場合は保存されるか' do
-    expect(FactoryBot.build(:recipe)).to be_valid
+    expect(FactoryBot.build(:recipe, :valid)).to be_valid
   end
-
-  context '空白のバリデーションのテスト' do
+  context 'バリデーションのテスト' do
     it 'nameが空白の場合は保存されないか' do
-      recipe = Recipe.create(name: '', is_open: true)
-      expect(recipe).to be_invalid
+      expect(FactoryBot.build(:recipe, :no_name)).to be_invalid
     end
     it 'is_openが空白の場合は保存されないか' do
-      recipe = Recipe.create(name: Faker::Lorem.characters(number:10), is_open: '')
-      expect(recipe).to be_invalid
+      expect(FactoryBot.build(:recipe, :no_open_status)).to be_invalid
     end
   end
 end
