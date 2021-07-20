@@ -4,7 +4,7 @@
       <div class="ml-n5 mt-n3 edit-title"><%= render "layouts/page_title", title: "会員ログイン" %></div>
 
       <%= form_with model: @user, url: user_session_path, local: true do |f| %>
-        <form class="form-horizontal">
+        <div class="form-horizontal">
           <div class="form-group">
             <%= f.label :email, "メールアドレス" %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
@@ -23,9 +23,9 @@
           <% end %>
 
           <div class="actions mx-auto d-table">
-            <%= f.submit "ログイン", class: "btn btn-success" %>
+            <%= f.submit "ログイン", class: "btn btn-brown" %>
           </div>
-        </form>
+        </div>
       <% end %>
 
       <h5 class='mt-5'>会員登録がお済みでない方</h5>

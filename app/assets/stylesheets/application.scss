@@ -34,6 +34,11 @@ main {
  font-family: Lato,Hiragino Kaku Gothic ProN,Yu Gothic,Noto Sans CJK JP,Hiragino Sans,sans-serif;
 }
 
+// カラー
+.violet {
+ color: #8895B3;
+}
+
 // ヘッダー
 .navbar-brand,
 .nav-item {
@@ -62,6 +67,17 @@ main {
  width: 100%;
 }
 
+// トップへ戻るボタン
+#page-top {
+ position: fixed;
+ right: 20px;
+ bottom: 20px;
+ display: none;
+}
+#page-top img {
+ width: 80px;
+}
+
 // 検索フォーム
 .search-bg {
  background-color: rgba(255,255,255,0.5);
@@ -83,6 +99,44 @@ a:hover {
  background-image: image-url("title_bg.png");
  background-size: contain;
  background-position: center;
+}
+
+// 必須入力バッチの色
+.badge-brown {
+ background-color: #8895B3;
+ color: white;
+}
+
+// カスタマイズボタン
+// 通常のボタン色
+.btn-brown,
+.btn-brown.disabled, .btn-brown:disabled {
+  color: #fff;
+  background-color: #d1b9b0;
+  border-color: #d1b9b0;
+}
+
+// focus時の枠線の色
+.btn-brown:focus, .btn-brown.focus,
+.btn-brown:not(:disabled):not(.disabled):active:focus, .btn-brown:not(:disabled):not(.disabled).active:focus,
+.show > .btn-brown.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem #fff;
+}
+
+// hover時
+.btn-brown:hover {
+  color: #fff;
+  background-color: #9E8C85;
+  opacity: 0.8;
+  border-color: #9E8C85;
+}
+
+// active時
+.btn-brown:not(:disabled):not(.disabled):active, .btn-brown:not(:disabled):not(.disabled).active,
+.show > .btn-brown.dropdown-toggle {
+  color: #fff;
+  background-color: #d1b9b0;
+  border-color: #d1b9b0;
 }
 
 // ページネーション
@@ -232,15 +286,6 @@ section {
   font-size: 22px;
  }
 
- // メニュー絞り込みフォーム
- .sort_form {
-  width: 43%;
- }
- .sort-button {
-  margin: 10px 20px 0 auto;
-  display: table!important;
- }
-
  // レシピ投稿・編集
  .recipe-form {
     display: block!important;
@@ -261,7 +306,7 @@ section {
 
  // メニュー投稿・編集フォーム
  .menu-form {
-    display: block!important;
+   display: block!important;
   }
  .menu-form > p {
   max-width: 100%!important;
@@ -352,12 +397,17 @@ section {
   margin-left: -20px!important;
  }
 
+ // トップへ戻るボタン
+ #page-top {
+  position: fixed;
+  right: -5px;
+  bottom: 60px;
+  display: none;
+ }
+
  // フォーム表示時のタイトル
  .recipe-form-title {
   margin-left: 0!important;
- }
- .menu-form-title {
-  margin-left: 10px!important;
  }
 
 // レシピ表示サイズ
@@ -372,6 +422,12 @@ section {
   width: 100%;
   height: auto;
  }
+
+ // メニュー一覧
+ .menus-title {
+  display: block!important;
+ }
+
 
 // レスポンシブ検索フォーム
  #search-form {
@@ -392,40 +448,6 @@ section {
  }
  .tag-search-title {
   margin: 0 0 0 30px!important;
- }
-
-// カレンダー
- .calendar-image {
-  max-width: 100%;
-  height: 80%;
- }
- .calendar-modal-link {
-  height: 80%;
- }
- .menu_image {
-  width: 100%;
- }
- .table-striped > tbody > tr > td {
-  padding: 0;
- }
-
- // メニュー一覧
- .menus-title {
-  display: block!important;
- }
-
- // メニュー表示サイズ
- .menu-container {
-  justify-content: center!important;
-  width: 100%;
-  margin: 0 auto;
- }
- .menu-box {
-  width: 100%;
- }
- .menu-image {
-  width: 100%;
-  height: auto;
  }
 
  // フッター

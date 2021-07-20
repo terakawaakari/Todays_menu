@@ -8,6 +8,7 @@ class Menu < ApplicationRecord
   has_many :menus,        through:   :menu_recipes
 
   validates :menu_image,  presence: true
+  validates :date,        presence: true
 
   accepts_nested_attributes_for :menu_recipes, allow_destroy: true
 

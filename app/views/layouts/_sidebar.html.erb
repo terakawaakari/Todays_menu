@@ -5,7 +5,7 @@
       <div class="ml-2 pt-2">
         <p><%= link_to "タイムライン", recipes_path %></p>
         <p><%= link_to "マイレシピ", my_recipe_path %></p>
-        <p><%= link_to "マイレシピ追加", new_recipe_path %></p>
+        <p><%= link_to "マイレシピ追加", new_recipe_path, 'data-turbolinks': false %></p>
         <p><%= link_to "ブックマーク", user_bookmarks_path(current_user) %></p>
       </div>
     </div>

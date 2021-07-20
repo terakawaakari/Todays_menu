@@ -12,11 +12,11 @@
         退会する場合はパスワードを入力してください。
         <%= form_with model: @user, url: user_registration_path, method: :delete, local: true do |f| %>
           <div class="mt-2 mx-auto d-table"><%= f.text_field :current_password %></div>
-      </div>
-      <div class="modal-footer border-0 mx-auto">
-          <%= f.submit "退会する", class: "btn btn-sm btn-info" %>
+          <div class="d-flex justify-content-center mt-3 mb-2">
+            <div class="mr-3"><%= f.submit "退会する", class: "btn btn-sm btn-info" %></div>
+            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">キャンセル</button>
+          </div>
         <% end %>
-        <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">キャンセル</button>
       </div>
     </div>
   </div>

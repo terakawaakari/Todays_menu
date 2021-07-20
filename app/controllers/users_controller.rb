@@ -15,6 +15,8 @@ class UsersController < ApplicationController
   def update
     if @user.update(user_params)
       redirect_to user_path(current_user), notice: "変更を保存しました"
+    else
+      render :edit
     end
   end
 
@@ -28,7 +30,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :birth_date, :sex, :is_deleted)
+    params.require(:user).permit(:name, :email, :birth_date, :sex)
   end
 
   def confirm_user

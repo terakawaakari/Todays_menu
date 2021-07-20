@@ -83,6 +83,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   private
   def destroy_params
-    params.require(:user).permit(:current_password)
+    params.permit(:current_password)
   end
 end

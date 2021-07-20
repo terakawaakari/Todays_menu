@@ -8,12 +8,12 @@
   </div>
 
   <div class="d-flex my-2 recipe-form">
-    <p class="col-4">料理名</p>
+    <p class="col-4">料理名 <%= render "layouts/not_null_badge" %></p>
     <div><%= f.text_field :name, size: "50", placeholder: "料理名", class: "form-control form-control-sm" %></div>
   </div>
 
   <div class="d-flex my-2 recipe-form">
-    <p class="col-4">ジャンル</p>
+    <p class="col-4">ジャンル <%= render "layouts/not_null_badge" %></p>
     <div class="genre-form"><%= f.select :genre, Recipe.genres.keys, {}, {class: "form-control form-control-sm"} %></div>
     <div class="mx-2 genre-form"><%= f.select :category, Recipe.categories.keys, {}, {class: "form-control form-control-sm"} %></div>
     <div class="genre-form"><%= f.select :taste, Recipe.tastes.keys, {}, {class: "form-control form-control-sm"} %></div>
@@ -91,7 +91,7 @@
   </div>
 
   <div class="d-flex my-3 recipe-form">
-    <p class="col-4">公開設定</p>
+    <p class="col-4">公開設定 <%= render "layouts/not_null_badge" %></p>
     <%= f.radio_button :is_open, :true, class: "mr-1 mt-1" %>
     <%= f.label :is_open, "公開", {value: :true, style: "display: inline-block;"} %>
     <%= f.radio_button :is_open, :false, class: "mr-1 ml-3 mt-1" %>

@@ -165,7 +165,6 @@ class RecipesController < ApplicationController
 
   def confirm_user
     unless Recipe.find(params[:id]).user_id == current_user.id || current_user.admin?
-      binding.pry
       redirect_to recipes_path
     end
   end

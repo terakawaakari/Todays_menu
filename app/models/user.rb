@@ -11,6 +11,8 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :buy_items, dependent: :destroy
 
+  validates :name,       presence: true
+
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
       user.name = "ゲスト"
