@@ -11,11 +11,14 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <!--画面幅・ログイン状態によるbody上部余白の調整-->
   <% if user_signed_in? %>
   <body>
   <% else %>
   <body class="subheader-padding">
   <% end %>
+
+    <!--画面幅によるヘッダーの出し分け-->
     <div class="d-none d-md-block"><%= render "layouts/header" %></div>
     <div class="d-block d-md-none"><%= render "layouts/responsive_header" %></div>
 
@@ -34,6 +37,7 @@
       <% end %>
     <% end %>
 
+    <!--画面幅・ログイン状態によるサイドバーの出し分け-->
     <main>
       <% if user_signed_in? && (!current_page?(root_path) || !current_page?(new_user_registration_path) || !current_page?(new_user_session_path)) %>
         <div class="container mt-3">
@@ -47,11 +51,17 @@
       <% end %>
     </main>
 
+    <!--画面幅・ログイン状態によるフッターの出し分け-->
     <div class="mt-5 d-none d-lg-block"><%= render "layouts/footer" %></div>
     <% if user_signed_in? %>
       <div class="mt-5 d-block d-lg-none"><%= render "layouts/responsive_footer" %></div>
     <% else %>
       <div><%= render "layouts/footer" %></div>
     <% end %>
+
+    <!--トップへ戻るボタン-->
+    <span id="page-top">
+      <a href="#"><%= image_tag "page_top.png" %></a>
+    </span>
   </body>
 </html>
