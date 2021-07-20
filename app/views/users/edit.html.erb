@@ -1,7 +1,8 @@
 <div class="col-lg-6 offset-lg-2 col-md-12">
   <div class="ml-n5 mt-n5 edit-title"><%= render "layouts/page_title", title: "会員情報編集" %></div>
+  <%= render "layouts/errors", obj: @user %>
   <%= form_with model: @user, local: true do |f| %>
-    <form class="form-horizontal">
+    <div class="form-horizontal">
       <div class="form-group">
         <%= f.label :name, "ユーザーネーム" %><br />
         <%= f.text_field :name, autofocus: true, class: "form-control" %>
@@ -28,7 +29,7 @@
       <div class="mx-auto d-table">
         <%= f.submit "変更", class: "btn btn-success mt-5" %>
       </div>
-    </form>
+    </div>
   <% end %>
 
   <% if current_user.admin? %>
