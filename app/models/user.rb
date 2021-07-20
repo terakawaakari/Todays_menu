@@ -12,10 +12,6 @@ class User < ApplicationRecord
   has_many :buy_items, dependent: :destroy
 
   validates :name,       presence: true
-  validates :email,      presence: true
-  validates :password,   presence: true
-  # validates :sex,        presence: true
-  # validates :birth_date, presence: true
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
