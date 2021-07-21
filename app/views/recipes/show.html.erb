@@ -33,7 +33,7 @@
   <div class="d-flex ingredient">
     <div><%= attachment_image_tag @recipe, :recipe_image, size: '300x230', format:'jpeg', fallback: "no_image.png", class: "recipe-show-image" %></div>
     <!--材料-->
-    <% if @ingredient.name.present? %>
+    <% if @ingredient.present? %>
       <div class="ml-4 ingredient-table">
         <h4 class="d-inline-block">材料　</h4>
         <% if @recipe.serving? %>
@@ -60,7 +60,7 @@
     <% end %>
   </div>
   <!--作り方-->
-  <% if @direction.description.present? %>
+  <% if @direction.present? %>
     <div class="mt-5 direction">
       <h4>作り方</h4>
       <ol>
@@ -87,8 +87,8 @@
       <%= link_to "おすすめを見る", recipe_recommend_path(@recipe), remote: true, class: "btn btn-sm btn-info" %>
     <% end %>
     <% if @recipe.user_id == current_user.id || current_user.admin? %>
-      <%= link_to "編集する", edit_recipe_path(@recipe), 'data-turbolinks': false, class: "btn btn-sm btn-success" %>
-      <%= link_to "削除する", recipe_path(@recipe), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
+      <%= link_to "編集", edit_recipe_path(@recipe), 'data-turbolinks': false, class: "btn btn-sm btn-success" %>
+      <%= link_to "削除", recipe_path(@recipe), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
     <% end %>
   </div>
   <!--おすすめレシピ-->

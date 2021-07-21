@@ -2,28 +2,128 @@
 
 require 'rails_helper'
 
-describe '投稿のテスト' do
-  let(:user) { create(:user) }
-  let(:recipe) { create(:recipe) }
+describe 'レシピの表示に関するテスト' do
+  let!(:user)                 { create(:user,   :customer) }
+  let!(:other_user)           { create(:user,   :customer) }
+  let!(:recipe)               { create(:recipe, :valid) }
+  let!(:other_recipe)         { create(:recipe, :other_recipe) }
+  let!(:private_recipe)       { create(:recipe, :private_recipe) }
+  let!(:other_private_recipe) { create(:recipe, :other_private_recipe) }
+  let!(:bookmark)             { create(:bookmark) }
+
+  context 'レシピタイムラインのテスト' do
+    before do
+      login(user)
+      visit recipes_path
+    end
+    it '非公開のレシピは表示されない' do
+      expect(page).not_to have_content private_recipe.name
+    end
+    it '公開レシピの画像と料理名が表示されている' do
+      expect(page).to have_selector("img[src$='recipe_image.jpeg']")
+      expect(page).to have_content recipe.name
+    end
+    it '公開レシピ詳細画面へのリンクがある' do
+      expect(page).to have_link recipe.name, href: recipe_path(recipe)
+    end
+  end
+
+  context 'マイレシピ一覧のテスト' do
+    before do
+      login(user)
+      visit my_recipe_path
+    end
+    it '他ユーザーのレシピは表示されない' do
+      expect(page).not_to have_content other_recipe.name
+    end
+    it '非公開のマイレシピが表示される' do
+      expect(page).to have_content private_recipe.name
+    end
+    it 'マイレシピの画像と料理名が表示されている' do
+      expect(page).to have_selector("img[src$='recipe_image.jpeg']")
+      expect(page).to have_content recipe.name
+    end
+    it 'レシピ詳細画面へのリンクがある' do
+      expect(page).to have_link recipe.name, href: recipe_path(recipe)
+    end
+  end
+
+  context 'ブックマーク一覧のテスト' do
+    before do
+      login(user)
+      visit user_bookmarks_path(user)
+    end
+    it '非公開のレシピは表示されない' do
+      expect(page).not_to have_content other_recipe.name
+    end
+    it 'ブックマークしたレシピの画像と料理名が表示されている' do
+      expect(page).to have_selector("img[src$='recipe_image.jpeg']")
+      expect(page).to have_content bookmark.recipe.name
+    end
+    it 'レシピ詳細画面へのリンクがある' do
+      expect(page).to have_link recipe.name, href: recipe_path(bookmark.recipe)
+    end
+  end
+
+  context 'レシピ詳細画面のテスト' do
+    before do
+      login(user)
+    end
+    it 'レシピの画像と料理名が表示されている' do
+      FactoryBot.create(:direction,  :recipe)
+      FactoryBot.create(:ingredient, :recipe)
+      visit recipe_path(recipe)
+      expect(page).to have_selector("img[src$='recipe_image.jpeg']")
+      expect(page).to have_content recipe.name
+    end
+    it '他ユーザーの非公開のレシピは表示されず、タイムラインに遷移する' do
+      visit recipe_path(other_private_recipe)
+      expect(current_path).to eq recipes_path
+    end
+    it '非公開のマイレシピは表示される' do
+      FactoryBot.create(:direction,  :private_recipe)
+      FactoryBot.create(:ingredient, :private_recipe)
+      visit recipe_path(private_recipe)
+      expect(page).to have_content private_recipe.name
+    end
+    it 'マイレシピの場合、編集・削除のリンクが表示される'do
+      FactoryBot.create(:direction,  :recipe)
+      FactoryBot.create(:ingredient, :recipe)
+      visit recipe_path(recipe)
+      expect(page).to have_link '編集', href: edit_recipe_path(recipe)
+      expect(page).to have_link '削除', href: recipe_path(recipe)
+    end
+  end
+end
+
+describe 'レシピの保存・編集・削除のテスト' do
+  let!(:user)  { create(:user, :customer) }
+  let!(:recipe) {create(:recipe, :valid) }
   before do
     login(user)
-    visit recipes_path
   end
-  describe 'レシピタイムラインのテスト' do
-    it '非公開のレシピが表示されていないか' do
-      private_recipe = Recipe.create(name: Faker::Lorem.characters(number:10), is_open: false)
-      expect(private_recipe).not_to have_content private_recipe.name
-    end
-    context '一覧の表示とリンクの確認' do
-      # before do
-      #   visit recipes_path
-      # end
-      it 'レシピの画像と料理名が表示されているか' do
-        # recipe = FactoryBot.build(:recipe)
-        # recipe = Recipe.create(name: Faker::Lorem.characters(number:10), recipe_image_id: Faker::Alphanumeric.alphanumeric(number: 10), is_open: true)
-        expect(page).to have_content recipe.recipe_image_id
-        expect(page).to have_content recipe.name
-      end
-    end
+  it '正常に保存でき、レシピ詳細画面に遷移する' do
+    visit new_recipe_path
+    fill_in 'recipe[name]', with: 'ハンバーグ'
+    select '和食',          from: 'recipe[genre]'
+    select '主菜',          from: 'recipe[category]'
+    select '醤油',          from: 'recipe[taste]'
+    choose 'recipe_is_open_true'
+    click_button 'レシピを保存'
+    expect(page).to have_content '保存しました'
+    expect(current_path).to eq recipe_path(2)
+  end
+
+  it '正常に更新でき、レシピ詳細画面に遷移する' do
+    visit edit_recipe_path(recipe)
+    fill_in 'recipe[name]', with: 'メンチカツ'
+    click_on 'フォームを追加', match: :first
+    # fill_in 'recipe_ingredients_attributes_0_name', with: '玉ねぎ'
+    # fill_in 'recipe_ingredients_attributes_0_quantity', with: '1個'
+    # click_on 'フォームを追加', match: :smart
+    # fill_in 'recipe_directions_attributes_0_description', with: '作り方'
+    click_button 'レシピを保存'
+    expect(page).to have_content '変更しました'
+    expect(current_path).to eq recipe_path(1)
   end
 end

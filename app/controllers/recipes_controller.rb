@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
     tags    = params[:recipe][:tag_name].split(nil)
     if @recipe.save
       @recipe.save_tag(tags)
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_path(@recipe), notice: "マイレシピを保存しました"
     else
       render :new
     end
@@ -65,7 +65,7 @@ class RecipesController < ApplicationController
       unless @recipe.is_open?
         @recipe.bookmarks.destroy_all
       end
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_path(@recipe), notice: "マイレシピを変更しました"
     else
       @ingredients = @recipe.ingredients
       render :edit
@@ -170,7 +170,8 @@ class RecipesController < ApplicationController
   end
 
   def confirm_status
-    unless Recipe.find(params[:id]).is_open? || current_user.admin?
+    recipe = Recipe.find(params[:id])
+    if recipe.user_id != current_user.id && !recipe.is_open? && !current_user.admin?
       redirect_to recipes_path
     end
   end
