@@ -93,10 +93,14 @@ describe 'レシピの表示に関するテスト' do
       expect(page).to have_link '編集', href: edit_recipe_path(recipe)
       expect(page).to have_link '削除', href: recipe_path(recipe)
     end
+    it '他ユーザーの編集画面に遷移できず、マイレシピ一覧へ遷移する' do
+      visit edit_recipe_path(other_recipe)
+      expect(current_path).to eq recipes_path
+    end
   end
 end
 
-describe 'レシピの保存・編集・削除のテスト' do
+describe 'レシピの保存・編集のテスト' do
   let!(:user)  { create(:user, :customer) }
   let!(:recipe) {create(:recipe, :valid) }
   before do
@@ -113,7 +117,6 @@ describe 'レシピの保存・編集・削除のテスト' do
     expect(page).to have_content '保存しました'
     expect(current_path).to eq recipe_path(2)
   end
-
   it '正常に更新でき、レシピ詳細画面に遷移する' do
     visit edit_recipe_path(recipe)
     fill_in 'recipe[name]', with: 'メンチカツ'

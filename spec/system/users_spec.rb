@@ -106,7 +106,7 @@ describe '管理者のテスト' do
     visit users_path
     expect(current_path).to eq users_path
   end
-  it '管理者は会員の詳細ページへできる' do
+  it '管理者は会員の詳細ページへ遷移できる' do
     visit user_path(other_user)
     expect(current_path).to eq user_path(other_user)
   end

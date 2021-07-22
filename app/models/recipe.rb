@@ -20,7 +20,7 @@ class Recipe < ApplicationRecord
   validates :taste,    presence: true
   validates :name,     presence: true
 
-  accepts_nested_attributes_for :ingredients, :directions, allow_destroy: true
+  accepts_nested_attributes_for :ingredients, :directions, allow_destroy: true, reject_if: :all_blank
 
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
