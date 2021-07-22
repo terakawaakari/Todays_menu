@@ -12,4 +12,9 @@ module ApplicationHelper
     return text
   end
 
+  #レシピのタグを重複を省いて取得
+  def unique_tags(recipes)
+    RecipeTag.joins(:tag).where(recipe_id: recipes.pluck(:id)).select('tags.tag_name').distinct
+  end
+
 end

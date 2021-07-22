@@ -3,7 +3,13 @@
     <p class="col-4">画像</p>
     <div>
       <%= f.attachment_field :recipe_image, placeholder: "ファイルを選択" %>
-      <img id="recipe-preview" class="my-3 col-8">
+      <!--登録画像があれば表示、ファイルがアップロードされたら画像を切り替え-->
+      <div id="img-container"><img id="recipe-preview" class="col-8"></div>
+      <% if recipe.recipe_image.present? %>
+        <div id="original-img-container" class="img mb-3">
+          <%= attachment_image_tag recipe, :recipe_image, format:'jpeg', id: "original-img", class: "col-8" %>
+        </div>
+      <% end %>
     </div>
   </div>
 
@@ -52,7 +58,7 @@
         <% end %>
         <!--材料フォームの追加ボタン-->
         <div class="mb-4">
-          <%= link_to_add_association "+フォームを追加", f, :ingredients, class: "btn btn-sm btn-secondary rounded-pill" %>
+          <%= link_to_add_association "+フォームを追加", f, :ingredients, class: "btn btn-sm btn-gray rounded-pill" %>
         </div>
       </div>
     </div>
@@ -67,7 +73,7 @@
         <% end %>
         <!--作り方フォームの追加ボタン-->
         <div class="mb-4">
-          <%= link_to_add_association "+フォームを追加", f, :directions, class: "btn btn-sm btn-secondary rounded-pill" %>
+          <%= link_to_add_association "+フォームを追加", f, :directions, class: "btn btn-sm btn-gray rounded-pill" %>
         </div>
       </div>
     </div>
@@ -99,8 +105,8 @@
   </div>
 
   <div class="d-flex  justify-content-center">
-    <div><%= link_to "キャンセル", my_recipe_path(current_user), class: "btn btn-secondary mr-2" %></div>
-    <div><%= f.submit "レシピを保存", class: "btn btn-success" %></div>
+    <div><%= link_to "キャンセル", my_recipe_path(current_user), class: "btn btn-gray mr-2" %></div>
+    <div><%= f.submit "レシピを保存", class: "btn btn-violet" %></div>
   </div>
 <% end %>
 
@@ -133,7 +139,10 @@
   $('#recipe_recipe_image').on('change', function (e) {
     var reader = new FileReader();
     reader.onload = function (e) {
+      $('#img-container').addClass('img my-3');
+      $('#original-img-container').removeClass('img');
       $("#recipe-preview").attr('src', e.target.result);
+      $('#original-img').css('display','none');
     }
     reader.readAsDataURL(e.target.files[0]);
   });

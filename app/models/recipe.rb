@@ -14,10 +14,13 @@ class Recipe < ApplicationRecord
   has_many :tags,         through:   :recipe_tags
   has_many :bookmarks,    dependent: :destroy
 
-  validates :is_open, presence: true
-  validates :name,    presence: true
+  validates :is_open,  inclusion: [true, false]
+  validates :genre,    presence: true
+  validates :category, presence: true
+  validates :taste,    presence: true
+  validates :name,     presence: true
 
-  accepts_nested_attributes_for :ingredients, :directions, allow_destroy: true
+  accepts_nested_attributes_for :ingredients, :directions, allow_destroy: true, reject_if: :all_blank
 
   def save_tag(sent_tags)
     current_tags = self.tags.pluck(:tag_name) unless self.tags.nil?
@@ -41,9 +44,5 @@ class Recipe < ApplicationRecord
   def self.open_sort
     where(is_open: true).order(created_at: :DESC)
   end
-
-  # def self.unique_tag(recipes)
-  #   joins(:tag).where(recipe_id: recipes.pluck(:id)).select('tags.tag_name').distinct
-  # end
 
 end

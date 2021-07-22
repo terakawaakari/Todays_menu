@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
     recipes_path
   end
 
+  include ApplicationHelper
+
   protected
 
   def configure_permitted_parameters

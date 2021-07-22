@@ -10,7 +10,7 @@ class Menu < ApplicationRecord
   validates :menu_image,  presence: true
   validates :date,        presence: true
 
-  accepts_nested_attributes_for :menu_recipes, allow_destroy: true
+  accepts_nested_attributes_for :menu_recipes, allow_destroy: true, reject_if: :all_blank
 
   def start_time
     self.date

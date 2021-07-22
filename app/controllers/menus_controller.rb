@@ -1,5 +1,6 @@
 class MenusController < ApplicationController
 
+  before_action :confirm_user, only: [:edit, :update, :destroy]
   before_action :set_q
 
   def index
@@ -24,7 +25,7 @@ class MenusController < ApplicationController
   def create
     @menu = current_user.menus.new(menu_params)
     if @menu.save
-      redirect_to menus_path
+      redirect_to menus_path, notice: "マイメニューを保存しました"
     else
       render :new
     end
@@ -38,7 +39,7 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
     @menu.menu_recipes.destroy_all
     if @menu.update(menu_params)
-      redirect_to menus_path
+      redirect_to menus_path, notice: "マイメニューを変更しました"
     else
       render :edit
     end
@@ -57,6 +58,12 @@ class MenusController < ApplicationController
 
   def set_q
     @q = Recipe.where(is_open: true).ransack(params[:q])
+  end
+
+  def confirm_user
+    unless Menu.find(params[:id]).user_id == current_user.id || current_user.admin?
+      redirect_to menus_path
+    end
   end
 end
 

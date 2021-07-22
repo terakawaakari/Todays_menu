@@ -12,7 +12,7 @@ class CreateRecipes < ActiveRecord::Migration[5.2]
       t.float :popularity
       t.text :url
       t.text :note
-      t.boolean :is_open,        null: false
+      t.boolean :is_open,        null: false, default: true
 
       t.timestamps
 
