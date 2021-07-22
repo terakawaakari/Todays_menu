@@ -73,9 +73,11 @@
 
   function stop() {
     const button = document.getElementById("start");
+    const stop_button = document.getElementById("stop");
     button.disabled = false
     if(roulette) {
       clearInterval(roulette);
+      stop_button.blur();
     }
   }
 </script>

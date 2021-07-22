@@ -1,8 +1,8 @@
 <div class="d-flex flex-block">
   <h4>買い物リスト</h4>
   <div class="ml-auto mb-2 delete-button">
-    <%= link_to "購入済削除", bought_destroy_path, method: :delete, remote: true, class: "btn btn-sm btn-info"%>
-    <%= link_to "全削除", all_destroy_path, method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-sm btn-danger" %>
+    <%= link_to "購入済削除", bought_destroy_path, method: :delete, remote: true, class: "btn btn-sm btn-gray flex-nowrap"%>
+    <%= link_to "全削除", all_destroy_path, method: :delete, remote: true, data: { confirm: '削除してよろしいですか？' }, class: "btn btn-sm btn-red" %>
   </div>
 </div>
 
@@ -16,7 +16,6 @@
             <% if item.is_bought? %>
               <%= form_with model: item do |f| %>
                 <%= f.hidden_field :is_bought, :value => false %>
-                <%#= f.submit "✔︎️︎️", class: "btn btn-sm btn-outline-secondary rounded-circle mr-3" %>
                 <input type="submit" value="&#xf00c;" class="fas btn btn-outline-secondary rounded-circle px-2 mr-3">
               <% end %>
               <p><%= item.name %></p>
@@ -29,7 +28,7 @@
             <% end %>
           </div>
         </td>
-        <td><div id="delete-btn-<%= item.id %>"><%= link_to "ー", "buy_items/#{item.id}", method: :delete, remote: true, class: "btn btn-sm rounded-circle btn-danger" %></div></td>
+        <td><div id="delete-btn-<%= item.id %>"><%= link_to "ー", "buy_items/#{item.id}", method: :delete, remote: true, class: "btn btn-sm rounded-circle btn-red" %></div></td>
       </tr>
       <% end %>
     </tbody>

@@ -2,8 +2,8 @@ FactoryBot.define do
   factory :recipe do
     trait :valid do
       user_id         { 1 }
-      name            { Faker::Lorem.characters(number:10) }
-      recipe_image_id { Faker::Alphanumeric.alphanumeric(number: 10) }
+      name            { 'グラタン' }
+      recipe_image    { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.png')) }
       genre           { "和食" }
       category        { "主菜" }
       taste           { "醤油" }
@@ -12,7 +12,7 @@ FactoryBot.define do
 
     trait :no_name do
       user_id         { 1 }
-      recipe_image_id { Faker::Alphanumeric.alphanumeric(number: 10) }
+      recipe_image    { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.png')) }
       genre           { "和食" }
       category        { "主菜" }
       taste           { "醤油" }
@@ -21,11 +21,38 @@ FactoryBot.define do
 
     trait :no_open_status do
       user_id         { 1 }
-      name            { Faker::Lorem.characters(number:10) }
-      recipe_image_id { Faker::Alphanumeric.alphanumeric(number: 10) }
+      name            { 'パスタ' }
+      recipe_image    { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.png')) }
       genre           { "和食" }
       category        { "主菜" }
       taste           { "醤油" }
+    end
+
+    trait :private_recipe do
+      user_id         { 1 }
+      name            { 'プリン' }
+      genre           { "和食" }
+      category        { "主菜" }
+      taste           { "醤油" }
+      is_open         { false }
+    end
+
+    trait :other_private_recipe do
+      user_id         { 2 }
+      name            { 'お好み焼き' }
+      genre           { "和食" }
+      category        { "主菜" }
+      taste           { "醤油" }
+      is_open         { false }
+    end
+
+    trait :other_recipe do
+      user_id         { 2 }
+      name            { 'たこ焼き' }
+      genre           { "和食" }
+      category        { "主菜" }
+      taste           { "醤油" }
+      is_open         { true }
     end
   end
 end

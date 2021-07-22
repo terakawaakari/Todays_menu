@@ -1,4 +1,4 @@
-<div class="px-3 pt-3 pb-2 mb-3 border rounded shadow-sm">
+<div class="px-3 pt-3 pb-2 mb-3 border rounded shadow-sm search-bg">
   <h3><%= title %></h3>
   <%= search_form_for q, url: search_path do |f| %>
 
@@ -32,6 +32,6 @@
     <span class="mr-2"><%= f.radio_button :time_lteq, '40' %> 40分以下</span>
     <span class="mr-2"><%= f.radio_button :time_lteq, '50' %> 50分以下</span>
     <span class="mr-2"><%= f.radio_button :time_gteq, '60' %> 60分以上</span><br>
-    <input type="submit" value="&#xf002; 検索" class="fas btn btn-secondary mt-2">
+    <input type="submit" value="&#xf002; 検索" class="fas btn btn-gray mt-2">
   <% end %>
 </div>

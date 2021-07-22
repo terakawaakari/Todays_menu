@@ -1,7 +1,7 @@
 <div class="col-lg-8 col-md-12 bg-white p-5 border recipe-show-container">
 
   <h2 class="mb-4 d-inline-block"><%= @recipe.name %></h2>
-  <input type="button" value="レシピ詳細" onclick="clickBtn()" class="btn btn-sm btn-info ml-3">
+  <input type="button" value="詳細を見る &#xf0d7;" onclick="clickBtn()" id="detail-btn" class="ml-3 fas">
 
   <!--レシピの詳細情報　ボタンクリックで表示-->
   <div id="details" class="mb-4">
@@ -33,7 +33,7 @@
   <div class="d-flex ingredient">
     <div><%= attachment_image_tag @recipe, :recipe_image, size: '300x230', format:'jpeg', fallback: "no_image.png", class: "recipe-show-image" %></div>
     <!--材料-->
-    <% if @ingredient.name.present? %>
+    <% if @ingredients.present? %>
       <div class="ml-4 ingredient-table">
         <h4 class="d-inline-block">材料　</h4>
         <% if @recipe.serving? %>
@@ -49,7 +49,7 @@
                 <!--買い物リストへの追加ボタン-->
                 <%= form_with model: @item, local: true do |f| %>
                   <%= f.hidden_field :name, :value => i.name %>
-                  <%= f.submit "＋", class: "btn btn-sm btn-success rounded-circle" %>
+                  <%= f.submit "＋", class: "btn btn-sm btn-gray rounded-circle" %>
                 <% end %>
               </td>
             </tr>
@@ -60,7 +60,7 @@
     <% end %>
   </div>
   <!--作り方-->
-  <% if @direction.description.present? %>
+  <% if @directions.present? %>
     <div class="mt-5 direction">
       <h4>作り方</h4>
       <ol>
@@ -87,8 +87,8 @@
       <%= link_to "おすすめを見る", recipe_recommend_path(@recipe), remote: true, class: "btn btn-sm btn-info" %>
     <% end %>
     <% if @recipe.user_id == current_user.id || current_user.admin? %>
-      <%= link_to "編集する", edit_recipe_path(@recipe), 'data-turbolinks': false, class: "btn btn-sm btn-success" %>
-      <%= link_to "削除する", recipe_path(@recipe), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-danger" %>
+      <%= link_to "編集", edit_recipe_path(@recipe), 'data-turbolinks': false, class: "btn btn-sm btn-success" %>
+      <%= link_to "削除", recipe_path(@recipe), method: :delete, data: {confirm: "削除しますか？"}, class: "btn btn-sm btn-red" %>
     <% end %>
   </div>
   <!--おすすめレシピ-->
@@ -103,11 +103,14 @@ document.getElementById("details").style.display ="none";
 
 function clickBtn(){
 	const details = document.getElementById("details");
+	const detail_btn = document.getElementById("detail-btn");
 
 	if(details.style.display == "block"){
 		details.style.display = "none";
+		detail_btn.value = "詳細を見る ▼";
 	}else{
 		details.style.display = "block";
+		detail_btn.value = "詳細を閉じる ▲";
 	}
 }
 </script>

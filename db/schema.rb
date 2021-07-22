@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2021_07_08_061535) do
     t.float "popularity"
     t.text "url"
     t.text "note"
-    t.boolean "is_open", null: false
+    t.boolean "is_open", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["id"], name: "index_recipes_on_id", unique: true
@@ -97,8 +97,8 @@ ActiveRecord::Schema.define(version: 2021_07_08_061535) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.date "birth_date", null: false
-    t.integer "sex", null: false
+    t.date "birth_date"
+    t.integer "sex"
     t.boolean "admin", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

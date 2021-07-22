@@ -2,11 +2,6 @@
   <div class="d-flex menu-form">
     <p class="col-4">画像 <%= render "layouts/not_null_badge" %></p>
     <div class="menu-form">
-      <% if menu.errors.any? %>
-        <% menu.errors.full_messages.each do |message| %>
-          <p class="text-danger mb-2"><%= message %></p>
-        <% end %>
-      <% end %>
       <%= f.attachment_field :menu_image, placeholder: "ファイルを選択" %>
       <img id="menu-preview", class="my-3 col-8">
     </div>
@@ -35,14 +30,14 @@
       <% end %>
       <!--マイレシピから選択フォームの追加ボタン-->
       <div class="mb-3">
-        <%= link_to_add_association "+フォームを追加", f, :menu_recipes, class: "btn btn-sm btn-secondary rounded-pill" %>
+        <%= link_to_add_association "+フォームを追加", f, :menu_recipes, class: "btn btn-sm btn-gray rounded-pill" %>
       </div>
     </div>
   </div>
 
   <div class="d-flex justify-content-center mt-4">
-    <div><%= link_to "キャンセル", menus_path, class: "btn btn-secondary mr-2" %></div>
-    <div><%= f.submit "メニューを保存", class: "btn btn-success" %></div>
+    <div><%= link_to "キャンセル", menus_path, class: "btn btn-gray mr-2" %></div>
+    <div><%= f.submit "メニューを保存", class: "btn btn-violet" %></div>
   </div>
 <% end %>
 

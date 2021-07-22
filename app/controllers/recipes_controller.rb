@@ -8,14 +8,14 @@ class RecipesController < ApplicationController
 
   def index
     # 公開中のレシピを新着順に並べてページネート
-    @recipes = Recipe.open_sort.page(params[:page]).per(15)
+    @recipes = Recipe.open_sort.page(params[:page]).per(12)
     #公開中のレシピのタグを重複を省いて取得
-    @tags    = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
+    @tags    = unique_tags(@recipes)
   end
 
   def my_recipe
-    @my_recipes = current_user.recipes.order(created_at: :DESC).page(params[:page]).per(15)
-    @tags       = RecipeTag.joins(:tag).where(recipe_id: @my_recipes.pluck(:id)).select('tags.tag_name').distinct
+    @my_recipes = current_user.recipes.order(created_at: :DESC).page(params[:page]).per(12)
+    @tags       = unique_tags(@my_recipes)
   end
 
   def new
@@ -30,7 +30,7 @@ class RecipesController < ApplicationController
     tags    = params[:recipe][:tag_name].split(nil)
     if @recipe.save
       @recipe.save_tag(tags)
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_path(@recipe), notice: "マイレシピを保存しました"
     else
       render :new
     end
@@ -38,13 +38,7 @@ class RecipesController < ApplicationController
 
   def show
     @ingredients = @recipe.ingredients
-    @ingredients.each do |i|
-      @ingredient = i
-    end
     @directions = @recipe.directions
-    @directions.each do |d|
-      @direction = d
-    end
     @tags = @recipe.tags
     @item = current_user.buy_items.new
     recommend_system
@@ -65,7 +59,7 @@ class RecipesController < ApplicationController
       unless @recipe.is_open?
         @recipe.bookmarks.destroy_all
       end
-      redirect_to recipe_path(@recipe)
+      redirect_to recipe_path(@recipe), notice: "マイレシピを変更しました"
     else
       @ingredients = @recipe.ingredients
       render :edit
@@ -73,20 +67,23 @@ class RecipesController < ApplicationController
   end
 
   def destroy
-    @recipe.destroy
-    #関連付いたレシピが存在しないタグを消去
-    @recipe.tags.each do |tag|
-      if tag.recipes.blank?
-        tag.destroy
+    if @recipe.destroy
+      #関連付いたレシピが存在しないタグを消去
+      @recipe.tags.each do |tag|
+        if tag.recipes.blank?
+          tag.destroy
+        end
       end
+      redirect_to my_recipe_path, notice: "マイレシピを削除しました"
+    else
+      redirect_to my_recipe_path, alert: "削除に失敗しました　もう一度お試しください"
     end
-    redirect_to my_recipe_path
   end
 
   def tag_search
     @tag     = Tag.find(params[:tag_id])
-    @recipes = @tag.recipes.open_sort.page(params[:page]).per(15)
-    @tags    = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
+    @recipes = @tag.recipes.open_sort.page(params[:page]).per(12)
+    @tags    = unique_tags(@recipes)
   end
 
   def recommend
@@ -95,15 +92,15 @@ class RecipesController < ApplicationController
   end
 
   def search
-    @results = @q.result.open_sort.page(params[:page]).per(15)
+    @results = @q.result.open_sort.page(params[:page]).per(12)
     @recipes = Recipe.where(is_open: true)
-    @tags = RecipeTag.joins(:tag).where(recipe_id: @recipes.pluck(:id)).select('tags.tag_name').distinct
+    @tags    = unique_tags(@recipes)
   end
 
   def my_search
-    @results = @q.result.order(created_at: :DESC).page(params[:page]).per(15)
+    @results    = @q.result.order(created_at: :DESC).page(params[:page]).per(12)
     @my_recipes = current_user.recipes.where(is_open: true)
-    @tags = RecipeTag.joins(:tag).where(recipe_id: @my_recipes.pluck(:id)).select('tags.tag_name').distinct
+    @tags       = unique_tags(@my_recipes)
   end
 
   private
@@ -170,7 +167,8 @@ class RecipesController < ApplicationController
   end
 
   def confirm_status
-    unless Recipe.find(params[:id]).is_open? || current_user.admin?
+    recipe = Recipe.find(params[:id])
+    if recipe.user_id != current_user.id && !recipe.is_open? && !current_user.admin?
       redirect_to recipes_path
     end
   end
