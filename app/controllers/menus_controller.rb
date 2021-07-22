@@ -1,5 +1,6 @@
 class MenusController < ApplicationController
 
+  before_action :confirm_user, only: [:edit, :update, :destroy]
   before_action :set_q
 
   def index
@@ -57,6 +58,12 @@ class MenusController < ApplicationController
 
   def set_q
     @q = Recipe.where(is_open: true).ransack(params[:q])
+  end
+
+  def confirm_user
+    unless Menu.find(params[:id]).user_id == current_user.id || current_user.admin?
+      redirect_to menus_path
+    end
   end
 end
 

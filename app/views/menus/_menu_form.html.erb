@@ -2,11 +2,6 @@
   <div class="d-flex menu-form">
     <p class="col-4">画像 <%= render "layouts/not_null_badge" %></p>
     <div class="menu-form">
-      <% if menu.errors.any? %>
-        <% menu.errors.full_messages.each do |message| %>
-          <p class="text-danger mb-2"><%= message %></p>
-        <% end %>
-      <% end %>
       <%= f.attachment_field :menu_image, placeholder: "ファイルを選択" %>
       <img id="menu-preview", class="my-3 col-8">
     </div>

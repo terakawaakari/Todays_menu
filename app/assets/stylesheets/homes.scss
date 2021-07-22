@@ -63,28 +63,24 @@
   align-items: center;
   justify-content: center;
 }
-
 #quarter_1 {
   top: 0px;
   right: 0px;
   background-color: #a5dff9;
   border-radius: 0 100% 0 0;
 }
-
 #quarter_2 {
   bottom: 0px;
   right: 0px;
   background-color: #ef5285;
   border-radius: 0 0 100% 0;
 }
-
 #quarter_3 {
   bottom: 0px;
   left: 0px;
   background-color: #60c5ba;
   border-radius: 0 0 0 100%;
 }
-
 #quarter_4 {
   top: 0px;
   left: 0px;
@@ -95,36 +91,28 @@
 .label1 {
   transform: rotate(45deg);
 }
-
 .label2 {
   transform: rotate(135deg);
 }
-
 .label3 {
   transform: rotate(225deg);
 }
-
 .label4 {
   transform: rotate(315deg);
 }
-
 .color {
   width: 20px;
   height: 20px;
 }
-
 .label1-color {
   background-color: #a5dff9;
 }
-
 .label2-color {
   background-color: #ef5285;
 }
-
 .label3-color {
   background-color: #60c5ba;
 }
-
 .label4-color {
   background-color: #feee7d;
 }

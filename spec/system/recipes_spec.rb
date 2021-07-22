@@ -117,11 +117,6 @@ describe 'レシピの保存・編集・削除のテスト' do
   it '正常に更新でき、レシピ詳細画面に遷移する' do
     visit edit_recipe_path(recipe)
     fill_in 'recipe[name]', with: 'メンチカツ'
-    click_on 'フォームを追加', match: :first
-    # fill_in 'recipe_ingredients_attributes_0_name', with: '玉ねぎ'
-    # fill_in 'recipe_ingredients_attributes_0_quantity', with: '1個'
-    # click_on 'フォームを追加', match: :smart
-    # fill_in 'recipe_directions_attributes_0_description', with: '作り方'
     click_button 'レシピを保存'
     expect(page).to have_content '変更しました'
     expect(current_path).to eq recipe_path(1)

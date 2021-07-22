@@ -1,7 +1,7 @@
 <div class="col-lg-8 col-md-12 bg-white p-5 border recipe-show-container">
 
   <h2 class="mb-4 d-inline-block"><%= @recipe.name %></h2>
-  <input type="button" value="レシピ詳細" onclick="clickBtn()" class="btn btn-sm btn-info ml-3">
+  <input type="button" value="詳細を見る &#xf0d7;" onclick="clickBtn()" id="detail-btn" class="ml-3 fas">
 
   <!--レシピの詳細情報　ボタンクリックで表示-->
   <div id="details" class="mb-4">
@@ -33,7 +33,7 @@
   <div class="d-flex ingredient">
     <div><%= attachment_image_tag @recipe, :recipe_image, size: '300x230', format:'jpeg', fallback: "no_image.png", class: "recipe-show-image" %></div>
     <!--材料-->
-    <% if @ingredient.present? %>
+    <% if @ingredients.present? %>
       <div class="ml-4 ingredient-table">
         <h4 class="d-inline-block">材料　</h4>
         <% if @recipe.serving? %>
@@ -60,7 +60,7 @@
     <% end %>
   </div>
   <!--作り方-->
-  <% if @direction.present? %>
+  <% if @directions.present? %>
     <div class="mt-5 direction">
       <h4>作り方</h4>
       <ol>
@@ -103,11 +103,14 @@ document.getElementById("details").style.display ="none";
 
 function clickBtn(){
 	const details = document.getElementById("details");
+	const detail_btn = document.getElementById("detail-btn");
 
 	if(details.style.display == "block"){
 		details.style.display = "none";
+		detail_btn.value = "詳細を見る ▼";
 	}else{
 		details.style.display = "block";
+		detail_btn.value = "詳細を閉じる ▲";
 	}
 }
 </script>
