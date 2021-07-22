@@ -3,7 +3,13 @@
     <p class="col-4">画像 <%= render "layouts/not_null_badge" %></p>
     <div class="menu-form">
       <%= f.attachment_field :menu_image, placeholder: "ファイルを選択" %>
-      <img id="menu-preview", class="my-3 col-8">
+      <!--登録画像があれば表示、ファイルがアップロードされたら画像を切り替え-->
+      <div id="menu-img-container"><img id="menu-preview" class="col-8"></div>
+      <% if menu.menu_image.present? %>
+        <div id="original-menu-img-container" class="img mb-3">
+          <%= attachment_image_tag menu, :menu_image, format:'jpeg', id: "original-menu-img", class: "col-8" %>
+        </div>
+      <% end %>
     </div>
   </div>
 
@@ -46,7 +52,10 @@
   $('#menu_menu_image').on('change', function (e) {
     var reader = new FileReader();
     reader.onload = function (e) {
+      $('#menu-img-container').addClass('img my-3');
+      $('#original-menu-img-container').removeClass('img');
       $("#menu-preview").attr('src', e.target.result);
+      $('#original-menu-img').css('display','none');
     }
     reader.readAsDataURL(e.target.files[0]);
   });
