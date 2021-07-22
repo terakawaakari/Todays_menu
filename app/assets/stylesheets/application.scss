@@ -80,7 +80,7 @@ main {
 
 // 検索フォーム
 .search-bg {
- background-color: rgba(255,255,255,0.6);
+ background-color: rgba(255,255,255,0.7);
 }
 
 // リンク
@@ -403,13 +403,8 @@ section {
 
  // レスポンシブレシピ詳細
  .recipe-show-container {
-  width: 90%;
   margin: 0 auto;
   padding: 10px!important;
- }
- .recipe-show-image {
-  width: 100%;
-  margin-top: 20px;
  }
  #details {
   margin-top: 20px;
@@ -423,13 +418,30 @@ section {
  .direction {
   margin-top: 20px!important;
  }
+ #recipe-container {
+  justify-content: center!important;
+  margin: 0 auto;
+ }
+
+ // レシピ画像表示サイズ
+ .recipe-box {
+  width: 100%;
+ }
+ .img {
+  width: 100%;
+  height: 220px;
+  }
+  .recipe-show-img {
+   width: 100%;
+   height: 240px;
+   margin-top: 20px;
+  }
 
  // 買い物リスト
  .flex-block {
   display: block!important;
  }
  .item-container {
-  width: 90%;
   margin: 0 auto;
   padding: 10px!important;
  }
@@ -487,19 +499,6 @@ section {
  // フォーム表示時のタイトル
  .recipe-form-title {
   margin-left: 0!important;
- }
-
-// レシピ表示サイズ
- #recipe-container {
-  justify-content: center!important;
-  margin: 0 auto;
- }
- .recipe-box {
-  width: 100%;
- }
- .recipe-image {
-  width: 100%;
-  height: auto;
  }
 
  // メニュー一覧
