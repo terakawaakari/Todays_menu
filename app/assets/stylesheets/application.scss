@@ -80,7 +80,7 @@ main {
 
 // 検索フォーム
 .search-bg {
- background-color: rgba(255,255,255,0.5);
+ background-color: rgba(255,255,255,0.6);
 }
 
 // リンク
@@ -108,6 +108,7 @@ a:hover {
 }
 
 // カスタマイズボタン
+// ブラウンボタン
 // 通常のボタン色
 .btn-brown,
 .btn-brown.disabled, .btn-brown:disabled {
@@ -115,14 +116,12 @@ a:hover {
   background-color: #d1b9b0;
   border-color: #d1b9b0;
 }
-
 // focus時の枠線の色
 .btn-brown:focus, .btn-brown.focus,
 .btn-brown:not(:disabled):not(.disabled):active:focus, .btn-brown:not(:disabled):not(.disabled).active:focus,
 .show > .btn-brown.dropdown-toggle:focus {
   box-shadow: 0 0 0 0.2rem #fff;
 }
-
 // hover時
 .btn-brown:hover {
   color: #fff;
@@ -130,13 +129,93 @@ a:hover {
   opacity: 0.8;
   border-color: #9E8C85;
 }
-
 // active時
 .btn-brown:not(:disabled):not(.disabled):active, .btn-brown:not(:disabled):not(.disabled).active,
 .show > .btn-brown.dropdown-toggle {
   color: #fff;
   background-color: #d1b9b0;
   border-color: #d1b9b0;
+}
+
+// グレーボタン
+// 通常のボタン色
+.btn-gray,
+.btn-gray.disabled, .btn-gray:disabled {
+  color: #fff;
+  background-color: #807E7A;
+  border-color: #807E7A;
+}
+// focus時の枠線の色
+.btn-gray:focus, .btn-gray.focus,
+.btn-gray:not(:disabled):not(.disabled):active:focus, .btn-gray:not(:disabled):not(.disabled).active:focus,
+.show > .btn-gray.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem #fff;
+}
+// hover時
+.btn-gray:hover {
+  color: #fff;
+  opacity: 0.9;
+}
+// active時
+.btn-gray:not(:disabled):not(.disabled):active, .btn-gray:not(:disabled):not(.disabled).active,
+.show > .btn-gray.dropdown-toggle {
+  color: #fff;
+  background-color: #807E7A;
+  border-color: #807E7A;
+}
+
+// バイオレットボタン
+// 通常のボタン色
+.btn-violet,
+.btn-violet.disabled, .btn-violet:disabled {
+  color: #fff;
+  background-color: #8895B3;
+  border-color: #8895B3;
+}
+// focus時の枠線の色
+.btn-violet:focus, .btn-violet.focus,
+.btn-violet:not(:disabled):not(.disabled):active:focus, .btn-violet:not(:disabled):not(.disabled).active:focus,
+.show > .btn-violet.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem #fff;
+}
+// hover時
+.btn-violet:hover {
+  color: #fff;
+  opacity: 0.9;
+}
+// active時
+.btn-violet:not(:disabled):not(.disabled):active, .btn-violet:not(:disabled):not(.disabled).active,
+.show > .btn-violet.dropdown-toggle {
+  color: #fff;
+  background-color: #8895B3;
+  border-color: #8895B3;
+}
+
+// レッドボタン
+// 通常のボタン色
+.btn-red,
+.btn-red.disabled, .btn-red:disabled {
+  color: #fff;
+  background-color: #DE4D26;
+  border-color: #DE4D26;
+}
+// focus時の枠線の色
+.btn-red:focus, .btn-red.focus,
+.btn-red:not(:disabled):not(.disabled):active:focus, .btn-red:not(:disabled):not(.disabled).active:focus,
+.show > .btn-red.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem #fff;
+}
+// hover時
+.btn-red:hover {
+  color: #fff;
+  opacity: 0.9;
+}
+// active時
+.btn-red:not(:disabled):not(.disabled):active, .btn-red:not(:disabled):not(.disabled).active,
+.show > .btn-red.dropdown-toggle {
+  color: #fff;
+  background-color: #f44336;
+  border-color: #f44336;
 }
 
 // ページネーション
