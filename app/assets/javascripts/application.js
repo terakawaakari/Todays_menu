@@ -87,3 +87,23 @@ $(document).on('turbolinks:load', function () {
   });
 });
 
+// レシピの表示切り替え
+window.onload = function() {
+  document.getElementById("recipe-table").style.display = "none";
+  $(document).on("click",'.display-btn',function(){
+    const recipe_table = document.getElementById("recipe-table");
+  	const recipe_box   = document.getElementById("recipe-box");
+  	const display_icon = document.getElementById("display-icon");
+  	if(recipe_table.style.display == "block"){
+  		recipe_table.style.display = "none";
+  		recipe_box.style.display = "block";
+  		display_icon.classList.add('fa-list');
+  	  display_icon.classList.remove('fa-th-large');
+  	}else{
+  		recipe_table.style.display = "block";
+      recipe_box.style.cssText += 'display: none !important;';
+      display_icon.classList.add('fa-th-large');
+  	  display_icon.classList.remove('fa-list');
+  	}
+  });
+}
