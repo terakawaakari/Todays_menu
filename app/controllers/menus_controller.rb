@@ -18,11 +18,13 @@ class MenusController < ApplicationController
   end
 
   def new
+    @recipes = current_user.recipes
     @menu = current_user.menus.new
     @menu_recipes = @menu.menu_recipes.new
   end
 
   def create
+    @recipes = current_user.recipes
     @menu = current_user.menus.new(menu_params)
     if @menu.save
       redirect_to menus_path, notice: "マイメニューを保存しました"
@@ -49,6 +51,15 @@ class MenusController < ApplicationController
     menu = Menu.find(params[:id])
     menu.destroy
     redirect_to menus_path
+  end
+
+  def search
+    @recipes = current_user.recipes.where('name LIKE(?)', "%#{params[:name]}%")
+    respond_to do |format|
+      format.html { redirect_to :root }
+      # ↓検索結果のデータをレスポンスするコード
+      format.json { render json: @recipes }
+    end
   end
 
   private

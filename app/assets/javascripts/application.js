@@ -59,3 +59,31 @@ $(document).on('turbolinks:load', function(){
     e.preventDefault();
   });
 });
+
+// インクリメンタルサーチ
+$(document).on('turbolinks:load', function () {
+  $('.js-recipes a').remove();
+  $(function () {
+    $('.js-text_field').on('keyup', function () {
+      var name = $.trim($(this).val());
+      $.ajax({
+        type: 'GET',
+        url: '/menu_recipe_search',
+        data: { name: name },
+        dataType: 'json'
+      })
+      .done(function (data) {
+        $(data).each(function (i, recipe) {
+          $('.js-recipes').append(`<a class="recipe d-inline-block">${recipe.name}</a>`);
+          $('.recipe').on('click', function() {
+          // $(this).blur();
+          // var recipe = $(this).text();
+          // $("#menu_menu_recipes_attributes_0_recipe").val(recipe.name)
+          $('#menu_menu_recipes_attributes_0_recipe_id').val(recipe.id)
+          });
+        });
+      });
+    });
+  });
+});
+

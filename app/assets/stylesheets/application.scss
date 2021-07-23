@@ -352,6 +352,19 @@ section {
   padding-top: 90px!important;
  }
 
+ // レスポンシブ検索フォーム
+ #search-form {
+  position: fixed;
+  top: 66px;
+  left: 0;
+  width: 100%;
+  background-color: #fffcf5;
+  max-height: 90vh;
+  display: none;
+  overflow-y: scroll;
+  padding-bottom: 100px!important;
+ }
+
  // ページタイトル
  .page_title {
   // margin-top: 30px;
@@ -504,20 +517,6 @@ section {
  // メニュー一覧
  .menus-title {
   display: block!important;
- }
-
-
-// レスポンシブ検索フォーム
- #search-form {
-  position: fixed;
-  top: 66px;
-  left: 0;
-  width: 100%;
-  background-color: #fffcf5;
-  min-height: 90vh;
-  display: none;
-  z-index: 9;
-  overflow-y: scroll;
  }
 
 // タグ検索

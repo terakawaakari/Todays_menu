@@ -1,6 +1,10 @@
 <div class="nested-fields">
   <div class="d-flex mb-2">
+    <%#= text_field_tag :recipe, '',class: 'js-text_field form-control form-control-sm', placeholder: 'マイレシピを入力してください' %>
     <%= f.collection_select :recipe_id, current_user.recipes, :id, :name, { prompt: "レシピを選択" }, {class: "form-control form-control-sm"} %>
     <%= link_to_remove_association "#{icon "fas", "trash-alt"}".html_safe, f, class: "js-log-remove-btn ml-2 violet" %>
   </div>
+  <!--<div class="js-recipes">-->
+  <!--  <%#= render @recipes %>-->
+  <!--</div>-->
 </div>
