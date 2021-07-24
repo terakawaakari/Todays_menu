@@ -61,31 +61,37 @@ $(document).on('turbolinks:load', function(){
 });
 
 // インクリメンタルサーチ
-$(document).on('turbolinks:load', function () {
-  $('.js-recipes a').remove();
-  $(function () {
-    $('.js-text_field').on('keyup', function () {
-      var name = $.trim($(this).val());
-      $.ajax({
-        type: 'GET',
-        url: '/menu_recipe_search',
-        data: { name: name },
-        dataType: 'json'
-      })
-      .done(function (data) {
-        $(data).each(function (i, recipe) {
-          $('.js-recipes').append(`<a class="recipe d-inline-block">${recipe.name}</a>`);
-          $('.recipe').on('click', function() {
-          // $(this).blur();
-          // var recipe = $(this).text();
-          // $("#menu_menu_recipes_attributes_0_recipe").val(recipe.name)
-          $('#menu_menu_recipes_attributes_0_recipe_id').val(recipe.id)
-          });
+function add_form(){
+ //  $('.js-recipes a').remove();
+  $('.js-text_field').off('change')
+  $('.js-text_field').on('change', function () {
+    var name = $.trim($(this).val());
+    if (!name){
+      return
+    }
+    var text_field = $(this)
+
+    $.ajax({
+      type: 'GET',
+      url: '/menu_recipe_search',
+      data: { name: name },
+      dataType: 'json'
+    })
+    .done(function (data) {
+      $(data).each(function (i, recipe) {
+        var js_recipes = text_field.parent().parent().find('.js-recipes')
+        js_recipes.empty()
+        js_recipes.append(`<a class="recipe d-inline-block">${recipe.name}</a>`);
+        $('.recipe').on('click', function() {
+        // $(this).blur();
+        // var recipe = $(this).text();
+        // $("#menu_menu_recipes_attributes_0_recipe").val(recipe.name)
+          $(this).parent().parent().find('select').val(recipe.id)
         });
       });
     });
   });
-});
+}
 
 // レシピの表示切り替え
 window.onload = function() {
