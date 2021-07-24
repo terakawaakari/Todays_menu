@@ -3,7 +3,7 @@
 
   <%= render "recipes/tag_list", tags: @tags %>
 
-  <div class="d-flex flex-wrap mt-4 justify-content-between" id="recipe-container">
+  <div class="d-flex flex-wrap mt-4 justify-content-between" id="bookmark-box">
     <% if @bookmarks.present? %>
 
       <% @bookmarks.each do |bookmark| %>
@@ -42,5 +42,6 @@
     <% end %>
   </div>
 
+  <%= render "bookmark_table", bookmarks: @bookmarks %>
   <div class="d-table mx-auto mt-3"><%= paginate @bookmarks %></div>
 </div>
