@@ -59,3 +59,57 @@ $(document).on('turbolinks:load', function(){
     e.preventDefault();
   });
 });
+
+// インクリメンタルサーチ
+function add_form(){
+ //  $('.js-recipes a').remove();
+  $('.js-text_field').off('change')
+  $('.js-text_field').on('change', function () {
+    var name = $.trim($(this).val());
+    if (!name){
+      return
+    }
+    var text_field = $(this)
+
+    $.ajax({
+      type: 'GET',
+      url: '/menu_recipe_search',
+      data: { name: name },
+      dataType: 'json'
+    })
+    .done(function (data) {
+      $(data).each(function (i, recipe) {
+        var js_recipes = text_field.parent().parent().find('.js-recipes')
+        js_recipes.empty()
+        js_recipes.append(`<a class="recipe d-inline-block">${recipe.name}</a>`);
+        $('.recipe').on('click', function() {
+        // $(this).blur();
+        // var recipe = $(this).text();
+        // $("#menu_menu_recipes_attributes_0_recipe").val(recipe.name)
+          $(this).parent().parent().find('select').val(recipe.id)
+        });
+      });
+    });
+  });
+}
+
+// レシピの表示切り替え
+window.onload = function() {
+  document.getElementById("recipe-table").style.display = "none";
+  $(document).on("click",'.display-btn',function(){
+    const recipe_table = document.getElementById("recipe-table");
+  	const recipe_box   = document.getElementById("recipe-box");
+  	const display_icon = document.getElementById("display-icon");
+  	if(recipe_table.style.display == "block"){
+  		recipe_table.style.display = "none";
+  		recipe_box.style.display = "block";
+  		display_icon.classList.add('fa-list');
+  	  display_icon.classList.remove('fa-th-large');
+  	}else{
+  		recipe_table.style.display = "block";
+      recipe_box.style.cssText += 'display: none !important;';
+      display_icon.classList.add('fa-th-large');
+  	  display_icon.classList.remove('fa-list');
+  	}
+  });
+}

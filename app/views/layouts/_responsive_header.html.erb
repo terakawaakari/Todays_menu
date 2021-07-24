@@ -28,10 +28,10 @@
           <ul>
             <li class="r-side-bg shadow-sm">
               <h3 class="py-2 text-white px-3 shadow-sm side-title"><i class="fas fa-book mr-2"></i>レシピ</h3>
-              <p class="pt-2"><%= link_to "タイムライン", recipes_path %></p>
-              <p><%= link_to "マイレシピ", my_recipe_path %></p>
+              <p class="pt-2"><%= link_to "タイムライン", recipes_path, 'data-turbolinks': false %></p>
+              <p><%= link_to "マイレシピ", my_recipe_path, 'data-turbolinks': false %></p>
               <p><%= link_to "マイレシピ追加", new_recipe_path, 'data-turbolinks': false %></p>
-              <p><%= link_to "ブックマーク", user_bookmarks_path(current_user) %></p>
+              <p><%= link_to "ブックマーク", user_bookmarks_path(current_user), 'data-turbolinks': false %></p>
             </li>
 
             <li class="r-side-bg shadow-sm">

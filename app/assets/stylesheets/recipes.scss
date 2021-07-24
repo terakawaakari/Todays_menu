@@ -12,7 +12,7 @@
 // レシピ詳細表示ボタン
 #detail-btn {
   margin: 0 auto;
-  padding: 0.5rem 1.0rem;
+  padding: 0.3rem 1.0rem;
   font-size: 14px;
   background-color: #8895B3;
   border-radius: 3px;
@@ -23,6 +23,17 @@
   background-color: #7784A2;
 }
 
+// 表示切り替えボタン
+.display-btn {
+  padding: 0.3rem 1.0rem;
+  font-size: 20px;
+  background-color: #8895B3;
+  border-radius: 3px;
+  border: none;
+  color: white;
+}
+
+// 一覧画面の画像サイズ
 .img {
 width: 100%;
 height: 260px;
@@ -34,7 +45,25 @@ height: 100%;
 object-fit: cover;
 }
 
+// 詳細表示の画像サイズ
 .recipe-show-img {
   width: 300px;
   height: 230px;
+}
+
+// 表形式でレシピを表示するときの画像サイズ
+.table-recipe-img {
+  width: 200px;
+  height: 150px;
+}
+.table-recipe-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.table-border td{
+  border-top: 1px solid #dee2e6 !important;
+}
+.table-border tbody:first-child td {
+  border: none!important;
 }
