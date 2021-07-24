@@ -90,46 +90,50 @@ function add_form(){
 }
 
 // レシピの表示切り替え
-window.onload = function() {
-  document.getElementById("recipe-table").style.display = "none";
-  $(document).on("click",'.display-btn',function(){
-    const recipe_table = document.getElementById("recipe-table");
-  	const recipe_box   = document.getElementById("recipe-box");
-  	const display_icon = document.getElementById("display-icon");
-  	if(recipe_table.style.display == "block"){
-  		recipe_table.style.display = "none";
-  		recipe_box.style.display = "block";
-  		display_icon.classList.add('fa-list');
-  	  display_icon.classList.remove('fa-th-large');
-  	}else{
-  		recipe_table.style.display = "block";
-      recipe_box.style.cssText += 'display: none !important;';
-      display_icon.classList.add('fa-th-large');
-  	  display_icon.classList.remove('fa-list');
-  	}
+// window.onload = function() {
+  $(document).on('turbolinks:load', function(){
+      document.getElementById("recipe-table").style.display = "none";
+      $(document).on("click",'.display-btn',function(){
+        const recipe_table = document.getElementById("recipe-table");
+      	const recipe_box   = document.getElementById("recipe-box");
+      	const display_icon = document.getElementById("display-icon");
+      	if(recipe_table.style.display == "block"){
+      		recipe_table.style.display = "none";
+      		recipe_box.style.display = "block";
+      		display_icon.classList.add('fa-list');
+      	  display_icon.classList.remove('fa-th-large');
+      	}else{
+      		recipe_table.style.display = "block";
+          recipe_box.style.cssText += 'display: none !important;';
+          display_icon.classList.add('fa-th-large');
+      	  display_icon.classList.remove('fa-list');
+      	}
+      });
   });
-}
+// }
 
 // ブックマークレシピの表示切り替え
-window.onload = function() {
-  document.getElementById("bookmark-table").style.display = "none";
-  $(document).on("click",'.display-btn',function(){
-    const recipe_table = document.getElementById("bookmark-table");
-  	const recipe_box   = document.getElementById("bookmark-box");
-  	const display_icon = document.getElementById("display-icon");
-  	if(recipe_table.style.display == "block"){
-  		recipe_table.style.display = "none";
-  		recipe_box.style.display = "block";
-  		display_icon.classList.add('fa-list');
-  	  display_icon.classList.remove('fa-th-large');
-  	}else{
-  		recipe_table.style.display = "block";
-      recipe_box.style.cssText += 'display: none !important;';
-      display_icon.classList.add('fa-th-large');
-  	  display_icon.classList.remove('fa-list');
-  	}
+// window.onload = function() {
+  $(document).on('turbolinks:load', function(){
+    document.getElementById("bookmark-table").style.display = "none";
+    $(document).on("click",'.display-btn',function(){
+      const recipe_table = document.getElementById("bookmark-table");
+    	const recipe_box   = document.getElementById("bookmark-box");
+    	const display_icon = document.getElementById("display-icon");
+    	if(recipe_table.style.display == "block"){
+    		recipe_table.style.display = "none";
+    		recipe_box.style.display = "block";
+    		display_icon.classList.add('fa-list');
+    	  display_icon.classList.remove('fa-th-large');
+    	}else{
+    		recipe_table.style.display = "block";
+        recipe_box.style.cssText += 'display: none !important;';
+        display_icon.classList.add('fa-th-large');
+    	  display_icon.classList.remove('fa-list');
+    	}
+    });
   });
-}
+// }
 
 // ルーレット
 $(document).on('turbolinks:load', function(){
@@ -160,3 +164,24 @@ $(document).on('turbolinks:load', function(){
     }
   });
 });
+
+// レシピ詳細表示の切り替え
+// window.onload = function(){
+  $(document).on('turbolinks:load', function(){
+    document.getElementById("details").style.display ="none";
+    $('#detail-btn').on('click', function(){
+    	const details = document.getElementById("details");
+    	const detail_btn = document.getElementById("detail-btn");
+    	const detail_icon = document.getElementById("detail-icon");
+    	if(details.style.display == "block"){
+    		details.style.display = "none";
+    	  detail_icon.classList.add('fa-caret-down');
+    	  detail_icon.classList.remove('fa-caret-up');
+    	}else{
+    		details.style.display = "block";
+    		detail_icon.classList.add('fa-caret-up');
+    		detail_icon.classList.remove('fa-caret-down');
+    	}
+    });
+  });
+// }

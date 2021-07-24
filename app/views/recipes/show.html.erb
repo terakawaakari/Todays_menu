@@ -2,7 +2,7 @@
   <div class="bg-white p-5 border recipe-show-container">
 
     <h2 class="mb-4 d-inline-block"><%= @recipe.name %></h2>
-    <button type="button" onclick="clickBtn()" id="detail-btn" class="ml-3">
+    <button type="button" id="detail-btn" class="ml-3">
       レシピ詳細<i class="fas ml-2 fa-caret-down" id="detail-icon"></i>
     </button>
     <!--レシピの詳細情報　ボタンクリックで表示-->
@@ -99,25 +99,6 @@
     <div id="recommend"></div>
   </div>
 </div>
-
-<!--レシピ詳細の表示切り替え-->
-<script>
-document.getElementById("details").style.display ="none";
-function clickBtn(){
-	const details = document.getElementById("details");
-	const detail_btn = document.getElementById("detail-btn");
-	const detail_icon = document.getElementById("detail-icon");
-	if(details.style.display == "block"){
-		details.style.display = "none";
-	  detail_icon.classList.add('fa-caret-down');
-	  detail_icon.classList.remove('fa-caret-up');
-	}else{
-		details.style.display = "block";
-		detail_icon.classList.add('fa-caret-up');
-		detail_icon.classList.remove('fa-caret-down');
-	}
-}
-</script>
 
 <!--人気度の表示-->
 <script>
