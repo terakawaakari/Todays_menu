@@ -130,3 +130,33 @@ window.onload = function() {
   	}
   });
 }
+
+// ルーレット
+$(document).on('turbolinks:load', function(){
+  var rotate = $("#circle");
+  var roulette;
+  var count = 0;
+
+  $('#start').on('click', function start() {
+    const button = document.getElementById("start");
+    button.disabled = true
+    roulette = setInterval(function(){
+      count++;
+      if(count > 360){
+        count = 0;
+      }else{
+        rotate.css({ transform: "rotate("+ count*100+"deg)" });
+      }
+    }, 100);
+  });
+
+  $('#stop').on('click',function stop() {
+    const button = document.getElementById("start");
+    const stop_button = document.getElementById("stop");
+    button.disabled = false
+    if(roulette) {
+      clearInterval(roulette);
+      stop_button.blur();
+    }
+  });
+});
