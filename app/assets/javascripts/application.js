@@ -18,10 +18,11 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
-//= require_tree .
 //= require cocoon
 //= require jquery.raty.js
+//= require_tree .
 
+/*global $ */
 
 // レスポンシブ検索フォーム
 $(document).on('turbolinks:load', function(){
@@ -92,6 +93,7 @@ function add_form(){
 // レシピの表示切り替え
 // window.onload = function() {
   $(document).on('turbolinks:load', function(){
+      if (!document.getElementById("recipe-table")) return
       document.getElementById("recipe-table").style.display = "none";
       $(document).on("click",'.display-btn',function(){
         const recipe_table = document.getElementById("recipe-table");
@@ -115,6 +117,7 @@ function add_form(){
 // ブックマークレシピの表示切り替え
 // window.onload = function() {
   $(document).on('turbolinks:load', function(){
+    if (!document.getElementById("bookmark-table")) return
     document.getElementById("bookmark-table").style.display = "none";
     $(document).on("click",'.display-btn',function(){
       const recipe_table = document.getElementById("bookmark-table");
@@ -168,6 +171,7 @@ $(document).on('turbolinks:load', function(){
 // レシピ詳細表示の切り替え
 // window.onload = function(){
   $(document).on('turbolinks:load', function(){
+    if (!document.getElementById("details")) return
     document.getElementById("details").style.display ="none";
     $('#detail-btn').on('click', function(){
     	const details = document.getElementById("details");
@@ -185,3 +189,33 @@ $(document).on('turbolinks:load', function(){
     });
   });
 // }
+
+// メニュー画像のプレビュー表示
+$(document).on('turbolinks:load', function(){
+  if (!document.getElementById("menu_menu_image")) return
+  $('#menu_menu_image').on('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $('#menu-img-container').addClass('img my-3');
+      $('#original-menu-img-container').removeClass('img');
+      $("#menu-preview").attr('src', e.target.result);
+      $('#original-menu-img').css('display','none');
+    }
+    reader.readAsDataURL(e.target.files[0]);
+  });
+});
+
+// レシピ画像のプレビュー表示
+$(document).on('turbolinks:load', function(){
+  if (!document.getElementById("recipe_recipe_image")) return
+  $('#recipe_recipe_image').on('change', function (e) {
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      $('#img-container').addClass('img my-3');
+      $('#original-img-container').removeClass('img');
+      $("#recipe-preview").attr('src', e.target.result);
+      $('#original-img').css('display','none');
+    }
+    reader.readAsDataURL(e.target.files[0]);
+  });
+});
