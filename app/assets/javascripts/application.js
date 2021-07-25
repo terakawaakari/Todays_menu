@@ -96,9 +96,9 @@ function add_form(){
       if (!document.getElementById("recipe-table")) return
       document.getElementById("recipe-table").style.display = "none";
       $(document).on("click",'.display-btn',function(){
-        const recipe_table = document.getElementById("recipe-table");
-      	const recipe_box   = document.getElementById("recipe-box");
-      	const display_icon = document.getElementById("display-icon");
+        var recipe_table = document.getElementById("recipe-table");
+      	var recipe_box   = document.getElementById("recipe-box");
+      	var display_icon = document.getElementById("display-icon");
       	if(recipe_table.style.display == "block"){
       		recipe_table.style.display = "none";
       		recipe_box.style.display = "block";
@@ -120,9 +120,9 @@ function add_form(){
     if (!document.getElementById("bookmark-table")) return
     document.getElementById("bookmark-table").style.display = "none";
     $(document).on("click",'.display-btn',function(){
-      const recipe_table = document.getElementById("bookmark-table");
-    	const recipe_box   = document.getElementById("bookmark-box");
-    	const display_icon = document.getElementById("display-icon");
+      var recipe_table = document.getElementById("bookmark-table");
+    	var recipe_box   = document.getElementById("bookmark-box");
+    	var display_icon = document.getElementById("display-icon");
     	if(recipe_table.style.display == "block"){
     		recipe_table.style.display = "none";
     		recipe_box.style.display = "block";
@@ -174,9 +174,9 @@ $(document).on('turbolinks:load', function(){
     if (!document.getElementById("details")) return
     document.getElementById("details").style.display ="none";
     $('#detail-btn').on('click', function(){
-    	const details = document.getElementById("details");
-    	const detail_btn = document.getElementById("detail-btn");
-    	const detail_icon = document.getElementById("detail-icon");
+    	var details = document.getElementById("details");
+    	var detail_btn = document.getElementById("detail-btn");
+    	var detail_icon = document.getElementById("detail-icon");
     	if(details.style.display == "block"){
     		details.style.display = "none";
     	  detail_icon.classList.add('fa-caret-down');
