@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :menus
   get 'calendar'  => 'menus#calendar'
   get 'menu_sort' => 'menus#menu_sort'
+  get 'menu_recipe_search' => 'menus#search', defaults: { format: :json }
 
   resources :tags do
     get 'search' => 'recipes#tag_search'

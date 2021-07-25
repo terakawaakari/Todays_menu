@@ -48,6 +48,12 @@ main {
 .r-head {
  margin-botton: 30px;
 }
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-toggle::after {
+ border: none;
+}
 
 // 未ログイン時のレスポンシブヘッダー
 .sub-header {
@@ -352,6 +358,19 @@ section {
   padding-top: 90px!important;
  }
 
+ // レスポンシブ検索フォーム
+ #search-form {
+  position: fixed;
+  top: 66px;
+  left: 0;
+  width: 100%;
+  background-color: #fffcf5;
+  max-height: 90vh;
+  display: none;
+  overflow-y: scroll;
+  padding-bottom: 100px!important;
+ }
+
  // ページタイトル
  .page_title {
   // margin-top: 30px;
@@ -437,6 +456,17 @@ section {
    margin-top: 20px;
   }
 
+  // 表形式でレシピを表示するときの画像サイズ
+ .table-recipe-img {
+   width: 120px;
+   height: 100px;
+ }
+ .table-recipe-img img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+ }
+
  // 買い物リスト
  .flex-block {
   display: block!important;
@@ -504,20 +534,6 @@ section {
  // メニュー一覧
  .menus-title {
   display: block!important;
- }
-
-
-// レスポンシブ検索フォーム
- #search-form {
-  position: fixed;
-  top: 66px;
-  left: 0;
-  width: 100%;
-  background-color: #fffcf5;
-  min-height: 90vh;
-  display: none;
-  z-index: 9;
-  overflow-y: scroll;
  }
 
 // タグ検索

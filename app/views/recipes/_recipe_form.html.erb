@@ -129,21 +129,7 @@
     starHalf: "<%= asset_path("star-half.png") %>",
     half: true,
     readOnly: false,
-    score: <%= recipe.popularity %>,
+    // score: "<%#= recipe.popularity %>"",
     scoreName: "recipe[popularity]"
-  });
-</script>
-
-<!--画像のプレビュー表示-->
-<script>
-  $('#recipe_recipe_image').on('change', function (e) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      $('#img-container').addClass('img my-3');
-      $('#original-img-container').removeClass('img');
-      $("#recipe-preview").attr('src', e.target.result);
-      $('#original-img').css('display','none');
-    }
-    reader.readAsDataURL(e.target.files[0]);
   });
 </script>

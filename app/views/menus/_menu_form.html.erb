@@ -36,7 +36,7 @@
       <% end %>
       <!--マイレシピから選択フォームの追加ボタン-->
       <div class="mb-3">
-        <%= link_to_add_association "+フォームを追加", f, :menu_recipes, class: "btn btn-sm btn-gray rounded-pill" %>
+        <%= link_to_add_association "+フォームを追加", f, :menu_recipes, class: "btn btn-sm btn-gray rounded-pill", id:"form-add-btn" %>
       </div>
     </div>
   </div>
@@ -47,17 +47,5 @@
   </div>
 <% end %>
 
-<!--画像のプレビュー表示-->
-<script>
-  $('#menu_menu_image').on('change', function (e) {
-    var reader = new FileReader();
-    reader.onload = function (e) {
-      $('#menu-img-container').addClass('img my-3');
-      $('#original-menu-img-container').removeClass('img');
-      $("#menu-preview").attr('src', e.target.result);
-      $('#original-menu-img').css('display','none');
-    }
-    reader.readAsDataURL(e.target.files[0]);
-  });
-</script>
+
 

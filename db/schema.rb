@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_08_061535) do
+ActiveRecord::Schema.define(version: 2021_07_25_025958) do
 
   create_table "bookmarks", force: :cascade do |t|
     t.integer "recipe_id", null: false
@@ -82,6 +82,12 @@ ActiveRecord::Schema.define(version: 2021_07_08_061535) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["id"], name: "index_recipes_on_id", unique: true
+  end
+
+  create_table "roulettes", force: :cascade do |t|
+    t.string "dish", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "tags", force: :cascade do |t|
