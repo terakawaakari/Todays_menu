@@ -158,8 +158,8 @@ $(document).on('turbolinks:load', function(){
   });
 
   $('#stop').on('click',function stop() {
-    const button = document.getElementById("start");
-    const stop_button = document.getElementById("stop");
+    var button = document.getElementById("start");
+    var stop_button = document.getElementById("stop");
     button.disabled = false
     if(roulette) {
       clearInterval(roulette);
