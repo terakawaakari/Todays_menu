@@ -145,7 +145,7 @@ $(document).on('turbolinks:load', function(){
   var count = 0;
 
   $('#start').on('click', function start() {
-    const button = document.getElementById("start");
+    var button = document.getElementById("start");
     button.disabled = true
     roulette = setInterval(function(){
       count++;
