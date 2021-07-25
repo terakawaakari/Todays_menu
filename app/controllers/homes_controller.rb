@@ -6,6 +6,11 @@ class HomesController < ApplicationController
   end
 
   def roulette
+    @dish1 = Roulette.all.sample.dish
+    @dish2 = Roulette.where.not(dish: @dish1).sample.dish
+    @dish3 = Roulette.where.not(dish: @dish1).where.not(dish: @dish2).sample.dish
+    @dish4 = Roulette.where.not(dish: @dish1).where.not(dish: @dish2).where.not(dish: @dish3).sample.dish
+
     if params[:label1].blank?
       @label1 = params[:h_label1]
     else
