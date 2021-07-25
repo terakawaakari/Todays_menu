@@ -14,7 +14,7 @@
           <div class="d-block d-md-none"><%= render "recipes/responsive_search", title: "レシピ検索", q: @q %></div>
         <% end %>
         <!--タイトル-->
-        <a class="navbar-brand mx-auto" href="/recipes"><%= image_tag "dish-S.png", size: "30x40", class: "pb-1" %><h5 class="d-inline-block text-light ml-2">Today's menu</h5></a>
+        <a class="navbar-brand mx-auto" href="/"><%= image_tag "dish-S.png", size: "30x40", class: "pb-1" %><h5 class="d-inline-block text-light ml-2">Today's menu</h5></a>
         <!--ハンバーガーアイコン-->
         <div id="hm-icon">
           <a class="menu-trigger" href="#">
@@ -30,7 +30,7 @@
               <h3 class="py-2 text-white px-3 shadow-sm side-title"><i class="fas fa-book mr-2"></i>レシピ</h3>
               <p class="pt-2"><%= link_to "タイムライン", recipes_path %></p>
               <p><%= link_to "マイレシピ", my_recipe_path %></p>
-              <p><%= link_to "マイレシピ追加", new_recipe_path, 'data-turbolinks': false %></p>
+              <p><%= link_to "マイレシピ追加", new_recipe_path %></p>
               <p><%= link_to "ブックマーク", user_bookmarks_path(current_user) %></p>
             </li>
 
@@ -38,7 +38,7 @@
               <h3 class="text-white px-3 py-2 pb-2 shadow-sm side-title"><i class="fas fa-utensils mr-2"></i>メニュー</h3>
               <p class="pt-2"><%= link_to "カレンダー", calendar_path %></p>
               <p><%= link_to "マイメニュー一覧", menus_path %></p>
-              <p><%= link_to "マイメニュー追加", new_menu_path, 'data-turbolinks': false %></p>
+              <p><%= link_to "マイメニュー追加", new_menu_path %></p>
             </li>
 
             <li class="r-side-bg shadow-sm">
