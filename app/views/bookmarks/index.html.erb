@@ -36,12 +36,12 @@
           <% end %>
         </div>
       <% end %>
+      <%= render "bookmark_table", bookmarks: @bookmarks %>
 
     <% else %>
       <h3 class="d-table mx-auto mt-5">ブックマークしたレシピはありません</h3>
     <% end %>
   </div>
 
-  <%= render "bookmark_table", bookmarks: @bookmarks %>
   <div class="d-table mx-auto mt-3"><%= paginate @bookmarks %></div>
 </div>
