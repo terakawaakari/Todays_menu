@@ -328,9 +328,7 @@ section {
  list-style: none;
 }
 #navigation a {
-  // color: #fff;
   text-decoration: none;
-  // font-weight: bold;
 }
 
 // 検索
@@ -461,7 +459,7 @@ section {
   // 表形式でレシピを表示するときの画像サイズ
  .table-recipe-img {
    width: 120px;
-   height: 100px;
+   height: 120px;
  }
  .table-recipe-img img {
    width: 100%;
