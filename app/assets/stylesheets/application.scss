@@ -32,7 +32,8 @@ body {
 
 main {
  // font-family: Lato,Hiragino Kaku Gothic ProN,Yu Gothic,Noto Sans CJK JP,Hiragino Sans,sans-serif;
- font-family: YuGothic,Arial,Roboto,Droid Sans,ProN,Hiragino Kaku Gothic ProN,Meiryo,sans-serif;
+ // font-family: YuGothic,Arial,Roboto,Droid Sans,ProN,Hiragino Kaku Gothic ProN,Meiryo,sans-serif;
+ // font-family: "秀英丸ゴシック B", "Shuei MaruGo B", YuGothic, "Yu Gothic", 游ゴシック, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
 }
 
 // カラー
@@ -61,7 +62,7 @@ main {
  width: 100%;
  background-color: #d1b9b0;
  position: fixed;
- top: 66px;
+ top: 61.72px;
  z-index: 10;
 }
 
@@ -304,7 +305,7 @@ footer {
 // スライドバー
 section {
   position: fixed;
-  top: 66px;
+  top: 61.72px;
   right: 0;
   width: 0%;
   height: 90vh;
@@ -352,7 +353,7 @@ section {
 @media (max-width: 767px) {
 
  body {
-  padding-top: 66px;
+  padding-top: 61.72px;
  }
 
  .subheader-padding {
@@ -362,7 +363,7 @@ section {
  // レスポンシブ検索フォーム
  #search-form {
   position: fixed;
-  top: 66px;
+  top: 61.72px;
   left: 0;
   width: 100%;
   background-color: #fffcf5;

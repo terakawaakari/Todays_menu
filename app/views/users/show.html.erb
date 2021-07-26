@@ -13,11 +13,19 @@
       </tr>
       <tr>
         <th class="col-4 pl-5">生年月日</th>
-        <td><%= current_user.birth_date.strftime("%Y年%-m月%-d日") %></td>
+        <% if current_user.birth_date.present? %>
+          <td><%= current_user.birth_date.strftime("%Y年%-m月%-d日") %></td>
+        <% else %>
+          <td>未登録</td>
+        <% end %>
       </tr>
       <tr>
         <th class="col-4 pl-5">性別</th>
-        <td><%= current_user.sex %></td>
+        <% if current_user.sex.present? %>
+          <td><%= current_user.sex %></td>
+        <% else %>
+          <td>未登録</td>
+        <% end %>
       </tr>
       <tr>
         <th class="col-4 pl-5">メールアドレス</th>
