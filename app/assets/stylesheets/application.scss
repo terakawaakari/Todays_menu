@@ -66,7 +66,7 @@ main {
  width: 100%;
  background-color: #d1b9b0;
  position: fixed;
- top: 61.72px;
+ top: 61.27px;
  z-index: 10;
 }
 
@@ -112,6 +112,7 @@ a:hover {
  background-image: image-url("title_bg.png");
  background-size: contain;
  background-position: center;
+ font-family: "秀英丸ゴシック B", "Shuei MaruGo B", YuGothic, "Yu Gothic", 游ゴシック, "ヒラギノ角ゴ Pro W3";
 }
 
 // 必須入力バッチの色
@@ -244,6 +245,10 @@ a:hover {
   background-color: #d1b9b0;
 }
 
+.edit-title {
+ margin: 40px 0!important;
+}
+
 // フッターを最下部に固定
 body{
   min-height: 100vh;
@@ -310,7 +315,7 @@ footer {
 // スライドバー
 section {
   position: fixed;
-  top: 61.72px;
+  top: 61.27px;
   right: 0;
   width: 0%;
   height: 90vh;
@@ -356,17 +361,17 @@ section {
 @media (max-width: 767px) {
 
  body {
-  padding-top: 61.72px;
+  padding-top: 61.27px;
  }
 
  .subheader-padding {
-  padding-top: 90px!important;
+  padding-top: 88.27px!important;
  }
 
  // レスポンシブ検索フォーム
  #search-form {
   position: fixed;
-  top: 61.72px;
+  top: 61.27px;
   left: 0;
   width: 100%;
   background-color: #fffcf5;
@@ -520,7 +525,7 @@ section {
  }
 
  .edit-title {
-  margin-left: -20px!important;
+  margin: 20px 0 0 -20px!important;
  }
 
  // トップへ戻るボタン
