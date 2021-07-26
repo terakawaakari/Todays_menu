@@ -15,8 +15,16 @@
           <tr>
             <td><%= user.id %></td>
             <td><%= link_to "#{user.name}", edit_user_path(user) %></td>
-            <td><%= (Time.now.strftime("%Y%m%d").to_i - user.birth_date.strftime("%Y%m%d").to_i) / 10000 %> 歳</td>
-            <td><%= user.sex %></td>
+            <% if user.birth_date.present? %>
+              <td><%= (Time.now.strftime("%Y%m%d").to_i - user.birth_date.strftime("%Y%m%d").to_i) / 10000 %> 歳</td>
+            <% else %>
+              <td>未登録</td>
+            <% end %>
+            <% if user.sex.present? %>
+              <td><%= user.sex %></td>
+            <% else %>
+              <td>未登録</td>
+            <% end %>
             <td><%= user.email %></td>
           </tr>
         <% end %>
