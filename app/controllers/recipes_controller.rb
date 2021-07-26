@@ -81,9 +81,10 @@ class RecipesController < ApplicationController
   end
 
   def tag_search
-    @tag     = Tag.find(params[:tag_id])
-    @recipes = @tag.recipes.open_sort.page(params[:page]).per(12)
-    @tags    = unique_tags(@recipes)
+    @tag        = Tag.find(params[:tag_id])
+    @recipes    = @tag.recipes.open_sort.page(params[:page]).per(12)
+    all_recipes = Recipe.open_sort
+    @tags       = unique_tags(all_recipes)
   end
 
   def recommend

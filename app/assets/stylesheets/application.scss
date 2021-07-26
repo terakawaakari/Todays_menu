@@ -18,6 +18,7 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+ @import url('https://fonts.googleapis.com/css2?family=Kosugi&family=M+PLUS+1p&family=Noto+Sans+JP&family=Sawarabi+Gothic&display=swap');
 
 * {
   margin: 0;
@@ -28,12 +29,15 @@
 body {
   background-color: #fffcf5;
   letter-spacing: 0.1rem;
+  font-family: 'Sawarabi Gothic', sans-serif;
 }
 
 main {
  // font-family: Lato,Hiragino Kaku Gothic ProN,Yu Gothic,Noto Sans CJK JP,Hiragino Sans,sans-serif;
  // font-family: YuGothic,Arial,Roboto,Droid Sans,ProN,Hiragino Kaku Gothic ProN,Meiryo,sans-serif;
  // font-family: "秀英丸ゴシック B", "Shuei MaruGo B", YuGothic, "Yu Gothic", 游ゴシック, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+ // font-family: a-otf-gothic-bbb-pr6n, sans-serif;
+ // font-family: 'M PLUS 1p', sans-serif;
 }
 
 // カラー
@@ -102,8 +106,9 @@ a:hover {
 
 // ページタイトル
 .page_title {
- width: 300px;
- height: 250px;
+ width: 240px;
+ height: 150px;
+ margin: 30px 30px;
  background-image: image-url("title_bg.png");
  background-size: contain;
  background-position: center;
@@ -373,9 +378,9 @@ section {
 
  // ページタイトル
  .page_title {
-  // margin-top: 30px;
-  width: 200px;
-  height: 160px;
+  margin: 20px 30px;
+  width: 140px;
+  height: 90px;
  }
  .title {
   font-size: 24px;
