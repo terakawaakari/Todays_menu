@@ -92,26 +92,26 @@ function add_form(){
 
 // レシピの表示切り替え
 // window.onload = function() {
-  $(document).on('turbolinks:load', function(){
-      if (!document.getElementById("recipe-table")) return
-      document.getElementById("recipe-table").style.display = "none";
-      $(document).on("click",'.display-btn',function(){
-        var recipe_table = document.getElementById("recipe-table");
-      	var recipe_box   = document.getElementById("recipe-box");
-      	var display_icon = document.getElementById("display-icon");
-      	if(recipe_table.style.display == "block"){
-      		recipe_table.style.display = "none";
-      		recipe_box.style.display = "block";
-      		display_icon.classList.add('fa-list');
-      	  display_icon.classList.remove('fa-th-large');
-      	}else{
-      		recipe_table.style.display = "block";
-          recipe_box.style.cssText += 'display: none !important;';
-          display_icon.classList.add('fa-th-large');
-      	  display_icon.classList.remove('fa-list');
-      	}
-      });
+$(document).on('turbolinks:load', function(){
+  if (!document.getElementById("recipe-table")) return
+  document.getElementById("recipe-table").style.display = "none";
+  $('.display-btn').on("click", function(){
+    var recipe_table = document.getElementById("recipe-table");
+  	var recipe_box   = document.getElementById("recipe-box");
+  	var display_icon = document.getElementById("display-icon");
+  	if(recipe_table.style.display == "block"){
+  		recipe_table.style.display = "none";
+  		recipe_box.style.display = "block";
+  		display_icon.classList.add('fa-list');
+  	  display_icon.classList.remove('fa-th-large');
+  	}else{
+  		recipe_table.style.display = "block";
+      recipe_box.style.cssText += 'display: none !important;';
+      display_icon.classList.add('fa-th-large');
+  	  display_icon.classList.remove('fa-list');
+  	}
   });
+});
 // }
 
 // ブックマークレシピの表示切り替え
@@ -119,7 +119,7 @@ function add_form(){
   $(document).on('turbolinks:load', function(){
     if (!document.getElementById("bookmark-table")) return
     document.getElementById("bookmark-table").style.display = "none";
-    $(document).on("click",'.display-btn',function(){
+    $('.display-btn').on("click", function(){
       var recipe_table = document.getElementById("bookmark-table");
     	var recipe_box   = document.getElementById("bookmark-box");
     	var display_icon = document.getElementById("display-icon");

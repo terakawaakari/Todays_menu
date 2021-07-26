@@ -2,7 +2,12 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container">
       <!--タイトル-->
-      <a class="navbar-brand" href="/"><%= image_tag("dish-S.png") %><h3 class="d-inline-block text-light ml-3">Today's menu</h3></a>
+        <a class="navbar-brand" href="/">
+          <div class="d-flex align-items-center">
+            <div><%= image_tag "logo.png", :size => '43x43' %></div>
+            <h3 class="text-light ml-3 pt-2 font-weight-bold">Today's menu</h3>
+          </div>
+        </a>
       <!--タブレットサイズ用ハンバーガーメニュー-->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

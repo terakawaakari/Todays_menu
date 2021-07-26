@@ -18,6 +18,7 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
+ @import url('https://fonts.googleapis.com/css2?family=Kosugi&family=M+PLUS+1p&family=Noto+Sans+JP&family=Sawarabi+Gothic&display=swap');
 
 * {
   margin: 0;
@@ -28,10 +29,15 @@
 body {
   background-color: #fffcf5;
   letter-spacing: 0.1rem;
+  font-family: 'Sawarabi Gothic', sans-serif;
 }
 
 main {
- font-family: Lato,Hiragino Kaku Gothic ProN,Yu Gothic,Noto Sans CJK JP,Hiragino Sans,sans-serif;
+ // font-family: Lato,Hiragino Kaku Gothic ProN,Yu Gothic,Noto Sans CJK JP,Hiragino Sans,sans-serif;
+ // font-family: YuGothic,Arial,Roboto,Droid Sans,ProN,Hiragino Kaku Gothic ProN,Meiryo,sans-serif;
+ // font-family: "秀英丸ゴシック B", "Shuei MaruGo B", YuGothic, "Yu Gothic", 游ゴシック, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+ // font-family: a-otf-gothic-bbb-pr6n, sans-serif;
+ // font-family: 'M PLUS 1p', sans-serif;
 }
 
 // カラー
@@ -60,7 +66,7 @@ main {
  width: 100%;
  background-color: #d1b9b0;
  position: fixed;
- top: 66px;
+ top: 61.27px;
  z-index: 10;
 }
 
@@ -100,11 +106,13 @@ a:hover {
 
 // ページタイトル
 .page_title {
- width: 300px;
- height: 250px;
+ width: 240px;
+ height: 150px;
+ margin: 30px 30px;
  background-image: image-url("title_bg.png");
  background-size: contain;
  background-position: center;
+ font-family: "秀英丸ゴシック B", "Shuei MaruGo B", YuGothic, "Yu Gothic", 游ゴシック, "ヒラギノ角ゴ Pro W3";
 }
 
 // 必須入力バッチの色
@@ -237,6 +245,10 @@ a:hover {
   background-color: #d1b9b0;
 }
 
+.edit-title {
+ margin: 40px 0!important;
+}
+
 // フッターを最下部に固定
 body{
   min-height: 100vh;
@@ -303,7 +315,7 @@ footer {
 // スライドバー
 section {
   position: fixed;
-  top: 66px;
+  top: 61.27px;
   right: 0;
   width: 0%;
   height: 90vh;
@@ -326,9 +338,7 @@ section {
  list-style: none;
 }
 #navigation a {
-  // color: #fff;
   text-decoration: none;
-  // font-weight: bold;
 }
 
 // 検索
@@ -351,17 +361,17 @@ section {
 @media (max-width: 767px) {
 
  body {
-  padding-top: 66px;
+  padding-top: 61.27px;
  }
 
  .subheader-padding {
-  padding-top: 90px!important;
+  padding-top: 88.27px!important;
  }
 
  // レスポンシブ検索フォーム
  #search-form {
   position: fixed;
-  top: 66px;
+  top: 61.27px;
   left: 0;
   width: 100%;
   background-color: #fffcf5;
@@ -373,9 +383,9 @@ section {
 
  // ページタイトル
  .page_title {
-  // margin-top: 30px;
-  width: 200px;
-  height: 160px;
+  margin: 20px 30px;
+  width: 140px;
+  height: 90px;
  }
  .title {
   font-size: 24px;
@@ -459,7 +469,7 @@ section {
   // 表形式でレシピを表示するときの画像サイズ
  .table-recipe-img {
    width: 120px;
-   height: 100px;
+   height: 120px;
  }
  .table-recipe-img img {
    width: 100%;
@@ -515,7 +525,7 @@ section {
  }
 
  .edit-title {
-  margin-left: -20px!important;
+  margin: 20px 0 0 -20px!important;
  }
 
  // トップへ戻るボタン

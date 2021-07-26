@@ -1,9 +1,9 @@
-<div class="bg-white p-3 border recipe-show-container" id="bookmark-table">
+<div class="bg-white border" id="bookmark-table">
   <table class="table table-borderless table-border">
     <% bookmarks.each do |b| %>
       <tbody>
         <tr>
-          <td>
+          <td class="col-4">
             <div class="table-recipe-img">
               <%= link_to recipe_path(b.recipe) do %>
                 <%= attachment_image_tag b.recipe, :recipe_image, size: '200x150', format:'jpeg', fallback: "no_image.png" %>

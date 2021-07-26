@@ -9,21 +9,21 @@
     <span><%= f.search_field :ingredients_name_cont, class: "form-control form-control-sm col-3 d-inline-block mb-2" %>　</span><br>
 
     <span><%= f.label :genre_eq, 'ジャンル　' %></span>
-    <span><%= f.select :genre_eq, options_for_select(Recipe.genres), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block"} %></span>
+    <span><%= f.select :genre_eq, options_for_select(Recipe.genres), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"} %></span>
 
     <span><%= f.label :category_eq, '　カテゴリー' %></span>
-    <span><%= f.select :category_eq, options_for_select(Recipe.categories), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block"} %></span>
+    <span><%= f.select :category_eq, options_for_select(Recipe.categories), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"} %></span>
 
     <span><%= f.label :taste_eq, '　味付け' %></span>
-    <span><%= f.select :taste_eq, options_for_select(Recipe.tastes), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block"}  %></span><br>
+    <span><%= f.select :taste_eq, options_for_select(Recipe.tastes), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"}  %></span><br>
 
-    <span><%= f.label :popularity_gteq, '人気度　　' %></span>
+    <span class="mb-2"><%= f.label :popularity_gteq, '人気度　　' %></span>
     <span class="mr-2"><%= f.radio_button :popularity_gteq, '' %> 指定しない</span>
-    <span class="mr-3"><%= f.radio_button :popularity_gteq, '1.0' %> <%= image_tag "star-on.png", size: "16", class:"mb-1" %>1 以上</span>
-    <span class="mr-3"><%= f.radio_button :popularity_gteq, '2.0' %> <%= image_tag "star-on.png", size: "16", class:"mb-1" %>2 以上</span>
-    <span class="mr-3"><%= f.radio_button :popularity_gteq, '3.0' %> <%= image_tag "star-on.png", size: "16", class:"mb-1" %>3 以上</span>
-    <span class="mr-3"><%= f.radio_button :popularity_gteq, '4.0' %> <%= image_tag "star-on.png", size: "16", class:"mb-1" %>4 以上</span>
-    <span><%= f.radio_button :popularity_gteq, '5.0' %> <%= image_tag "star-on.png", size: "16", class:"mb-1" %>5</span><br>
+    <span class="mr-3"><%= f.radio_button :popularity_gteq, '1.0' %> <%= image_tag "star-on.png", size: "16", class:"mb-1" %>１以上</span>
+    <span class="mr-3"><%= f.radio_button :popularity_gteq, '2.0' %> <%= image_tag "star-on.png", size: "16", class:"mb-1" %>２以上</span>
+    <span class="mr-3"><%= f.radio_button :popularity_gteq, '3.0' %> <%= image_tag "star-on.png", size: "16", class:"mb-1" %>３以上</span>
+    <span class="mr-3"><%= f.radio_button :popularity_gteq, '4.0' %> <%= image_tag "star-on.png", size: "16", class:"mb-1" %>４以上</span>
+    <span><%= f.radio_button :popularity_gteq, '5.0' %> <%= image_tag "star-on.png", size: "16", class:"mb-1" %>５</span><br>
 
     <span><%= f.label :time_lteq, '調理時間　' %></span>
     <span class="mr-2"><%= f.radio_button :time_lteq, '' %> 指定しない</span>
