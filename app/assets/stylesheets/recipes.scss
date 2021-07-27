@@ -4,9 +4,10 @@
 
 // レシピ詳細画面の作り方リスト
 .directions-list {
-  line-height: 3rem;
+  line-height: 1.7rem;
   list-style-position:inside;
   border-top: 1px solid #dee2e6;
+  padding: 15px 0;
 }
 
 // レシピ詳細表示ボタン
@@ -66,8 +67,4 @@ object-fit: cover;
 }
 .table-border tbody:first-child td {
   border: none!important;
-}
-
-.direction li {
-  line-height: 30px;
 }
