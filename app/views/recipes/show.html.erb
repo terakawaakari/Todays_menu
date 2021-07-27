@@ -86,7 +86,7 @@
       <div class="mt-3 text-break">URL：<%= text_url_to_link(@recipe.url).html_safe %></div>
     <% end %>
     <!--ボタン-->
-    <div class="text-right mt-4 d-flex">
+    <div class="justify-content-end mt-4 d-flex">
       <% if @recipe.user_id == current_user.id || current_user.admin? %>
         <% if @recommend_main.present? || @recommend_sub.present? || @recommend_soup.present? %>
           <div class="mr-auto">
@@ -109,12 +109,11 @@
 <!--人気度の表示-->
 <script>
   $("#star-rate-<%= @recipe.id %>").raty({
-    // if (!<%#= @recipe.popularity %>) return
     starOff:  "<%= asset_path("star-off.png") %>",
     starOn : "<%= asset_path("star-on.png") %>",
     starHalf: "<%= asset_path("star-half.png") %>",
     half: true,
     readOnly: true,
-    score: <%= @recipe.popularity %>
+    score: <%= @recipe.popularity || 0 %>
   });
 </script>
