@@ -109,12 +109,11 @@
 <!--人気度の表示-->
 <script>
   $("#star-rate-<%= @recipe.id %>").raty({
-    // if (!<%#= @recipe.popularity %>) return
     starOff:  "<%= asset_path("star-off.png") %>",
     starOn : "<%= asset_path("star-on.png") %>",
     starHalf: "<%= asset_path("star-half.png") %>",
     half: true,
     readOnly: true,
-    score: <%= @recipe.popularity %>
+    score: <%= @recipe.popularity || 0 %>
   });
 </script>
