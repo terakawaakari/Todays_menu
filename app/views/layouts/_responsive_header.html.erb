@@ -71,7 +71,8 @@
   </nav>
 </header>
 <% unless user_signed_in? %>
-  <div class="sub-header d-flex justify-content-around py-1 small">
+  <!--サブヘッダー-->
+  <div class="sub-header d-flex justify-content-around py-1 small text-nowrap">
     <div>
       <%= link_to "新規登録", new_user_registration_path, class: " text-light" %>
     </div>
