@@ -4,7 +4,7 @@
     <div>
       <%= f.attachment_field :recipe_image, placeholder: "ファイルを選択" %>
       <!--登録画像があれば表示、ファイルがアップロードされたら画像を切り替え-->
-      <div id="img-container"><img id="recipe-preview" class="col-8"></div>
+      <div id="img-container"><img id="recipe-preview"></div>
       <% if recipe.recipe_image.present? %>
         <div id="original-img-container" class="img mb-3">
           <%= attachment_image_tag recipe, :recipe_image, format:'jpeg', id: "original-img", class: "col-8" %>
