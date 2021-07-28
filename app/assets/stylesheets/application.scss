@@ -564,3 +564,14 @@ section {
  }
 
 }
+
+@media (max-width: 1200px) {
+ // おすすめレシピ
+ .recipe-flex-block {
+  display: block!important;
+ }
+ .center {
+  display: flex;
+  justify-content: center;
+ }
+}
