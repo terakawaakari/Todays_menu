@@ -18,7 +18,7 @@
  @import "bootstrap";
  @import 'font-awesome-sprockets';
  @import 'font-awesome';
- @import url('https://fonts.googleapis.com/css2?family=Kosugi&family=M+PLUS+1p&family=Noto+Sans+JP&family=Sawarabi+Gothic&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p&display=swap');
 
 * {
   margin: 0;
@@ -29,15 +29,7 @@
 body {
   background-color: #fffcf5;
   letter-spacing: 0.1rem;
-  font-family: 'Sawarabi Gothic', sans-serif;
-}
-
-main {
- // font-family: Lato,Hiragino Kaku Gothic ProN,Yu Gothic,Noto Sans CJK JP,Hiragino Sans,sans-serif;
- // font-family: YuGothic,Arial,Roboto,Droid Sans,ProN,Hiragino Kaku Gothic ProN,Meiryo,sans-serif;
- // font-family: "秀英丸ゴシック B", "Shuei MaruGo B", YuGothic, "Yu Gothic", 游ゴシック, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", メイリオ, Meiryo, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
- // font-family: a-otf-gothic-bbb-pr6n, sans-serif;
- // font-family: 'M PLUS 1p', sans-serif;
+  font-family: 'M PLUS 1p', sans-serif;
 }
 
 // カラー
@@ -112,7 +104,7 @@ a:hover {
  background-image: image-url("title_bg.png");
  background-size: contain;
  background-position: center;
- font-family: "秀英丸ゴシック B", "Shuei MaruGo B", YuGothic, "Yu Gothic", 游ゴシック, "ヒラギノ角ゴ Pro W3";
+ // font-family: "秀英丸ゴシック B", "Shuei MaruGo B", YuGothic, "Yu Gothic", 游ゴシック, "ヒラギノ角ゴ Pro W3";
 }
 
 // 必須入力バッチの色
@@ -318,7 +310,7 @@ section {
   top: 61.27px;
   right: 0;
   width: 0%;
-  height: 90vh;
+  height: 100vh;
   overflow-y: scroll;
   z-index: 9;
   transition: .8s;
@@ -339,6 +331,9 @@ section {
 }
 #navigation a {
   text-decoration: none;
+}
+.bottom {
+ padding-bottom: 130px;
 }
 
 // 検索
