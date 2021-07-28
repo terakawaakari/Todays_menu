@@ -3,13 +3,13 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 # レシピ保存フォームの作り方を並び替え可能に
-$ ->
+$(document).on 'turbolinks:load', ->
   el = document.getElementById("directions")
   if el != null
     sortable = Sortable.create(el, delay: 200)
 
 # レシピ保存フォームの材料を並び替え可能に
-$ ->
+$(document).on 'turbolinks:load', ->
   el = document.getElementById("ingredients")
   if el != null
     sortable = Sortable.create(el, delay: 200)

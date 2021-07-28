@@ -7,7 +7,7 @@
       <div id="img-container"><img id="recipe-preview"></div>
       <% if recipe.recipe_image.present? %>
         <div id="original-img-container" class="img mb-3">
-          <%= attachment_image_tag recipe, :recipe_image, format:'jpeg', id: "original-img", class: "col-8" %>
+          <%= attachment_image_tag recipe, :recipe_image, format:'jpeg', id: "original-img" %>
         </div>
       <% end %>
     </div>
