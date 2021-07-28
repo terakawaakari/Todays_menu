@@ -96,6 +96,11 @@ a:hover {
  color: #d1b9b0;
 }
 
+// フラッシュメッセージ
+.alert {
+ margin-bottom: 0!important;
+}
+
 // ページタイトル
 .page_title {
  width: 240px;
@@ -353,6 +358,17 @@ section {
  margin-left: -150px!important;
 }
 
+// メニュー投稿画面のレシピ選択
+.choice-recipe {
+ width: 95%;
+ background-color: #fff;
+ cursor: pointer;
+ padding: 10px 15px 15px 15px;
+ border: #efefef 1px solid;
+ border-radius: 3px;
+ margin: -8px 0 10px 0;
+}
+
 @media (max-width: 767px) {
 
  body {
@@ -361,6 +377,9 @@ section {
 
  .subheader-padding {
   padding-top: 88.27px!important;
+ }
+ .navbar {
+  height: 61.27px;
  }
 
  // レスポンシブ検索フォーム

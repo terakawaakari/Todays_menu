@@ -81,8 +81,8 @@ function add_form(){
       $(data).each(function (i, recipe) {
         var js_recipes = text_field.parent().parent().find('.js-recipes')
         js_recipes.empty()
-        js_recipes.append("<a class='recipe d-inline-block'>" + recipe.name + "</a>");
-        $('.recipe').on('click', function() {
+        js_recipes.append("<a class='choice-recipe d-inline-block'>" + recipe.name + "</a>");
+        $('.choice-recipe').on('click', function() {
           $(this).parent().parent().find('select').val(recipe.id)
         });
       });
