@@ -358,6 +358,17 @@ section {
  margin-left: -150px!important;
 }
 
+// メニュー投稿画面のレシピ選択
+.choice-recipe {
+ width: 95%;
+ background-color: #fff;
+ cursor: pointer;
+ padding: 10px 15px 15px 15px;
+ border: #efefef 1px solid;
+ border-radius: 3px;
+ margin: -8px 0 10px 0;
+}
+
 @media (max-width: 767px) {
 
  body {
