@@ -1,29 +1,27 @@
-<!--<div class="mx-4 mb-5">-->
-  <div class="bg-white p-2 mb-4 border shadow-sm recipe-box">
-    <div>
-      <div class="img">
-        <%= link_to recipe_path(recipe) do %>
-          <%= attachment_image_tag recipe, :recipe_image, size: '270x200', format:'jpeg', fallback: "no_image.png" %>
-        <% end %>
-      </div>
-      <div class="d-flex">
-        <h5 class="mt-2"><%= link_to "#{recipe.name}", recipe_path(recipe) %></h5>
-        <% if recipe.user_id != current_user.id %>
-          <div id="bookmark-<%= recipe.id %>" class="h5 ml-auto pr-2 mt-2">
-            <%= render "bookmarks/bookmark_button", recipe: recipe %>
-          </div>
-        <% end %>
-      </div>
-
-      <% if recipe.time.present? %>
-        <p><i class="far fa-clock"></i> <%= recipe.time %>分</p>
+<div class="bg-white p-2 mb-4 border shadow-sm recipe-box">
+  <div>
+    <div class="img">
+      <%= link_to recipe_path(recipe) do %>
+        <%= attachment_image_tag recipe, :recipe_image, size: '270x200', format:'jpeg', fallback: "no_image.png" %>
       <% end %>
-      <% if recipe.tags.present? %>
-        <% recipe.tags.each do |tag| %>
-          <p class="badge badge-pill badge-success">#<%= tag.tag_name %></p>
-        <% end %>
-      <% end %>
-
     </div>
+    <div class="d-flex">
+      <h5 class="mt-2"><%= link_to "#{recipe.name}", recipe_path(recipe) %></h5>
+      <% if recipe.user_id != current_user.id %>
+        <div id="bookmark-<%= recipe.id %>" class="h5 ml-auto pr-2 mt-2">
+          <%= render "bookmarks/bookmark_button", recipe: recipe %>
+        </div>
+      <% end %>
+    </div>
+
+    <% if recipe.time.present? %>
+      <p><i class="far fa-clock"></i> <%= recipe.time %>分</p>
+    <% end %>
+    <% if recipe.tags.present? %>
+      <% recipe.tags.each do |tag| %>
+        <p class="badge badge-pill badge-success">#<%= tag.tag_name %></p>
+      <% end %>
+    <% end %>
+
   </div>
-<!--</div>-->
+</div>
