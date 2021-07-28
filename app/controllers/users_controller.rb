@@ -14,7 +14,11 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to user_path(current_user), notice: "変更を保存しました"
+      if current_user.admin?
+        redirect_to users_path, notice: "変更を保存しました"
+      else
+        redirect_to user_path(current_user), notice: "変更を保存しました"
+      end
     else
       render :edit
     end

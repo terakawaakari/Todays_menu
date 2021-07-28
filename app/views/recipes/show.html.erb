@@ -76,7 +76,7 @@
     <% end %>
     <!--メモ-->
     <% if @recipe.note.present? %>
-      <div class="px-4 pb-4 border rounded">
+      <div class="px-4 pb-4 border rounded mt-2">
         <div class="py-2">-memo-</div>
         <%= @recipe.note %>
       </div>
@@ -87,12 +87,12 @@
     <% end %>
     <!--ボタン-->
     <div class="justify-content-end mt-4 d-flex">
+      <% if @recommend_main.present? || @recommend_sub.present? || @recommend_soup.present? %>
+        <div class="mr-auto">
+          <%= link_to "おすすめを見る", recipe_recommend_path(@recipe), remote: true, class: "btn btn-sm btn-violet" %>
+        </div>
+      <% end %>
       <% if @recipe.user_id == current_user.id || current_user.admin? %>
-        <% if @recommend_main.present? || @recommend_sub.present? || @recommend_soup.present? %>
-          <div class="mr-auto">
-            <%= link_to "おすすめを見る", recipe_recommend_path(@recipe), remote: true, class: "btn btn-sm btn-violet" %>
-          </div>
-        <% end %>
         <%= link_to edit_recipe_path(@recipe) do %>
           <i class="fas fa-edit h4 mr-3 text-secondary"></i>
         <% end %>

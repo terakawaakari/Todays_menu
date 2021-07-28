@@ -26,8 +26,9 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
       </div>
 
-      <div class="mx-auto d-table">
-        <%= f.submit "変更", class: "btn btn-violet mt-5" %>
+      <div class="d-flex justify-content-center mt-5">
+        <div><%= link_to "キャンセル", user_path(current_user), class: "btn btn-gray mr-2" %></div>
+        <div><%= f.submit "変更", class: "btn btn-violet" %></div>
       </div>
     </div>
   <% end %>
