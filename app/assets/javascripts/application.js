@@ -91,7 +91,6 @@ function add_form(){
 }
 
 // レシピの表示切り替え
-// window.onload = function() {
 $(document).on('turbolinks:load', function(){
   if (!document.getElementById("recipe-table")) return
   document.getElementById("recipe-table").style.display = "none";
@@ -112,64 +111,66 @@ $(document).on('turbolinks:load', function(){
   	}
   });
 });
-// }
 
 // ブックマークレシピの表示切り替え
-// window.onload = function() {
-  $(document).on('turbolinks:load', function(){
-    if (!document.getElementById("bookmark-table")) return
-    document.getElementById("bookmark-table").style.display = "none";
-    $('.display-btn').on("click", function(){
-      var recipe_table = document.getElementById("bookmark-table");
-    	var recipe_box   = document.getElementById("bookmark-box");
-    	var display_icon = document.getElementById("display-icon");
-    	if(recipe_table.style.display == "block"){
-    		recipe_table.style.display = "none";
-    		recipe_box.style.display = "block";
-    		display_icon.classList.add('fa-list');
-    	  display_icon.classList.remove('fa-th-large');
-    	}else{
-    		recipe_table.style.display = "block";
-        recipe_box.style.cssText += 'display: none !important;';
-        display_icon.classList.add('fa-th-large');
-    	  display_icon.classList.remove('fa-list');
-    	}
-    });
+$(document).on('turbolinks:load', function(){
+  if (!document.getElementById("bookmark-table")) return
+  document.getElementById("bookmark-table").style.display = "none";
+  $('.display-btn').on("click", function(){
+    var recipe_table = document.getElementById("bookmark-table");
+  	var recipe_box   = document.getElementById("bookmark-box");
+  	var display_icon = document.getElementById("display-icon");
+  	if(recipe_table.style.display == "block"){
+  		recipe_table.style.display = "none";
+  		recipe_box.style.display = "block";
+  		display_icon.classList.add('fa-list');
+  	  display_icon.classList.remove('fa-th-large');
+  	}else{
+  		recipe_table.style.display = "block";
+      recipe_box.style.cssText += 'display: none !important;';
+      display_icon.classList.add('fa-th-large');
+  	  display_icon.classList.remove('fa-list');
+  	}
   });
-// }
+});
 
 // ルーレット
 $(document).on('turbolinks:load', function(){
-  var rotate = $("#circle");
+  var circle       = $("#circle");
+  var start_button = $("#start");
+  var stop_button  = $("#stop");
+  var reset_button = $("#reset");
   var roulette;
-  var count = 0;
 
-  $('#start').on('click', function start() {
-    var button = document.getElementById("start");
-    button.disabled = true
+  reset_button.css('display', 'none');
+  // スタートボタンを押した時の処理
+  start_button.on('click', function () {
+    start_button.disabled = true
     roulette = setInterval(function(){
-      count++;
-      if(count > 360){
-        count = 0;
-      }else{
-        rotate.css({ transform: "rotate("+ count*100+"deg)" });
-      }
-    }, 100);
+      circle.addClass('active');
+    });
   });
-
-  $('#stop').on('click',function stop() {
-    var button = document.getElementById("start");
-    var stop_button = document.getElementById("stop");
-    button.disabled = false
+  // ストップボタンを押した時の処理
+  stop_button.on('click',function () {
     if(roulette) {
       clearInterval(roulette);
+      circle.addClass('stop');
       stop_button.blur();
-    }
+      reset_button.css('display', 'inline-block');
+      start_button.css('display', 'none');
+    };
+  });
+  // リセットボタンを押した時の処理
+  reset_button.on('click',function () {
+    circle.removeClass('active');
+    circle.removeClass('stop');
+    reset_button.css('display', 'none');
+    start_button.css('display', 'inline-block');
+    start_button.disabled = false
   });
 });
 
 // レシピ詳細表示の切り替え
-// window.onload = function(){
   $(document).on('turbolinks:load', function(){
     if (!document.getElementById("details")) return
     document.getElementById("details").style.display ="none";
@@ -188,7 +189,6 @@ $(document).on('turbolinks:load', function(){
     	}
     });
   });
-// }
 
 // メニュー画像のプレビュー表示
 $(document).on('turbolinks:load', function(){
