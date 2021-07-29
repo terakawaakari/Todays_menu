@@ -129,32 +129,33 @@ class RecipesController < ApplicationController
   def main_recommend
     main_recipes = Recipe.where(genre: @recipe.genre, category: "主菜", is_open: true)
     change_taste = main_recipes.where.not(taste: @recipe.taste)
-    @recommend_main = change_taste.where('time < ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
+    @recommend_main = change_taste.where('time <= ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
   end
 
   def sub_recommend
     sub_recipes = Recipe.where(genre: @recipe.genre, category: "副菜", is_open: true)
     change_taste = sub_recipes.where.not(taste: @recipe.taste)
-    @recommend_sub = change_taste.where('time < ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
+    @recommend_sub = change_taste.where('time <= ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
   end
 
   def soup_recommend
     soup_recipes = Recipe.where(genre: @recipe.genre, category: "汁物", is_open: true)
     change_taste = soup_recipes.where.not(taste: @recipe.taste)
-    @recommend_soup = change_taste.where('time < ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
+    @recommend_soup = change_taste.where('time <= ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
   end
 
   #詳細ページのレシピが主菜/主食→副菜と汁物、副菜→主菜と汁物、汁物→主菜と副菜のおすすめレシピを提案
   def recommend_system
     case @recipe.category
-    when "主菜" || "主食"
+    when "主菜"
       sub_recommend
       soup_recommend
-
+    when "主食"
+      sub_recommend
+      soup_recommend
     when "副菜"
       main_recommend
       soup_recommend
-
     when "汁物"
       main_recommend
       sub_recommend
