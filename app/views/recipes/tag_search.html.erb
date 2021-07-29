@@ -1,6 +1,6 @@
 <div class="d-flex align-items-center mt-5 mb-3 ml-3 tag-search-title">
   <h3 class="tag-name">#<%= @tag.tag_name %>タグがついたレシピ</h3>
-  <h6 class="ml-2">(<%= @tag.recipes.count %>件)</h6>
+  <h6 class="ml-2">(<%= @recipes.count %>件)</h6>
 </div>
 <div class="col-lg-9 col-md-12">
   <%= render "tag_list", tags: @tags %>
