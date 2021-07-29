@@ -45,16 +45,23 @@
   font-size: xx-large;
   font-weight: bold;
 }
-
 #circle {
   background-color: #efefef;
   height: 400px;
   width: 400px;
   border-radius: 50%;
   transform: rotate(0);
-  transition: transform 0.5s;
 }
-
+.active {
+  animation: rotate-anime 0.4s linear infinite;
+}
+@keyframes rotate-anime {
+  0%  {transform: rotate(0);}
+  100%  {transform: rotate(360deg);}
+}
+.stop {
+  animation-play-state: paused;
+}
 .quarter {
   position: absolute;
   height: 200px;

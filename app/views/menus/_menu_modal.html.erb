@@ -13,7 +13,7 @@
         <div class="mx-auto d-table"><%= attachment_image_tag menu, :menu_image, size: "450x300" %></div>
         <div class="p-2">
           <div class="d-flex">
-            <div><%= menu.category %></div>
+            <div>-<%= menu.category %>-</div>
             <div class="ml-auto">
               <%= link_to edit_menu_path(menu) do %>
                 <i class="fas fa-edit h5 mr-2 text-secondary"></i>

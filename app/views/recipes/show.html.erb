@@ -19,7 +19,7 @@
       <% if @tags.present? %>
         <div class="mb-1">タグ：
           <% @tags.each do |tag| %>
-            <%= link_to "# #{tag.tag_name}　", tag_search_path(tag) %>
+            <%= link_to "# #{tag.tag_name}", tag_search_path(tag), class: "badge badge-pill badge-success" %>
           <% end %>
         </div>
       <% end %>
