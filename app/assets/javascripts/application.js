@@ -145,7 +145,7 @@ $(document).on('turbolinks:load', function(){
   reset_button.css('display', 'none');
   // スタートボタンを押した時の処理
   start_button.on('click', function () {
-    start_button.disabled = true
+    start_button.prop("disabled", true);
     roulette = setInterval(function(){
       circle.addClass('active');
     });
@@ -166,7 +166,7 @@ $(document).on('turbolinks:load', function(){
     circle.removeClass('stop');
     reset_button.css('display', 'none');
     start_button.css('display', 'inline-block');
-    start_button.disabled = false
+    start_button.prop("disabled", false);
   });
 });
 
