@@ -8,7 +8,7 @@
       <!--同じ日付のメニューが複数ある場合、最新の一件のみ表示-->
       <% if @menus.where(date: menu.date).count <= 1 %>
         <div data-toggle="modal" data-target="#menu-modal-<%= menu.id %>" class="calendar-modal-link">
-          <%= attachment_image_tag menu, :menu_image, size: "100x70", class: "calendar-image" %>
+          <%= attachment_image_tag menu, :menu_image, class: "calendar-image" %>
         </div>
         <!--メニューモーダル-->
         <%= render "menu_modal", menu: menu %>
@@ -16,7 +16,7 @@
         <% latest_menu = @menus.where(date: menu.date).order(created_at: :DESC).first %>
         <% if latest_menu == menu %>
           <div data-toggle="modal" data-target="#menu-modal-<%= menu.id %>" class="calendar-modal-link">
-            <%= attachment_image_tag menu, :menu_image, size: "100x70", class: "calendar-image" %>
+            <%= attachment_image_tag menu, :menu_image, class: "calendar-image" %>
           </div>
           <!--メニューモーダル-->
           <%= render "menu_modal", menu: menu %>
