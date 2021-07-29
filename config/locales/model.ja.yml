@@ -17,20 +17,7 @@ ja:
         is_open: 公開ステータス
       menu:
         menu_image: 画像
-
-# ja:
-#   activerecord:
-#     models:
-#       recipe: レシピ
-#     attributes:
-#       recipe:
-#         name: 料理名
-#         is_open: 公開ステータス
-
-# ja:
-#   activerecord:
-#     models:
-#       menu: メニュー
-#     attributes:
-#       menu:
-#         menu_image: 画像
+        date: 日付
+      ingredients:
+        name: 材料名
+        quantity: 分量
