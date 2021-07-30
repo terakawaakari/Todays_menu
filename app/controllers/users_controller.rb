@@ -33,6 +33,7 @@ class UsersController < ApplicationController
   end
 
   private
+
   def user_params
     params.require(:user).permit(:name, :email, :birth_date, :sex)
   end
@@ -56,5 +57,4 @@ class UsersController < ApplicationController
   def set_q
     @q = Recipe.where(is_open: true).ransack(params[:q])
   end
-
 end

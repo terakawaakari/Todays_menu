@@ -9,7 +9,7 @@ class RecipesController < ApplicationController
   def index
     # 公開中のレシピを新着順に並べてページネート
     @recipes = Recipe.open_sort.page(params[:page]).per(12)
-    #公開中のレシピのタグを重複を省いて取得
+    # 公開中のレシピのタグを重複を省いて取得
     @tags    = unique_tags(@recipes)
   end
 
@@ -26,7 +26,7 @@ class RecipesController < ApplicationController
 
   def create
     @recipe = current_user.recipes.new(recipe_params)
-    #既存のタグと新規タグを判別するため入力されたタグ名を配列に格納
+    # 既存のタグと新規タグを判別するため入力されたタグ名を配列に格納
     tags    = params[:recipe][:tag_name].split(nil)
     if @recipe.save
       @recipe.save_tag(tags)
@@ -45,7 +45,7 @@ class RecipesController < ApplicationController
   end
 
   def edit
-    #編集フォームに表示させる値を取得
+    # 編集フォームに表示させる値を取得
     @tags = @recipe.tags.pluck(:tag_name).join(" ")
   end
 
@@ -55,7 +55,7 @@ class RecipesController < ApplicationController
     tags = params[:recipe][:tag_name].split(nil)
     if @recipe.update(recipe_params)
       @recipe.save_tag(tags)
-      #レシピを非公開に更新した場合、紐づくブックマークを全て削除
+      # レシピを非公開に更新した場合、紐づくブックマークを全て削除
       unless @recipe.is_open?
         @recipe.bookmarks.destroy_all
       end
@@ -68,7 +68,7 @@ class RecipesController < ApplicationController
 
   def destroy
     if @recipe.destroy
-      #関連付いたレシピが存在しないタグを消去
+      # 関連付いたレシピが存在しないタグを消去
       @recipe.tags.each do |tag|
         if tag.recipes.blank?
           tag.destroy
@@ -105,11 +105,12 @@ class RecipesController < ApplicationController
   end
 
   private
+
   def recipe_params
     params.require(:recipe).permit(
       :name, :recipe_image, :serving, :genre, :category, :taste, :time, :url, :popularity, :note, :is_open,
-      ingredients_attributes:[:name, :quantity, :_destroy],
-      directions_attributes:[:description, :_destroy]
+      ingredients_attributes: [:name, :quantity, :_destroy],
+      directions_attributes:  [:description, :_destroy]
     )
   end
 
@@ -125,7 +126,7 @@ class RecipesController < ApplicationController
     @q = current_user.recipes.ransack(params[:q])
   end
 
-  #詳細ページのレシピと同じジャンル、異なるテイストの主菜のうち、合計調理時間が90分以内、人気度3以上のレシピを取得
+  # 詳細ページのレシピと同じジャンル、異なるテイストの主菜のうち、合計調理時間が90分以内、人気度3以上のレシピを取得
   def main_recommend
     main_recipes = Recipe.where(genre: @recipe.genre, category: "主菜", is_open: true)
     change_taste = main_recipes.where.not(taste: @recipe.taste)
@@ -144,7 +145,7 @@ class RecipesController < ApplicationController
     @recommend_soup = change_taste.where('time <= ?', (90 - @recipe.time.to_i)).find_by('popularity >= ?', 3.0)
   end
 
-  #詳細ページのレシピが主菜/主食→副菜と汁物、副菜→主菜と汁物、汁物→主菜と副菜のおすすめレシピを提案
+  # 詳細ページのレシピが主菜/主食→副菜と汁物、副菜→主菜と汁物、汁物→主菜と副菜のおすすめレシピを提案
   def recommend_system
     case @recipe.category
     when "主菜"

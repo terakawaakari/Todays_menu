@@ -34,12 +34,9 @@ class HomesController < ApplicationController
     else
       @label4 = params[:label4]
     end
-
-    # @label1 = params[:label1]
-    # @label2 = params[:label2]
-    # @label3 = params[:label3]
-    # @label4 = params[:label4]
   end
+
+  private
 
   def set_q
     @q = Recipe.where(is_open: true).ransack(params[:q])
