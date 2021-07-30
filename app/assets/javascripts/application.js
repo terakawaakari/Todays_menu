@@ -145,9 +145,9 @@ $(document).on('turbolinks:load', function(){
   reset_button.css('display', 'none');
   // スタートボタンを押した時の処理
   start_button.on('click', function () {
-    start_button.prop("disabled", true);
+    $(this).prop("disabled", true);
     roulette = setInterval(function(){
-      circle.addClass('active');
+      circle.addClass('rotate');
     });
   });
   // ストップボタンを押した時の処理
@@ -162,7 +162,7 @@ $(document).on('turbolinks:load', function(){
   });
   // リセットボタンを押した時の処理
   reset_button.on('click',function () {
-    circle.removeClass('active');
+    circle.removeClass('rotate');
     circle.removeClass('stop');
     reset_button.css('display', 'none');
     start_button.css('display', 'inline-block');
