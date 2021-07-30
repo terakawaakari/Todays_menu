@@ -140,33 +140,30 @@ $(document).on('turbolinks:load', function(){
   var start_button = $("#start");
   var stop_button  = $("#stop");
   var reset_button = $("#reset");
-  var roulette;
 
   reset_button.css('display', 'none');
+  stop_button.prop("disabled", true);
   // スタートボタンを押した時の処理
   start_button.on('click', function () {
-    start_button.prop("disabled", true);
-    roulette = setInterval(function(){
-      circle.addClass('active');
-    });
+    $(this).prop("disabled", true);
+    stop_button.prop("disabled", false);
+    circle.addClass('rotate');
   });
   // ストップボタンを押した時の処理
   stop_button.on('click',function () {
-    if(roulette) {
-      clearInterval(roulette);
-      circle.addClass('stop');
-      stop_button.blur();
-      reset_button.css('display', 'inline-block');
-      start_button.css('display', 'none');
-    };
+    circle.addClass('stop');
+    stop_button.blur();
+    reset_button.css('display', 'inline-block');
+    start_button.css('display', 'none');
   });
   // リセットボタンを押した時の処理
   reset_button.on('click',function () {
-    circle.removeClass('active');
+    circle.removeClass('rotate');
     circle.removeClass('stop');
     reset_button.css('display', 'none');
     start_button.css('display', 'inline-block');
     start_button.prop("disabled", false);
+    stop_button.prop("disabled", true);
   });
 });
 

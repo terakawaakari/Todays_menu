@@ -52,7 +52,7 @@
   border-radius: 50%;
   transform: rotate(0);
 }
-.active {
+.rotate {
   animation: rotate-anime 0.4s linear infinite;
 }
 @keyframes rotate-anime {

@@ -246,7 +246,7 @@ a:hover {
  margin: 40px 0!important;
 }
 
-// フッターを最下部に固定
+// フッター
 body{
   min-height: 100vh;
   position: relative;
@@ -258,6 +258,9 @@ footer {
  background-color: #ccc5c2;
  position: absolute;
  bottom: 0;
+}
+footer a:hover {
+ color: #000;
 }
 
 // ハンバーガーアイコン
@@ -523,6 +526,7 @@ section {
  // 会員詳細
  .user-table {
   margin-bottom: 10px!important;
+  overflow-x: scroll;
  }
  .user-table > tbody > tr > th,
  .user-table > tbody > tr > td,
