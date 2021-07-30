@@ -3,6 +3,9 @@
 
   <%= render "recipes/tag_list", tags: @tags %>
 
-  <%= render "bookmark_index", bookmarks: @bookmarks %>
-  <div class="d-table mx-auto mt-3"><%= paginate @bookmarks %></div>
+  <% if @bookmarks.present? %>
+    <%= render "bookmark_index", bookmarks: @bookmarks %>
+  <% else %>
+    <h3 class="d-table mx-auto mt-5">ブックマークしたレシピはありません</h3>
+  <% end %>
 </div>
