@@ -64,6 +64,7 @@ class MenusController < ApplicationController
   end
 
   private
+
   def menu_params
     params.require(:menu).permit(:menu_image, :date, :category, :list, [menu_recipes_attributes: [:recipe_id, :menu_id, :_destroy]])
   end
@@ -78,5 +79,3 @@ class MenusController < ApplicationController
     end
   end
 end
-
-

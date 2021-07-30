@@ -16,6 +16,7 @@ describe 'レシピの表示に関するテスト' do
       login(user)
       visit recipes_path
     end
+
     it '非公開のレシピは表示されない' do
       expect(page).not_to have_content private_recipe.name
     end
@@ -33,6 +34,7 @@ describe 'レシピの表示に関するテスト' do
       login(user)
       visit my_recipe_path
     end
+
     it '他ユーザーのレシピは表示されない' do
       expect(page).not_to have_content other_recipe.name
     end
@@ -53,6 +55,7 @@ describe 'レシピの表示に関するテスト' do
       login(user)
       visit user_bookmarks_path(user)
     end
+
     it '非公開のレシピは表示されない' do
       expect(page).not_to have_content other_recipe.name
     end
@@ -69,6 +72,7 @@ describe 'レシピの表示に関するテスト' do
     before do
       login(user)
     end
+
     it 'レシピの画像と料理名が表示されている' do
       FactoryBot.create(:direction,  :recipe)
       FactoryBot.create(:ingredient, :recipe)
@@ -86,7 +90,7 @@ describe 'レシピの表示に関するテスト' do
       visit recipe_path(private_recipe)
       expect(page).to have_content private_recipe.name
     end
-    it 'マイレシピの場合、編集・削除のリンクが表示される'do
+    it 'マイレシピの場合、編集・削除のリンクが表示される' do
       FactoryBot.create(:direction,  :recipe)
       FactoryBot.create(:ingredient, :recipe)
       visit recipe_path(recipe)
@@ -101,11 +105,13 @@ describe 'レシピの表示に関するテスト' do
 end
 
 describe 'レシピの保存・編集のテスト' do
-  let!(:user)  { create(:user, :customer) }
-  let!(:recipe) {create(:recipe, :valid) }
+  let!(:user) { create(:user, :customer) }
+  let!(:recipe) { create(:recipe, :valid) }
+
   before do
     login(user)
   end
+
   it '正常に保存でき、レシピ詳細画面に遷移する' do
     visit new_recipe_path
     fill_in 'recipe[name]', with: 'ハンバーグ'

@@ -14,6 +14,7 @@ describe '新規会員登録のテスト' do
     fill_in 'user[password]',              with: '123456'
     fill_in 'user[password_confirmation]', with: '123456'
   end
+
   it '正しく会員登録できる' do
     click_button '新規登録'
     expect(page).to have_content '登録が完了しました'
@@ -26,6 +27,7 @@ end
 
 describe 'ログインのテスト' do
   let(:user) { create(:user, :customer) }
+
   it '正しくログインできる' do
     login(user)
     expect(page).to have_content 'ログインしました'
@@ -42,9 +44,11 @@ end
 describe '会員のテスト' do
   let(:user) { create(:user, :customer) }
   let!(:other_user) { create(:user, :customer) }
+
   before do
     login(user)
   end
+
   it '会員情報を変更できる' do
     visit edit_user_path(user)
     fill_in 'user[name]', with: 'hoge'
@@ -55,6 +59,7 @@ describe '会員のテスト' do
     before do
       visit user_path(user)
     end
+
     it '退会前にパスワード入力フォームが表示される' do
       find(".withdraw-link").click
       expect(page).to have_field 'current_password'
@@ -99,9 +104,11 @@ end
 describe '管理者のテスト' do
   let(:admin) { create(:user, :admin) }
   let!(:other_user) { create(:user, :customer) }
+
   before do
     login(admin)
   end
+
   it '管理者は会員一覧を閲覧することができる' do
     visit users_path
     expect(current_path).to eq users_path

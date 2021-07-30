@@ -45,6 +45,7 @@ class BuyItemsController < ApplicationController
   end
 
   private
+
   def buy_item_params
     params.require(:buy_item).permit(:name, :is_bought)
   end
@@ -52,5 +53,4 @@ class BuyItemsController < ApplicationController
   def set_q
     @q = Recipe.where(is_open: true).ransack(params[:q])
   end
-
 end

@@ -4,14 +4,14 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  enum sex: { "男性": 0, "女性": 1}
+  enum sex: { "男性": 0, "女性": 1 }
 
   has_many :recipes,   dependent: :destroy
   has_many :menus,     dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_many :buy_items, dependent: :destroy
 
-  validates :name,       presence: true
+  validates :name, presence: true
 
   def self.guest
     find_or_create_by!(email: 'guest@example.com') do |user|
@@ -21,5 +21,4 @@ class User < ApplicationRecord
       user.password = SecureRandom.urlsafe_base64
     end
   end
-
 end
