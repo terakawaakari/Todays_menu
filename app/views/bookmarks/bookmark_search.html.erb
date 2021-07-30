@@ -4,7 +4,7 @@
   <div class="mb-3"><%= render "recipes/tag_list", tags: @tags %></div>
 
   <% if @results.present? %>
-    <%= render "bookmark_index", bookmarks: @bookmarks %>
+    <%= render "recipes/recipe_index", recipes: @results %>
   <% else %>
     <h3 class="d-table mx-auto mt-5">該当するレシピはありません</h3>
   <% end %>
