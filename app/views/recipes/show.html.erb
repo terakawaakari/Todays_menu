@@ -92,9 +92,12 @@
           <%= link_to "おすすめを見る", recipe_recommend_path(@recipe), remote: true, class: "btn btn-sm btn-violet" %>
         </div>
       <% end %>
+      <% if current_user.admin? %>
+        <div>ユーザーID <%= link_to @recipe.user_id, user_path(@recipe.user_id) %></div>
+      <% end %>
       <% if @recipe.user_id == current_user.id || current_user.admin? %>
         <%= link_to edit_recipe_path(@recipe) do %>
-          <i class="fas fa-edit h4 mr-3 text-secondary"></i>
+          <i class="fas fa-edit h4 mx-3 text-secondary"></i>
         <% end %>
         <%= link_to recipe_path(@recipe), method: :delete, data: {confirm: "削除しますか？"} do %>
           <i class="fas fa-trash-alt h4 text-secondary"></i>

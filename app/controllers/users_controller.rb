@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   before_action :confirm_user,  except: [:index]
   before_action :confirm_admin, only:   [:index]
-  before_action :find_user,     except: [:index, :show]
+  before_action :find_user,     except: [:index]
   before_action :set_q
 
   def index
