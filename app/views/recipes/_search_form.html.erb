@@ -9,13 +9,25 @@
     <span><%= f.search_field :ingredients_name_cont, class: "form-control form-control-sm col-3 d-inline-block mb-2" %>　</span><br>
 
     <span><%= f.label :genre_eq, 'ジャンル　' %></span>
-    <span><%= f.select :genre_eq, options_for_select(Recipe.genres), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"} %></span>
+    <% if @results.present? %>
+      <span><%= f.select :genre_eq, options_for_select(Recipe.genres, :selected => params[:q][:genre_eq]), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"} %></span>
+    <% else %>
+      <span><%= f.select :genre_eq, options_for_select(Recipe.genres), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"} %></span>
+    <% end %>
 
     <span><%= f.label :category_eq, '　カテゴリー' %></span>
-    <span><%= f.select :category_eq, options_for_select(Recipe.categories), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"} %></span>
+    <% if @results.present? %>
+      <span><%= f.select :category_eq, options_for_select(Recipe.categories, :selected => params[:q][:category_eq]), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"} %></span>
+    <% else %>
+      <span><%= f.select :category_eq, options_for_select(Recipe.categories), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"} %></span>
+    <% end %>
 
     <span><%= f.label :taste_eq, '　味付け' %></span>
-    <span><%= f.select :taste_eq, options_for_select(Recipe.tastes), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"}  %></span><br>
+    <% if @results.present? %>
+      <span><%= f.select :taste_eq, options_for_select(Recipe.tastes, :selected => params[:q][:taste_eq]), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"}  %></span><br>
+    <% else %>
+      <span><%= f.select :taste_eq, options_for_select(Recipe.tastes), {:include_blank => '指定しない'}, {class: "form-control form-control-sm col-2 d-inline-block mb-2"}  %></span><br>
+    <% end %>
 
     <span class="mb-2"><%= f.label :popularity_gteq, '人気度　　' %></span>
     <span class="mr-2"><%= f.radio_button :popularity_gteq, '' %> 指定しない</span>
