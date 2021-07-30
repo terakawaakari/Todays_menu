@@ -8,9 +8,9 @@
       </div>
       <!--レシピ名・ブックマークボタン-->
       <div class="d-flex">
-        <h5 class="mt-3"><%= link_to "#{bookmark.recipe.name}", recipe_path(bookmark.recipe) %></h5>
+        <h5 class="mt-3"><%= link_to bookmark.recipe.name, recipe_path(bookmark.recipe) %></h5>
         <% if bookmark.recipe.user_id != current_user.id %>
-          <div id="bookmark-<%= bookmark.recipe.id %>" class="ml-auto pr-2 mt-3">
+          <div class="ml-auto pr-2 mt-3 bookmark-<%= bookmark.recipe.id %>">
             <%= render "bookmarks/bookmark_button", recipe: bookmark.recipe %>
           </div>
         <% end %>
