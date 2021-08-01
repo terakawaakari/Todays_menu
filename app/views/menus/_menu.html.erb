@@ -6,7 +6,7 @@
         <div class="p-2">
           <div class="d-flex">
             <div><%= menu.date.strftime("%Y年%-m月%-d日") %></div>
-            <div class="ml-auto">
+            <div class="d-flex ml-auto">
               <%= link_to edit_menu_path(menu) do %>
                 <i class="fas fa-edit h5 mr-2 text-secondary"></i>
               <% end %>
@@ -26,7 +26,7 @@
                 <% end %>
               </div>
             <% end %>
-            <div class="d-flex flex-wrap"><%= safe_join(menu.list.split("\n"),tag(:br)) %></div>
+            <div><%= safe_join(menu.list.split("\n"),tag(:br)) %></div>
           </div>
         </div>
       </div>

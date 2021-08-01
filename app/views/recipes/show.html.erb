@@ -34,7 +34,7 @@
 
     <div class="d-flex ingredient">
       <div class="recipe-show-img">
-        <%= attachment_image_tag @recipe, :recipe_image, size: '300x230', format:'jpeg', fallback: "no_image.png" %>
+        <%= attachment_image_tag @recipe, :recipe_image, format:'jpeg', fallback: "no_image.png" %>
       </div>
       <!--材料-->
       <% if @ingredients.present? %>
@@ -88,7 +88,7 @@
     <!--ボタン-->
     <div class="justify-content-end mt-4 d-flex">
       <% if @recommend_main.present? || @recommend_sub.present? || @recommend_soup.present? %>
-        <div class="mr-auto">
+        <div class="mr-auto text-nowrap">
           <%= link_to "おすすめを見る", recipe_recommend_path(@recipe), remote: true, class: "btn btn-sm btn-violet" %>
         </div>
       <% end %>
