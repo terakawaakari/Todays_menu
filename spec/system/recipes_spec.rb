@@ -94,8 +94,8 @@ describe 'レシピの表示に関するテスト' do
       FactoryBot.create(:direction,  :recipe)
       FactoryBot.create(:ingredient, :recipe)
       visit recipe_path(recipe)
-      expect(page).to have_link '編集', href: edit_recipe_path(recipe)
-      expect(page).to have_link '削除', href: recipe_path(recipe)
+      expect(page).to have_link href: edit_recipe_path(recipe)
+      expect(page).to have_link href: recipe_path(recipe)
     end
     it '他ユーザーの編集画面に遷移できず、マイレシピ一覧へ遷移する' do
       visit edit_recipe_path(other_recipe)

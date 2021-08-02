@@ -5,14 +5,15 @@ require 'rails_helper'
 describe 'メニューの表示に関するテスト' do
   let!(:user)       { create(:user, :customer) }
   let!(:other_user) { create(:user, :customer) }
-  let!(:menu)       { create(:menu, :valid) }
-  let!(:other_menu) { create(:menu, :other_menu) }
 
   before do
     login(user)
   end
 
-  context 'マイレシピ一覧のテスト' do
+  context 'マイメニュー一覧のテスト' do
+    let!(:menu)       { create(:menu, :valid) }
+    let!(:other_menu) { create(:menu, :other_menu) }
+
     before do
       visit menus_path
     end
@@ -23,6 +24,19 @@ describe 'メニューの表示に関するテスト' do
     it '編集と削除のリンクが表示される' do
       expect(page).to have_link href: edit_menu_path(menu)
       expect(page).to have_link href: menu_path(menu)
+    end
+  end
+
+  context 'カレンダーのテスト' do
+    it '他人のメニューは表示されない' do
+      create(:menu, :other_menu)
+      visit calendar_path
+      expect(page).not_to have_selector("img[src$='menu_image']")
+    end
+    it '自分のメニューが表示される' do
+      create(:menu, :valid)
+      visit calendar_path
+      expect(page).to have_selector("img[src$='menu_image']")
     end
   end
 end
