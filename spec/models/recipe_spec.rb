@@ -10,8 +10,5 @@ describe 'recipeモデルのテスト' do
     it 'nameが空白の場合は保存されないか' do
       expect(FactoryBot.build(:recipe, :no_name)).to be_invalid
     end
-    it 'is_openが空白の場合は保存されないか' do
-      expect(FactoryBot.build(:recipe, :no_open_status)).to be_invalid
-    end
   end
 end

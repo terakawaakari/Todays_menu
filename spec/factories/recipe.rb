@@ -19,15 +19,6 @@ FactoryBot.define do
       is_open         { true }
     end
 
-    trait :no_open_status do
-      user_id         { 1 }
-      name            { 'パスタ' }
-      recipe_image    { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.png')) }
-      genre           { "和食" }
-      category        { "主菜" }
-      taste           { "醤油" }
-    end
-
     trait :private_recipe do
       user_id         { 1 }
       name            { 'プリン' }

@@ -70,7 +70,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
       yield resource if block_given?
       respond_with_navigational(resource){ redirect_to after_sign_out_path_for(resource_name) }
     else
-      @user = User.find(params[:id])
+      @user = current_user
+      @q = Recipe.where(is_open: true).ransack(params[:q])
       render template: "users/edit"
     end
   end
@@ -84,6 +85,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def destroy_params
-    params.permit(:current_password)
+    params.require(:user).permit(:current_password)
   end
 end

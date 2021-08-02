@@ -5,7 +5,7 @@ FactoryBot.define do
       user_id       { 1 }
       list          { "・テスト" }
       category      { "朝食" }
-      date          { "2021-01-01" }
+      date          { "#{Date.current.strftime('%Y-%m-%d')}" }
     end
 
     trait :no_image do
@@ -26,7 +26,7 @@ FactoryBot.define do
       menu_image    { Rack::Test::UploadedFile.new(File.join(Rails.root, 'spec/fixtures/test.png'), 'image/png') }
       user_id       { 2 }
       list          { "・テストテスト" }
-      date          { "2021-01-01" }
+      date          { "#{Date.current.strftime('%Y-%m-%d')}" }
       category      { "朝食" }
     end
   end

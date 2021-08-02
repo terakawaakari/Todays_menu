@@ -42,7 +42,7 @@ describe 'ログインのテスト' do
 end
 
 describe '会員のテスト' do
-  let(:user) { create(:user, :customer) }
+  let!(:user) { create(:user, :customer) }
   let!(:other_user) { create(:user, :customer) }
 
   before do
@@ -62,23 +62,23 @@ describe '会員のテスト' do
 
     it '退会前にパスワード入力フォームが表示される' do
       find(".withdraw-link").click
-      expect(page).to have_field 'current_password'
+      expect(page).to have_field 'user_current_password'
     end
     it '退会することができる' do
       find(".withdraw-link").click
-      fill_in 'current_password', with: user.password
+      fill_in 'user_current_password', with: user.password
       click_on '退会する'
       expect(page).to have_content 'アカウントを削除しました'
     end
     it '退会後はトップページに遷移する' do
       find(".withdraw-link").click
-      fill_in 'current_password', with: user.password
+      fill_in 'user_current_password', with: user.password
       click_on '退会する'
       expect(current_path).to eq root_path
     end
     it '退会後にログインすることができない' do
       find(".withdraw-link").click
-      fill_in 'current_password', with: user.password
+      fill_in 'user_current_password', with: user.password
       click_on '退会する'
       login(user)
       expect(current_path).to eq new_user_session_path
