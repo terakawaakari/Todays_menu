@@ -1,5 +1,5 @@
 # Today's menu
-![Today's menu](https://user-images.githubusercontent.com/81731819/128194136-93f10b82-b2d6-4036-b538-472c5b8ff629.png)
+![Today's menu (1)](https://user-images.githubusercontent.com/81731819/128194958-c331565d-e7b4-430a-ba09-4e083a60983d.png)
 
 ## サイト概要
 毎日の献立作成を楽にするためのアプリケーション。
