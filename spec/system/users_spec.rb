@@ -2,6 +2,31 @@
 
 require 'rails_helper'
 
+describe 'ログイン前のテスト' do
+  it 'トップ画面にログイン・新規登録・ゲストログインへのリンクが表示される' do
+    visit root_path
+    expect(page).to have_link '新規登録', href: new_user_registration_path
+    expect(page).to have_link 'ログイン', href: new_user_session_path
+    expect(page).to have_link 'ゲストログイン', href: users_guest_sign_in_path
+  end
+  it 'レシピタイムライン画面へ遷移できない' do
+    visit recipes_path
+    expect(current_path).to eq new_user_session_path
+  end
+  it 'メニュー一覧画面へ遷移できない' do
+    visit menus_path
+    expect(current_path).to eq new_user_session_path
+  end
+  it '買い物リスト画面へ遷移できない' do
+    visit buy_items_path
+    expect(current_path).to eq new_user_session_path
+  end
+  it 'ルーレット画面へ遷移できない' do
+    visit roulette_path
+    expect(current_path).to eq new_user_session_path
+  end
+end
+
 describe '新規会員登録のテスト' do
   before do
     visit new_user_registration_path

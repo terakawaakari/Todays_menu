@@ -1,4 +1,5 @@
 # Today's menu
+![Today's menu](https://user-images.githubusercontent.com/81731819/128198153-df308508-b456-4da1-977d-2aeb0d0edb00.png)
 
 ## サイト概要
 毎日の献立作成を楽にするためのアプリケーション。
@@ -25,7 +26,7 @@
 * 閲覧レシピに合ったレシピをおすすめレシピとして提案
 * 毎日の食事を記録(カレンダー/グリッド形式で表示)
 * レシピから必要な材料を買い物リストに追加
-* 献立、外食時の行き先を決めるルーレット
+* 献立、外食時の行き先を決めるルーレット　　など
 
 詳細は下記からご確認をお願いします。
 [実装機能一覧](https://docs.google.com/spreadsheets/d/1ELBXgYNIkkVXjdH-Mos4XrQ_JkCfdBSfx3k-HHnL8fw/edit?usp=sharing)
@@ -43,3 +44,7 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+
+## 使用素材
+- Canva
+- ICOOON MONO
