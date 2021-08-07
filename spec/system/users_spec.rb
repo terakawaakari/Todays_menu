@@ -9,7 +9,7 @@ describe 'ログイン前のテスト' do
     expect(page).to have_link 'ログイン', href: new_user_session_path
     expect(page).to have_link 'ゲストログイン', href: users_guest_sign_in_path
   end
-  it 'レシピタイムライン画面へ遷移できない' do
+  it 'レシピ一覧画面へ遷移できない' do
     visit recipes_path
     expect(current_path).to eq new_user_session_path
   end
@@ -57,12 +57,24 @@ describe 'ログインのテスト' do
     login(user)
     expect(page).to have_content 'ログインしました'
   end
+  it '正しくゲストログインできる' do
+    visit root_path
+    all('li')[2].click_on 'ゲストログイン'
+    expect(page).to have_content 'ログインしました'
+  end
   it 'ログイン後の遷移先がレシピタイムラインになっている' do
     visit new_user_session_path
     fill_in 'user[email]', with: user.email
     fill_in 'user[password]', with: user.password
     click_button 'ログイン'
     expect(current_path).to eq recipes_path
+  end
+  it 'ログイン後はトップページにログイン・新規登録・ゲストログインのリンクが表示されない' do
+    login(user)
+    visit root_path
+    expect(page).not_to have_content '新規登録'
+    expect(page).not_to have_content 'ログイン'
+    expect(page).not_to have_content 'ゲストログイン'
   end
 end
 
@@ -129,27 +141,43 @@ end
 describe '管理者のテスト' do
   let(:admin) { create(:user, :admin) }
   let!(:other_user) { create(:user, :customer) }
+  let(:recipe) { create(:recipe, :valid) }
 
   before do
     login(admin)
   end
 
-  it '管理者は会員一覧を閲覧することができる' do
+  it '会員一覧を閲覧することができる' do
     visit users_path
     expect(current_path).to eq users_path
   end
-  it '管理者は会員の詳細ページへ遷移できる' do
+  it '会員の詳細ページへ遷移できる' do
     visit user_path(other_user)
     expect(current_path).to eq user_path(other_user)
   end
-  it '管理者は会員の情報編集画面へ遷移できる' do
+  it '会員情報編集画面へ遷移できる' do
     visit edit_user_path(other_user)
     expect(current_path).to eq edit_user_path(other_user)
   end
-  it '管理者は会員の情報を編集できる' do
+  it '会員の情報を編集できる' do
     visit edit_user_path(other_user)
     fill_in 'user[name]', with: 'hoge'
     click_button '変更'
     expect(page).to have_content '変更を保存しました'
+  end
+  # it '会員を強制退会させることができる' do
+  #   visit edit_user_path(other_user)
+  #   page.accept_confirm do
+  #     click_on '強制退会'
+  #   end
+  #   expect(current_path).to eq root_path
+  # end
+  it 'レシピを投稿したユーザのIDを確認することができる' do
+    visit recipe_path(recipe)
+    expect(page).to have_content "ID #{other_user.id}"
+  end
+  it 'レシピ詳細ページに投稿したユーザの詳細画面へのリンクがある' do
+    visit recipe_path(recipe)
+    expect(page).to have_link href: user_path(other_user)
   end
 end
