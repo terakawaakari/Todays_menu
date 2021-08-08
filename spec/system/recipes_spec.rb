@@ -10,6 +10,7 @@ describe 'レシピの表示に関するテスト' do
   let!(:private_recipe)       { create(:recipe, :private_recipe) }
   let!(:other_private_recipe) { create(:recipe, :other_private_recipe) }
   let!(:bookmark)             { create(:bookmark) }
+  let!(:ingredient)           { create(:ingredient, :recipe) }
 
   context 'レシピタイムラインのテスト' do
     before do
@@ -100,6 +101,11 @@ describe 'レシピの表示に関するテスト' do
     it '他ユーザーの編集画面に遷移できず、マイレシピ一覧へ遷移する' do
       visit edit_recipe_path(other_recipe)
       expect(current_path).to eq recipes_path
+    end
+    it '材料を買い物リストに追加することができる' do
+      visit recipe_path(recipe)
+      click_on 'commit'
+      expect(page).to have_content '追加しました'
     end
   end
 end

@@ -151,6 +151,10 @@ describe '管理者のテスト' do
     visit users_path
     expect(current_path).to eq users_path
   end
+  it '会員一覧にパスワードが表示されていない' do
+   visit users_path
+   expect(page).not_to have_content other_user.password
+  end
   it '会員の詳細ページへ遷移できる' do
     visit user_path(other_user)
     expect(current_path).to eq user_path(other_user)
@@ -165,13 +169,14 @@ describe '管理者のテスト' do
     click_button '変更'
     expect(page).to have_content '変更を保存しました'
   end
-  # it '会員を強制退会させることができる' do
-  #   visit edit_user_path(other_user)
-  #   page.accept_confirm do
-  #     click_on '強制退会'
-  #   end
-  #   expect(current_path).to eq root_path
-  # end
+  it '会員を強制退会させることができ、ユーザ一覧画面へ遷移する', js: true do
+    visit edit_user_path(other_user)
+    page.accept_confirm do
+      click_on '強制退会'
+    end
+    expect(page).to have_content '強制退会を実行しました'
+    expect(current_path).to eq users_path
+  end
   it 'レシピを投稿したユーザのIDを確認することができる' do
     visit recipe_path(recipe)
     expect(page).to have_content "ID #{other_user.id}"
