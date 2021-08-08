@@ -2,8 +2,8 @@ FactoryBot.define do
   factory :ingredient do
     trait :recipe do
       recipe_id { 1 }
-      name { 'hogehoge' }
-      quantity { 'hoge' }
+      name { 'チーズ' }
+      quantity { '50g' }
     end
     trait :private_recipe do
       recipe_id { 3 }

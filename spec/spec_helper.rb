@@ -16,6 +16,7 @@
 RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :rack_test
+    # driven_by :selenium_chrome_headless
   end
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
@@ -97,3 +98,7 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+ENV["RAILS_ENV"] ||= 'test'
+require File.expand_path("../../config/environment", __FILE__)
+Capybara.javascript_driver = :selenium_chrome_headless
