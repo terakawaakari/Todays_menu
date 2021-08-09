@@ -28,23 +28,20 @@
 * レシピから必要な材料を買い物リストに追加
 * 献立、外食時の行き先を決めるルーレット　　など
 
-詳細は下記からご確認をお願いします。
+詳細は下記からご確認をお願いします。<br>
 [実装機能一覧](https://docs.google.com/spreadsheets/d/1ELBXgYNIkkVXjdH-Mos4XrQ_JkCfdBSfx3k-HHnL8fw/edit?usp=sharing)
 
 ## 設計書
 #### ER図
 
-
 ![ER](https://user-images.githubusercontent.com/81731819/128668332-0905145f-efa8-4491-a1ee-27653867d871.png)
 
 #### UI Flows
 
-
 ![UI Flows](https://user-images.githubusercontent.com/81731819/128668340-9dc5e3c5-b255-4e5a-b5eb-50cadf6473c8.png)
 
-#### [テーブル定義書](https://docs.google.com/spreadsheets/d/1-8nh6UvK-yBcvDNgDmwTt55McAC8V4JlJ8NjvBjCJQ4/edit?usp=sharing)
-
-
+#### [テーブル定義書・詳細設計書](https://docs.google.com/spreadsheets/d/1-8nh6UvK-yBcvDNgDmwTt55McAC8V4JlJ8NjvBjCJQ4/edit?usp=sharing)
+<br>
 
 ## 開発環境
 * OS：Linux(CentOS)
@@ -54,5 +51,5 @@
 * IDE：Cloud9
 
 ## 使用素材
-- Canva
-- ICOOON MONO
+- Canva(イラスト・画像素材)
+- ICOOON MONO(ロゴ)
