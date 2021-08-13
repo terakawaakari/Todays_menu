@@ -45,4 +45,10 @@ class Recipe < ApplicationRecord
     where(is_open: true).order(created_at: :DESC)
   end
 
+  def self.find_match_recipe(recipe, category)
+    where(genre: recipe.genre, category: category, is_open: true)
+      .where.not(taste: recipe.taste)
+      .where('time <= ?', (90 - recipe.time.to_i))
+      .find_by('popularity >= ?', 3.0)
+  end
 end

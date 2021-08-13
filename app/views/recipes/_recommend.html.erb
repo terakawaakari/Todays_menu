@@ -1,7 +1,14 @@
 <div class="d-flex justify-content-around mt-5 recipe-flex-block">
-  <% if @recommend_main.present? %>
+  <% if @recommend_main_dish.present? %>
     <div class="mx-2">
       <h4 class="text-center">おすすめ主菜レシピ</h4>
+      <div class="mt-4 center"><%= render "recommend_recipe", recipe: @recommend_main_dish %></div>
+    </div>
+  <% end %>
+
+  <% if @recommend_main.present? %>
+    <div class="mx-2">
+      <h4 class="text-center">おすすめ主食レシピ</h4>
       <div class="mt-4 center"><%= render "recommend_recipe", recipe: @recommend_main %></div>
     </div>
   <% end %>
